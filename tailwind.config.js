@@ -1,19 +1,19 @@
 /** @type {import('tailwindcss').Config} */
+// tailwind.config.js
 module.exports = {
   content: [
-    "./user/themes/**/*.{html,js,twig}",
-    "./user/pages/**/*.{md,html,twig}",
+    "./templates/**/*.{html,twig}",
+    "./css/**/*.css",
+    "./**/*.html",
+    "./**/*.twig"
   ],
   theme: {
     extend: {
       fontFamily: {
-        'inter': ['Inter', 'sans-serif'],
-      }
+        'sans': ['Plus+Jakarta+Sans', 'Inter', 'system-ui', 'sans-serif'],
+        'display': ['Plus+Jakarta+Sans', 'Inter', 'sans-serif'],
+      },
     },
   },
-  plugins: [
-    require('@tailwindcss/typography'),
-    require('@tailwindcss/forms'),
-    require('@tailwindcss/aspect-ratio'),
-  ],
+  plugins: [],
 }

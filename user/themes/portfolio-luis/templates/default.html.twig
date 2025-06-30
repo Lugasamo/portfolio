@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }} | Luis Saavedra - Portfolio UX/UI</title>
+    <link href="{{ theme_url }}/css/output.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body class="font-sans bg-gray-50 text-gray-900">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-md z-50 border-b border-gray-200">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                    Luis Saavedra
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#inicio" class="nav-link">Inicio</a>
+                    <a href="#portfolio" class="nav-link">Portfolio</a>
+                    <a href="#sobre-mi" class="nav-link">Sobre mí</a>
+                    <a href="#contacto" class="nav-link">Contacto</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-20">
+        <!-- Hero Section -->
+        <section id="inicio" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-purple-50">
+            <div class="container mx-auto px-6 text-center">
+                <div class="max-w-4xl mx-auto">
+                    <h1 class="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 bg-clip-text text-transparent">
+                        Luis Saavedra
+                    </h1>
+                    <p class="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
+                        Diseñador UX/UI especializado en crear experiencias digitales excepcionales desde Australia
+                    </p>
+                    
+                    <!-- Dynamic Content from Grav -->
+                    {% if page.content %}
+                    <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl p-8 mb-12 max-w-3xl mx-auto">
+                        <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+                            {{ page.content|raw }}
+                        </div>
+                    </div>
+                    {% endif %}
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="#portfolio" class="btn-primary group">
+                            <span>Ver mis proyectos</span>
+                            <span class="ml-2 group-hover:translate-x-1 transition-transform duration-300">→</span>
+                        </a>
+                        <a href="#contacto" class="bg-white text-blue-600 border-2 border-blue-600 px-8 py-4 rounded-xl font-semibold transition-all duration-300 hover:bg-blue-600 hover:text-white hover:scale-105 hover:shadow-lg">
+                            Contactar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Gallery -->
+        <section id="portfolio" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gray-800">
+                        Mi Portfolio
+                    </h2>
+                    <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                        Una selección de proyectos que demuestran mi pasión por el diseño centrado en el usuario
+                    </p>
+                </div>
+
+                <!-- Projects Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Project 1 -->
+                    <div class="project-card">
+                        <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-100 to-purple-100 aspect-[4/3] group cursor-pointer">
+                            <img src="https://placehold.co/400x300/3B82F6/FFFFFF?text=E-commerce+Platform" alt="Plataforma E-commerce" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2 text-gray-800">Plataforma E-commerce</h3>
+                            <p class="text-gray-600 mb-4">Mejora del 40% en conversiones mediante investigación UX y rediseño de interfaz</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="tag">UX Research</span>
+                                <span class="tag">UI Design</span>
+                                <span class="tag">Prototyping</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="project-card">
+                        <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-green-100 to-blue-100 aspect-[4/3] group cursor-pointer">
+                            <img src="https://placehold.co/400x300/10B981/FFFFFF?text=App+Fitness" alt="App de Fitness" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2 text-gray-800">App de Fitness</h3>
+                            <p class="text-gray-600 mb-4">Diseño de app móvil con enfoque en motivación y seguimiento de progreso</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="tag">Mobile Design</span>
+                                <span class="tag">User Journey</span>
+                                <span class="tag">Gamification</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 -->
+                    <div class="project-card">
+                        <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-purple-100 to-pink-100 aspect-[4/3] group cursor-pointer">
+                            <img src="https://placehold.co/400x300/8B5CF6/FFFFFF?text=Brand+Identity" alt="Identidad de Marca" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2 text-gray-800">Identidad de Marca</h3>
+                            <p class="text-gray-600 mb-4">Creación de identidad visual completa para startup tecnológica</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="tag">Branding</span>
+                                <span class="tag">Logo Design</span>
+                                <span class="tag">Visual Identity</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <style>
+        .nav-link {
+            @apply text-gray-600 hover:text-blue-600 transition-colors duration-300 font-medium;
+        }
+        
+        .btn-primary {
+            @apply bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg inline-flex items-center;
+        }
+        
+        .project-card {
+            @apply bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2;
+        }
+        
+        .tag {
+            @apply px-3 py-1 bg-gray-100 text-gray-600 text-sm rounded-full font-medium;
+        }
+    </style>
+</body>
+</html>

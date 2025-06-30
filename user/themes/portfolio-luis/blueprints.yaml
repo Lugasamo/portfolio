@@ -1,0 +1,16 @@
+name: Portfolio Luis
+version: 1.0.0
+description: Tema personalizado para el portfolio de Luis Saavedra
+icon: palette
+author:
+  name: Luis Saavedra
+  email: di.luisgabriel@gmail.com
+homepage: 
+demo: 
+keywords: portfolio, ux, ui, design
+bugs: 
+readme: 
+license: MIT
+
+form:
+  validation: loose
