@@ -1,0 +1,12 @@
+state: enabled
+email: di.luisgabriel@gmail.com
+language: en
+access:
+  admin:
+    login: true
+    super: true
+  site:
+    login: true
+fullname: 'Luis Saavedra'
+title: Designer
+hashed_password: $2y$12$L1UU.kzoCJxHHgPfJAbdRe7z47tV6ZMShCZV9j9pZj3xcNjuHdlX6
