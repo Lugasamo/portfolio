@@ -63,133 +63,147 @@ Page template: {{ page.template }}
             <img src="{{ url(page.media[page.header.hero_image].url) }}" 
                  alt="{{ page.header.hero_alt ?: page.title }}"
                  class="w-full h-full object-cover object-center opacity-20">
-                </div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#inicio" class="nav-link">Inicio</a>
-                    <a href="#portfolio" class="nav-link">Portfolio</a>
-                    <a href="#sobre-mi" class="nav-link">Sobre mí</a>
-                    <a href="#contacto" class="nav-link">Contacto</a>
-                </div>
+        </div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
+            <div class="text-white">
+                <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
+                    {{ page.title }}
+                </h1>
+                {% if page.header.subtitle %}
+                    <p class="text-lg md:text-xl text-white/90 max-w-2xl">
+                        {{ page.header.subtitle }}
+                    </p>
+                {% endif %}
             </div>
         </div>
-    </nav>
+    </section>
+    {% endif %}
 
-    <main class="pt-20">
-        <!-- Hero Section -->
-        <section id="inicio" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-purple-50">
-            <div class="container mx-auto px-6 text-center">
-                <div class="max-w-4xl mx-auto">
-                    <h1 class="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 bg-clip-text text-transparent">
-                        Luis Saavedra
-                    </h1>
-                    <p class="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
-                        Diseñador UX/UI especializado en crear experiencias digitales excepcionales desde Australia
+    {# Main Content Area #}
+    <article class="py-12 lg:py-20">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            {# Page Title - only show if no hero image #}
+            {% if not page.header.hero_image %}
+            <header class="mb-12 text-center">
+                <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+                    {{ page.title }}
+                </h1>
+                {% if page.header.subtitle %}
+                    <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
+                        {{ page.header.subtitle }}
                     </p>
-                    
-                    <!-- Dynamic Content from Grav -->
-                    {% if page.content %}
-                    <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl p-8 mb-12 max-w-3xl mx-auto">
-                        <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
-                            {{ page.content|raw }}
+                {% endif %}
+                {% if page.date %}
+                    <time class="inline-block mt-4 text-sm text-gray-500" datetime="{{ page.date|date('c') }}">
+                        {{ page.date|date('j F Y') }}
+                    </time>
+                {% endif %}
+            </header>
+            {% endif %}
+
+            {# Page Content #}
+            <div class="prose prose-lg prose-gray max-w-none 
+                        prose-headings:text-gray-900 prose-headings:font-bold
+                        prose-p:text-gray-700 prose-p:leading-relaxed
+                        prose-a:text-primary-600 prose-a:no-underline hover:prose-a:underline
+                        prose-strong:text-gray-900 prose-strong:font-semibold">
+                {% if page.content %}
+                    {{ page.content|raw }}
+                {% else %}
+                    <p class="text-gray-500 italic">No hay contenido disponible para esta página.</p>
+                    <p class="text-sm text-gray-400 mt-4">
+                        DEBUG: Template actual: {{ page.template ?: 'default' }}<br>
+                        Archivo de página: {{ page.filePathClean ?: 'No definido' }}
+                    </p>
+                {% endif %}
+            </div>
+
+            {# Tags - if defined #}
+            {% if page.taxonomy.tag %}
+            <footer class="mt-12 pt-8 border-t border-gray-200">
+                <div class="flex flex-wrap items-center gap-2">
+                    <span class="text-sm font-medium text-gray-700">Etiquetas:</span>
+                    {% for tag in page.taxonomy.tag %}
+                        <a href="{{ base_url }}/tag{{ config.system.param_sep }}{{ tag }}" 
+                           class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-primary-100 text-primary-800 hover:bg-primary-200 transition-colors">
+                            {{ tag }}
+                        </a>
+                    {% endfor %}
+                </div>
+            </footer>
+            {% endif %}
+        </div>
+    </article>
+
+    {# Related/Featured Content #}
+    {% if page.header.show_related and page.collection() %}
+    <section class="py-12 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-8 text-center">
+                Contenido relacionado
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {% for related_page in page.collection().limit(3) %}
+                    {% if related_page.url != page.url %}
+                    <article class="bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 overflow-hidden group">
+                        {% if related_page.header.featured_image %}
+                        <div class="aspect-w-16 aspect-h-9 overflow-hidden">
+                            <img src="{{ url(related_page.media[related_page.header.featured_image].url) }}" 
+                                 alt="{{ related_page.title }}"
+                                 class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
                         </div>
-                    </div>
+                        {% endif %}
+                        <div class="p-6">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-2 group-hover:text-primary-600 transition-colors">
+                                <a href="{{ related_page.url }}" class="stretched-link">
+                                    {{ related_page.title }}
+                                </a>
+                            </h3>
+                            {% if related_page.summary %}
+                                <p class="text-gray-600 text-sm line-clamp-3">
+                                    {{ related_page.summary }}
+                                </p>
+                            {% endif %}
+                            {% if related_page.date %}
+                                <time class="block mt-3 text-xs text-gray-500" datetime="{{ related_page.date|date('c') }}">
+                                    {{ related_page.date|date('j M Y') }}
+                                </time>
+                            {% endif %}
+                        </div>
+                    </article>
                     {% endif %}
-                    
-                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                        <a href="#portfolio" class="btn-primary group">
-                            <span>Ver mis proyectos</span>
-                            <span class="ml-2 group-hover:translate-x-1 transition-transform duration-300">→</span>
-                        </a>
-                        <a href="#contacto" class="bg-white text-blue-600 border-2 border-blue-600 px-8 py-4 rounded-xl font-semibold transition-all duration-300 hover:bg-blue-600 hover:text-white hover:scale-105 hover:shadow-lg">
-                            Contactar
-                        </a>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
-        </section>
+        </div>
+    </section>
+    {% endif %}
 
-        <!-- Portfolio Gallery -->
-        <section id="portfolio" class="py-20 bg-white">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gray-800">
-                        Mi Portfolio
-                    </h2>
-                    <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-                        Una selección de proyectos que demuestran mi pasión por el diseño centrado en el usuario
-                    </p>
-                </div>
-
-                <!-- Projects Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Project 1 -->
-                    <div class="project-card">
-                        <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-100 to-purple-100 aspect-[4/3] group cursor-pointer">
-                            <img src="https://placehold.co/400x300/3B82F6/FFFFFF?text=E-commerce+Platform" alt="Plataforma E-commerce" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-semibold mb-2 text-gray-800">Plataforma E-commerce</h3>
-                            <p class="text-gray-600 mb-4">Mejora del 40% en conversiones mediante investigación UX y rediseño de interfaz</p>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="tag">UX Research</span>
-                                <span class="tag">UI Design</span>
-                                <span class="tag">Prototyping</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 2 -->
-                    <div class="project-card">
-                        <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-green-100 to-blue-100 aspect-[4/3] group cursor-pointer">
-                            <img src="https://placehold.co/400x300/10B981/FFFFFF?text=App+Fitness" alt="App de Fitness" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-semibold mb-2 text-gray-800">App de Fitness</h3>
-                            <p class="text-gray-600 mb-4">Diseño de app móvil con enfoque en motivación y seguimiento de progreso</p>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="tag">Mobile Design</span>
-                                <span class="tag">User Journey</span>
-                                <span class="tag">Gamification</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 3 -->
-                    <div class="project-card">
-                        <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-purple-100 to-pink-100 aspect-[4/3] group cursor-pointer">
-                            <img src="https://placehold.co/400x300/8B5CF6/FFFFFF?text=Brand+Identity" alt="Identidad de Marca" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-semibold mb-2 text-gray-800">Identidad de Marca</h3>
-                            <p class="text-gray-600 mb-4">Creación de identidad visual completa para startup tecnológica</p>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="tag">Branding</span>
-                                <span class="tag">Logo Design</span>
-                                <span class="tag">Visual Identity</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    {# Call to Action - if defined in page header #}
+    {% if page.header.cta %}
+    <section class="py-12 bg-gradient-to-r from-primary-600 to-primary-700">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">
+                {{ page.header.cta.title ?: '¿Listo para trabajar juntos?' }}
+            </h2>
+            {% if page.header.cta.description %}
+                <p class="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
+                    {{ page.header.cta.description }}
+                </p>
+            {% endif %}
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="{{ page.header.cta.primary_link ?: '/contacto' }}" 
+                   class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-primary-700 bg-white hover:bg-gray-50 transition-colors duration-200">
+                    {{ page.header.cta.primary_text ?: 'Hablemos' }}
+                </a>
+                {% if page.header.cta.secondary_link %}
+                    <a href="{{ page.header.cta.secondary_link }}" 
+                       class="inline-flex items-center justify-center px-6 py-3 border-2 border-white text-base font-medium rounded-md text-white hover:bg-white hover:text-primary-700 transition-colors duration-200">
+                        {{ page.header.cta.secondary_text ?: 'Ver portfolio' }}
+                    </a>
+                {% endif %}
             </div>
-        </section>
-    </main>
-
-    <style>
-        .nav-link {
-            @apply text-gray-600 hover:text-blue-600 transition-colors duration-300 font-medium;
-        }
-        
-        .btn-primary {
-            @apply bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg inline-flex items-center;
-        }
-        
-        .project-card {
-            @apply bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2;
-        }
-        
-        .tag {
-            @apply px-3 py-1 bg-gray-100 text-gray-600 text-sm rounded-full font-medium;
-        }
-    </style>
-</body>
-</html>
+        </div>
+    </section>
+    {% endif %}
+</div>
+{% endblock %}

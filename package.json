@@ -4,15 +4,17 @@
   "description": "Portfolio UX/UI de Luis Saavedra",
   "main": "index.js",
   "scripts": {
-    "build": "tailwindcss -i ./css/input.css -o ./css/output.css --watch",
-    "dev": "tailwindcss -i ./css/input.css -o ./css/output.css --watch",
-    "build-prod": "tailwindcss -i ./css/input.css -o ./css/output.css --minify"
+    "build": "tailwindcss -i ./user/themes/portfolio-luis/css/input.css -o ./user/themes/portfolio-luis/css/output.css --watch",
+    "dev": "tailwindcss -i ./user/themes/portfolio-luis/css/input.css -o ./user/themes/portfolio-luis/css/output.css --watch",
+    "build-prod": "tailwindcss -i ./user/themes/portfolio-luis/css/input.css -o ./user/themes/portfolio-luis/css/output.css --minify"
   },
   "keywords": [],
   "author": "Luis Saavedra",
   "license": "ISC",
   "devDependencies": {
-    "@tailwindcss/typography": "^0.5.16",
     "tailwindcss": "^3.4.0"
+  },
+  "dependencies": {
+    "@tailwindcss/typography": "^0.5.16"
   }
 }

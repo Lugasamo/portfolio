@@ -1,0 +1,29 @@
+/* Typography components */
+.h1 { font-size: var(--font-5xl); font-weight: 800; }
+.h2 { font-size: var(--font-4xl); font-weight: 700; }
+.h3 { font-size: var(--font-2xl); font-weight: 600; }
+.h4 { font-size: var(--font-xl); font-weight: 600; }
+.h5 { font-size: var(--font-lg); font-weight: 500; }
+
+.text-xs { font-size: var(--font-xs); }
+.text-sm { font-size: var(--font-sm); }
+.text-base { font-size: var(--font-base); }
+.text-lg { font-size: var(--font-lg); }
+.text-xl { font-size: var(--font-xl); }
+
+.text-gradient { 
+  background: linear-gradient(135deg, var(--primary), var(--secondary)); 
+  -webkit-background-clip: text; 
+  -webkit-text-fill-color: transparent; 
+}
+
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.font-light { font-weight: 300; }
+.font-normal { font-weight: 400; }
+.font-medium { font-weight: 500; }
+.font-semibold { font-weight: 600; }
+.font-bold { font-weight: 700; }
+.font-extrabold { font-weight: 800; }

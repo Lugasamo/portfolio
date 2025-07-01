@@ -1,7 +1,19 @@
-title: Grav
+title: 'Luis Saavedra'
+default_lang: en
 author:
-  name: Joe Bloggs
-  email: 'joe@example.com'
+  name: 'Luis Saavedra Portfolio'
+  email: di.luisgabriel@gmail.com
+taxonomies:
+  - category
+  - tag
 metadata:
-    description: 'Grav is an easy to use, yet powerful, open source flat-file CMS'
-
+  description: 'Melbourne-based UX designer, UI design specialist, and frontend developer with a passion for user-centric design, clean code, and creating impactful digital products.'
+summary:
+  enabled: true
+  format: short
+  size: 300
+  delimiter: '==='
+redirects: null
+routes: null
+blog:
+  route: /blog

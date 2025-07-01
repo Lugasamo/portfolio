@@ -1,42 +1,61 @@
 ---
-title: Home
-body_classes: 'title-center title-h1h2'
+title: 'Inicio'
+subtitle: 'Explorando soluciones de diseño que impactan positivamente en la experiencia del usuario'
+description: 'Portfolio de proyectos UX/UI que demuestran mi proceso de diseño centrado en el usuario'
+template: default
 ---
 
-# Say Hello to Grav!
-## installation successful...
+# Mis Proyectos
 
-Congratulations! You have installed the **Base Grav Package** that provides a **simple page** and the default **Quark** theme to get you started.
+<section class="banner">
+    <img src="/user/themes/portfolio/images/banner-home.jpg" alt="Banner de Luis García - Diseño UX/UI" style="width:100%; height:auto; border-radius:12px; margin-bottom:2rem;">
+</section>
 
-!! If you see a **404 Error** when you click `Typography` in the menu, please refer to the [troubleshooting guide](http://learn.getgrav.org/troubleshooting/page-not-found).
+<section class="intro">
+    <h2>Hola, soy Luis García</h2>
+    <p>
+        Soy un <strong>diseñador UI/UX</strong> enfocado en crear experiencias digitales intuitivas, accesibles y visualmente atractivas. Mi objetivo es que cada solución no solo luzca bien, sino que también resuelva necesidades reales de los usuarios de manera eficiente.
+    </p>
+</section>
 
-### Find out all about Grav
+<section class="filosofia">
+    <h3>Mi Filosofía de Diseño</h3>
+    <ul>
+        <li>El usuario siempre está en el centro de cada decisión.</li>
+        <li>La simplicidad y claridad son clave para una buena experiencia.</li>
+        <li>El diseño debe ser inclusivo y accesible para todos.</li>
+        <li>La colaboración y la iteración constante mejoran los resultados.</li>
+    </ul>
+    <blockquote>
+        Creo firmemente que el mejor diseño es invisible. Cuando los usuarios pueden lograr sus objetivos de manera intuitiva y sin fricción, ahí es donde la magia sucede.
+    </blockquote>
+</section>
 
-* Learn about **Grav** by checking out our dedicated [Learn Grav](http://learn.getgrav.org) site.
-* Download **plugins**, **themes**, as well as other Grav **skeleton** packages from the [Grav Downloads](http://getgrav.org/downloads) page.
-* Check out our [Grav Development Blog](http://getgrav.org/blog) to find out the latest goings on in the Grav-verse.
+<section class="servicios">
+    <h3>Lo que hago</h3>
+    <ul>
+        <li><strong>Investigación de Usuario:</strong> Entender las necesidades reales antes de diseñar</li>
+        <li><strong>Diseño de Interfaz:</strong> Crear interfaces limpias y funcionales</li>
+        <li><strong>Prototipado:</strong> Dar vida a las ideas para probar y validar conceptos</li>
+        <li><strong>Diseño de Sistemas:</strong> Construir componentes reutilizables y escalables</li>
+    </ul>
+</section>
 
-!!! If you want a more **full-featured** base install, you should check out [**Skeleton** packages available in the downloads](http://getgrav.org/downloads).
+<section class="proceso">
+    <h3>Mi Proceso</h3>
+    <ol>
+        <li><strong>Descubrir:</strong> Investigación y análisis del problema</li>
+        <li><strong>Definir:</strong> Identificar oportunidades y objetivos claros</li>
+        <li><strong>Diseñar:</strong> Crear soluciones centradas en el usuario</li>
+        <li><strong>Entregar:</strong> Implementar y medir el impacto</li>
+    </ol>
+</section>
 
-### Edit this Page
+<blockquote class="cita">
+    "El diseño no es solo cómo se ve o cómo se siente. El diseño es cómo funciona." - Steve Jobs
+</blockquote>
 
-To edit this page, simply navigate to the folder you installed **Grav** into, and then browse to the `user/pages/01.home` folder and open the `default.md` file in your [editor of choice](http://learn.getgrav.org/basics/requirements).  You will see the content of this page in [Markdown format](http://learn.getgrav.org/content/markdown).
-
-### Create a New Page
-
-Creating a new page is a simple affair in **Grav**.  Simply follow these simple steps:
-
-1. Navigate to your pages folder: `user/pages/` and create a new folder.  In this example, we will use [explicit default ordering](http://learn.getgrav.org/content/content-pages) and call the folder `03.mypage`.
-2. Launch your text editor and paste in the following sample code:
-
-        ---
-        title: My New Page
-        ---
-        # My New Page!
-
-        This is the body of **my new page** and I can easily use _Markdown_ syntax here.
-
-3. Save this file in the `user/pages/03.mypage/` folder as `default.md`. This will tell **Grav** to render the page using the **default** template.
-4. That is it! Reload your browser to see your new page in the menu.
-
-! NOTE: The page will automatically show up in the Menu after the "Typography" menu item. If you wish to change the name that shows up in the Menu, simple add: `menu: My Page` between the dashes in the page content. This is called the YAML front matter, and it is where you configure page-specific options.
+<section class="cta">
+    <p>¿Listo para crear algo extraordinario juntos?</p>
+    <a href="/contacto" class="btn btn-primary">Contáctame</a>
+</section>

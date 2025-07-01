@@ -1,0 +1,114 @@
+{# Basic SEO Meta Tags #}
+{% set meta_description = page.header.meta.description ?: page.summary(320) ?: site.metadata.description ?: 'Luis Saavedra - Diseñador UI/UX especializado en crear experiencias digitales excepcionales.' %}
+{% set meta_keywords = page.header.meta.keywords ?: 'diseño ui/ux, portfolio, diseñador web, experiencia usuario, interfaz usuario' %}
+{% set meta_author = page.header.meta.author ?: site.author.name ?: 'Luis Saavedra' %}
+{% set meta_image = page.header.meta.image ? url(page.media[page.header.meta.image].url) : (site.metadata.image ? url(site.metadata.image) : url('theme://images/og-image.jpg')) %}
+
+{# Description #}
+<meta name="description" content="{{ meta_description|e('html') }}">
+<meta name="keywords" content="{{ meta_keywords|e('html') }}">
+<meta name="author" content="{{ meta_author|e('html') }}">
+
+{# Open Graph / Facebook #}
+<meta property="og:type" content="{% if page.template == 'default' %}website{% else %}article{% endif %}">
+<meta property="og:url" content="{{ page.url(true, true) }}">
+<meta property="og:title" content="{% if page.title %}{{ page.title|e('html') }} | {% endif %}{{ site.title|e('html') }}">
+<meta property="og:description" content="{{ meta_description|e('html') }}">
+<meta property="og:image" content="{{ meta_image }}">
+<meta property="og:site_name" content="{{ site.title|e('html') }}">
+<meta property="og:locale" content="{{ grav.language.getActive ?: 'es_ES' }}">
+
+{# Twitter Card #}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="{{ page.url(true, true) }}">
+<meta name="twitter:title" content="{% if page.title %}{{ page.title|e('html') }} | {% endif %}{{ site.title|e('html') }}">
+<meta name="twitter:description" content="{{ meta_description|e('html') }}">
+<meta name="twitter:image" content="{{ meta_image }}">
+{% if site.metadata.twitter %}
+<meta name="twitter:creator" content="@{{ site.metadata.twitter }}">
+<meta name="twitter:site" content="@{{ site.metadata.twitter }}">
+{% endif %}
+
+{# Additional Meta Tags #}
+<meta name="robots" content="{{ page.header.meta.robots ?: 'index, follow' }}">
+<meta name="googlebot" content="{{ page.header.meta.googlebot ?: 'index, follow' }}">
+
+{# Language and Location #}
+<meta name="language" content="{{ grav.language.getActive ?: 'Spanish' }}">
+<meta name="geo.region" content="ES">
+
+{# Mobile and Web App Meta Tags #}
+<meta name="theme-color" content="#3B82F6">
+<meta name="msapplication-TileColor" content="#3B82F6">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="{{ site.title|e('html') }}">
+
+{# Structured Data - JSON-LD #}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "{% if page.template == 'default' %}WebSite{% else %}WebPage{% endif %}",
+  "name": "{{ site.title|e('html') }}",
+  "url": "{{ page.url(true, true) }}",
+  "description": "{{ meta_description|e('html') }}",
+  {% if page.template == 'default' %}
+  "author": {
+    "@type": "Person",
+    "name": "{{ meta_author|e('html') }}",
+    "jobTitle": "UI/UX Designer",
+    "url": "{{ base_url_absolute }}"
+  },
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "{{ base_url_absolute }}/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+  {% else %}
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "{{ site.title|e('html') }}",
+    "url": "{{ base_url_absolute }}"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "{{ meta_author|e('html') }}"
+  }
+  {% if page.date %}
+  ,"datePublished": "{{ page.date|date('c') }}"
+  {% endif %}
+  {% if page.modified %}
+  ,"dateModified": "{{ page.modified|date('c') }}"
+  {% endif %}
+  {% endif %}
+}
+</script>
+
+{# Additional JSON-LD for Person/Professional (for portfolio sites) #}
+{% if page.template == 'default' %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "{{ meta_author|e('html') }}",
+  "jobTitle": "UI/UX Designer",
+  "url": "{{ base_url_absolute }}",
+  "image": "{{ meta_image }}",
+  "sameAs": [
+    {% if site.metadata.linkedin %}"{{ site.metadata.linkedin }}"{% endif %}
+    {% if site.metadata.dribbble %}{% if site.metadata.linkedin %},{% endif %}"{{ site.metadata.dribbble }}"{% endif %}
+    {% if site.metadata.behance %}{% if site.metadata.linkedin or site.metadata.dribbble %},{% endif %}"{{ site.metadata.behance }}"{% endif %}
+  ],
+  "knowsAbout": [
+    "UI Design",
+    "UX Design", 
+    "Web Design",
+    "User Experience",
+    "User Interface",
+    "Design Systems",
+    "Prototyping"
+  ],
+  "description": "{{ meta_description|e('html') }}"
+}
+</script>
+{% endif %}

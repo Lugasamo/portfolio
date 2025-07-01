@@ -1,0 +1,20 @@
+/* Card components */
+.card {
+  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  overflow: hidden;
+}
+
+.card:hover { 
+  transform: translateY(-8px); 
+  box-shadow: var(--shadow-xl); 
+}
+
+.card-body { padding: var(--space-md); }
+.card-header { padding: var(--space-md); border-bottom: 1px solid var(--gray-200); }
+.card-footer { padding: var(--space-md); border-top: 1px solid var(--gray-200); }
+
+.card-sm .card-body { padding: var(--space-sm); }
+.card-lg .card-body { padding: var(--space-xl); }

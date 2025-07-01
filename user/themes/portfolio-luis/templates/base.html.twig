@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="{{ grav.language.getActive ?: site.default_lang ?: 'es' }}">
+<head>
+    {% block head %}
+    <meta charset="utf-8" />
+    <title>{% if page.title %}{{ page.title|e('html') }} | {% endif %}{{ site.title|e('html') }}</title>
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="{{ url('theme://images/favicon.png') }}" />
+    <link rel="canonical" href="{{ page.url(true, true) }}" />
+    
+    {% include 'partials/metadata.html.twig' %}
+    
+    {# Preload critical fonts #}
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Barlow:wght@600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Barlow:wght@600;700;800&display=swap"></noscript>
+    
+    {# Stylesheets #}
+    {% block stylesheets %}
+        {# Tailwind CSS output - main stylesheet #}
+        <link href="{{ url('theme://css/output.css') }}" rel="stylesheet">
+    {% endblock %}
+    
+    {% block head_bottom %}{% endblock %}
+    {% endblock head %}
+</head>
+
+<body id="top" class="{{ page.body_classes }} font-jakarta antialiased bg-gray-50 text-gray-900">
+    {# Skip to content for accessibility #}
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-primary-600 text-white px-4 py-2 rounded-md z-50">
+        Saltar al contenido principal
+    </a>
+    
+    {% block header %}
+    <header class="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-gray-200/50 transition-all duration-300" id="header">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Navegación principal">
+            <div class="flex justify-between items-center h-16">
+                {# Logo/Brand #}
+                <div class="flex-shrink-0">
+                    <a href="{{ base_url_absolute }}" class="flex items-center space-x-2 text-xl font-bold text-gray-900 hover:text-primary-600 transition-colors">
+                        {% if config.site.logo %}
+                            <img src="{{ url(config.site.logo) }}" alt="{{ site.title }}" class="h-8 w-auto">
+                        {% else %}
+                            <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">
+                                {{ site.title ?: 'Luis Portfolio' }}
+                            </span>
+                        {% endif %}
+                    </a>
+                </div>
+
+                {# Desktop Navigation #}
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        {% for page in pages.children.visible %}
+                            {% set current_page = (page.active or page.activeChild) ? 'current' : '' %}
+                            <a href="{{ page.url }}" 
+                               class="px-3 py-2 text-sm font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-md transition-all duration-200 {{ current_page ? 'text-primary-600 bg-primary-50' : '' }}"
+                               {% if current_page %}aria-current="page"{% endif %}>
+                                {{ page.menu ?: page.title }}
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                {# Mobile menu button #}
+                <div class="md:hidden">
+                    <button type="button" 
+                            class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500" 
+                            aria-controls="mobile-menu" 
+                            aria-expanded="false"
+                            id="mobile-menu-button">
+                        <span class="sr-only">Abrir menú principal</span>
+                        <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            {# Mobile Navigation #}
+            <div class="md:hidden hidden" id="mobile-menu">
+                <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t border-gray-200">
+                    {% for page in pages.children.visible %}
+                        {% set current_page = (page.active or page.activeChild) ? 'current' : '' %}
+                        <a href="{{ page.url }}" 
+                           class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-md transition-colors {{ current_page ? 'text-primary-600 bg-primary-50' : '' }}"
+                           {% if current_page %}aria-current="page"{% endif %}>
+                            {{ page.menu ?: page.title }}
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </nav>
+    </header>
+    {% endblock %}
+
+    {# Main Content #}
+    <main id="main-content" class="max-w-full">
+        {% block content %}{% endblock %}
+    </main>
+
+    {% block footer %}
+    <footer class="bg-gray-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {# About section #}
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">{{ site.title ?: 'Luis Portfolio' }}</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        {{ site.metadata.description ?: 'Diseñador UI/UX especializado en crear experiencias digitales excepcionales.' }}
+                    </p>
+                </div>
+                
+                {# Quick Links #}
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Enlaces rápidos</h3>
+                    <ul class="space-y-2">
+                        {% for page in pages.children.visible %}
+                            <li>
+                                <a href="{{ page.url }}" class="text-gray-300 hover:text-white text-sm transition-colors">
+                                    {{ page.menu ?: page.title }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                
+                {# Contact/Social #}
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Conectemos</h3>
+                    <div class="flex space-x-4">
+                        {# Add your social links here #}
+                        <a href="#" class="text-gray-300 hover:text-white transition-colors" aria-label="LinkedIn">
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white transition-colors" aria-label="Dribbble">
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 0C5.374 0 0 5.373 0 12s5.374 12 12 12 12-5.373 12-12S18.626 0 12 0zm9.568 7.375c.77 1.423 1.216 3.057 1.216 4.781 0 .45-.03.895-.09 1.336-.496-.11-1.096-.238-1.777-.238-.706 0-1.347.089-1.924.238-.084-.627-.222-1.248-.416-1.859l.564-.238c.706-.297 1.353-.713 1.904-1.238.297-.28.569-.577.81-.89.11-.139.211-.284.302-.434.019-.03.037-.061.054-.093.092-.172.174-.353.245-.541.068-.179.125-.363.174-.55.048-.187.086-.379.116-.575.03-.196.052-.396.065-.6.013-.204.017-.413.013-.624zm-1.238 2.625c-.297.297-.623.569-.975.816-.352.247-.728.473-1.128.677-.4.204-.821.387-1.262.549-.441.162-.901.303-1.379.423-.478.12-.974.219-1.488.297-.514.078-1.046.135-1.596.171-.55.036-1.118.051-1.704.045-.586-.006-1.19-.033-1.812-.081s-1.262-.119-1.918-.216c-.656-.097-1.334-.229-2.034-.396-.7-.167-1.422-.369-2.166-.606-.744-.237-1.51-.509-2.298-.816-.788-.307-1.598-.649-2.43-1.026-.832-.377-1.686-.789-2.562-1.236-.876-.447-1.774-.929-2.694-1.446C.842 9.458.317 8.904 0 8.25c.297-.297.623-.569.975-.816.352-.247.728-.473 1.128-.677.4-.204.821-.387 1.262-.549.441-.162.901-.303 1.379-.423.478-.12.974-.219 1.488-.297.514-.078 1.046-.135 1.596-.171.55-.036 1.118-.051 1.704-.045.586.006 1.19.033 1.812.081s1.262.119 1.918.216c.656.097 1.334.229 2.034.396.7.167 1.422.369 2.166.606.744.237 1.51.509 2.298.816.788.307 1.598.649 2.43 1.026.832.377 1.686.789 2.562 1.236.876.447 1.774.929 2.694 1.446 1.92 1.079 2.445 1.633 2.762 2.287z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <hr class="my-8 border-gray-700">
+            
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm">
+                    © {{ "now"|date("Y") }} {{ site.title ?: 'Luis Portfolio' }}. Todos los derechos reservados.
+                </p>
+                <p class="text-gray-400 text-sm mt-4 md:mt-0">
+                    Hecho con ❤️ usando <a href="https://getgrav.org" class="hover:text-white transition-colors">Grav</a> y <a href="https://tailwindcss.com" class="hover:text-white transition-colors">Tailwind CSS</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+    {% endblock %}
+
+    {% block javascripts %}
+        {# No assets pipeline - direct JS inclusion #}
+        <script src="{{ url('theme://js/mobile-menu.js') }}"></script>
+    {% endblock %}
+
+    {# Mobile menu toggle script - inline for immediate functionality #}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (menuButton && mobileMenu) {
+                menuButton.addEventListener('click', function() {
+                    const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
+                    menuButton.setAttribute('aria-expanded', !isExpanded);
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
