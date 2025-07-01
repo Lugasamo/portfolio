@@ -1,20 +1,68 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ page.title }} | Luis Saavedra - Portfolio UX/UI</title>
-    <link href="{{ theme_url }}/css/output.css" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-</head>
-<body class="font-sans bg-gray-50 text-gray-900">
-    <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-md z-50 border-b border-gray-200">
-        <div class="container mx-auto px-6 py-4">
-            <div class="flex justify-between items-center">
-                <div class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                    Luis Saavedra
+{% extends 'base.html.twig' %}
+
+{% block head %}
+    {{ parent() }}
+    
+    {# Page-specific meta tags #}
+    {% if page.header.description %}
+        <meta name="description" content="{{ page.header.description|e('html_attr') }}">
+    {% endif %}
+    
+    {% if page.header.keywords %}
+        <meta name="keywords" content="{{ page.header.keywords|e('html_attr') }}">
+    {% endif %}
+    
+    {# Open Graph meta tags for social sharing #}
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ page.title|e('html_attr') }} | {{ site.title|e('html_attr') }}">
+    <meta property="og:description" content="{{ page.header.description ?: site.metadata.description|e('html_attr') }}">
+    <meta property="og:url" content="{{ page.url(true, true) }}">
+    {% if page.header.hero_image %}
+        <meta property="og:image" content="{{ url(page.media[page.header.hero_image].url, true) }}">
+    {% endif %}
+    
+    {# Twitter Card meta tags #}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ page.title|e('html_attr') }} | {{ site.title|e('html_attr') }}">
+    <meta name="twitter:description" content="{{ page.header.description ?: site.metadata.description|e('html_attr') }}">
+    {% if page.header.hero_image %}
+        <meta name="twitter:image" content="{{ url(page.media[page.header.hero_image].url, true) }}">
+    {% endif %}
+    
+    {# Structured data for better SEO #}
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": {{ page.title|json_encode|raw }},
+        "description": {{ (page.header.description ?: site.metadata.description)|json_encode|raw }},
+        "url": "{{ page.url(true, true) }}",
+        "mainEntity": {
+            "@type": "Person",
+            "name": {{ site.author.name|json_encode|raw }},
+            "jobTitle": "UI/UX Designer",
+            "url": "{{ base_url_absolute }}"
+        }
+    }
+    </script>
+{% endblock %}
+
+{% block content %}
+{# DEBUG: Let's see what we have #}
+<!-- DEBUG INFO:
+Page title: {{ page.title }}
+Page content exists: {{ page.content ? 'YES' : 'NO' }}
+Page template: {{ page.template }}
+-->
+
+<div class="relative">
+    {# Hero Section - if hero_image is defined #}
+    {% if page.header.hero_image %}
+    <section class="relative h-64 md:h-80 lg:h-96 overflow-hidden bg-gradient-to-br from-primary-600 to-primary-700">
+        <div class="absolute inset-0">
+            <img src="{{ url(page.media[page.header.hero_image].url) }}" 
+                 alt="{{ page.header.hero_alt ?: page.title }}"
+                 class="w-full h-full object-cover object-center opacity-20">
                 </div>
                 <div class="hidden md:flex space-x-8">
                     <a href="#inicio" class="nav-link">Inicio</a>
