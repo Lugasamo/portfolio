@@ -15,16 +15,16 @@ cache:
   driver: auto
   prefix: 'g'
 twig:
-  cache: true
+  cache: false      # Desactivado para desarrollo
   debug: false
   auto_reload: true
   autoescape: false
 assets:
-  css_minify: false    # ← Cambia esto a false
-  js_pipeline: false
-  js_minify: false     # ← Y esto también
+  css_minify: true  # Activado para producción
+  js_pipeline: true # Activado para optimización
+  js_minify: true   # Activado para producción
 errors:
-  display: false
+  display: true     # Mostrar errores localmente
   log: true
 debugger:
-  enabled: false
+  enabled: true     # Activado para ver detalles internos
