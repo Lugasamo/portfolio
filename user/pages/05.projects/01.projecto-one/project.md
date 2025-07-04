@@ -57,6 +57,7 @@ team:
         name: 'Ana Torres'
         role: 'Product Manager'
 date: '15-01-2024 11:00'
+published: true
 ---
 
 # El Proyecto

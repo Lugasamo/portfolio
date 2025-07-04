@@ -24,7 +24,7 @@ assets:
   js_pipeline: false
   js_minify: false     # ← Y esto también
 errors:
-  display: 0
+  display: false
   log: true
 debugger:
   enabled: false

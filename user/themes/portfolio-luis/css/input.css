@@ -84,10 +84,9 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: "Barlow", sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     line-height: 1.2;
     margin-bottom: var(--space-sm);
-    text-transform: uppercase;
     letter-spacing: var(--tracking-tighter);
   }
 }
@@ -197,10 +196,6 @@
     font-weight: 500;
     transition: var(--transition);
     padding: var(--space-xs) var(--space-sm);
-  }
-  
-  .nav-link:hover { 
-    color: var(--primary); 
   }
   
   /* Tags */

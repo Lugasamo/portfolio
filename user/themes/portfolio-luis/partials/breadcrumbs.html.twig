@@ -1,0 +1,40 @@
+{% set breadcrumb_list = [] %}
+{% set current_page = page %}
+
+{# Construir la lista de breadcrumbs #}
+{% for p in page.parents %}
+    {% if p.visible %}
+        {% set breadcrumb_list = breadcrumb_list|merge([{
+            'url': p.url,
+            'title': p.title,
+            'menu': p.menu
+        }]) %}
+    {% endif %}
+{% endfor %}
+
+{# Agregar la página actual #}
+{% set breadcrumb_list = breadcrumb_list|merge([{
+    'url': page.url,
+    'title': page.title,
+    'menu': page.menu,
+    'active': true
+}]) %}
+
+{# Renderizar breadcrumbs #}
+{% if breadcrumb_list|length > 1 %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        {% for item in breadcrumb_list %}
+            {% if not item.active %}
+                <li class="breadcrumb-item">
+                    <a href="{{ item.url }}">{{ item.menu ?: item.title }}</a>
+                </li>
+            {% else %}
+                <li class="breadcrumb-item active" aria-current="page">
+                    {{ item.menu ?: item.title }}
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ol>
+</nav>
+{% endif %}

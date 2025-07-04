@@ -66,7 +66,10 @@ Page template: {{ page.template }}
         </div>
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
             <div class="text-white">
-                <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
+                <h1 class="text-[20rem] md:text-4xl lg:text-[20rem] font-bold mb-4 leading-tight hero-title">
+                    {% if page.header.hero_icon %}
+                        <i class="{{ page.header.hero_icon }} mr-2"></i>
+                    {% endif %}
                     {{ page.title }}
                 </h1>
                 {% if page.header.subtitle %}
@@ -78,14 +81,14 @@ Page template: {{ page.template }}
         </div>
     </section>
     {% endif %}
-
+    
     {# Main Content Area #}
     <article class="py-12 lg:py-20">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             {# Page Title - only show if no hero image #}
             {% if not page.header.hero_image %}
             <header class="mb-12 text-center">
-                <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+                <h1 class="text-[20rem] text-nowrap font-bold text-gray-900 mb-6 leading-tight">
                     {{ page.title }}
                 </h1>
                 {% if page.header.subtitle %}
