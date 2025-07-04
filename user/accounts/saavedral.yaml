@@ -1,12 +1,21 @@
 state: enabled
 email: di.luisgabriel@gmail.com
 language: en
-access:
-  admin:
-    login: true
-    super: true
-  site:
-    login: true
 fullname: 'Luis Saavedra'
 title: Designer
 hashed_password: $2y$12$L1UU.kzoCJxHHgPfJAbdRe7z47tV6ZMShCZV9j9pZj3xcNjuHdlX6
+content_editor: default
+twofa_enabled: false
+twofa_secret: ILWSHXKPDOU7KEY7Y6SJIVFEITJ2LVCV
+avatar:
+  user/accounts/avatars/7rysfrpanlvpcbb.png:
+    name: 7rysfrpanlvpcbb.png
+    type: image/png
+    size: 207204
+    path: user/accounts/avatars/7rysfrpanlvpcbb.png
+access:
+  site:
+    login: true
+  admin:
+    login: true
+    super: true

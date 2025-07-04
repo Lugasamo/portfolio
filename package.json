@@ -4,11 +4,11 @@
   "description": "Portfolio UX/UI de Luis Saavedra",
   "main": "index.js",
   "scripts": {
-    "dev": "concurrently \"php -S localhost:8001 system/router.php\" \"tailwindcss -i ./user/themes/portfolio-luis/css/input.css -o ./user/themes/portfolio-luis/css/output.css --watch\"",
+    "dev": "concurrently \"php -S localhost:8000 system/router.php\" \"npx tailwindcss -i ./user/themes/portfolio-luis/css/input.css -o ./user/themes/portfolio-luis/css/output.css --watch\"",
     "dev-simple": "tailwindcss -i ./user/themes/portfolio-luis/css/input.css -o ./user/themes/portfolio-luis/css/output.css --watch",
     "tailwind:watch": "tailwindcss -i ./user/themes/portfolio-luis/css/input.css -o ./user/themes/portfolio-luis/css/output.css --watch",
     "tailwind:build": "tailwindcss -i ./user/themes/portfolio-luis/css/input.css -o ./user/themes/portfolio-luis/css/output.css --minify",
-    "server": "php -S localhost:8001 system/router.php",
+    "server": "php -S localhost:8000 system/router.php",
     "build": "npm run tailwind:build",
     "start": "npm run dev"
   },

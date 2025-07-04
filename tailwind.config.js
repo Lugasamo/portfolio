@@ -2,9 +2,7 @@
 module.exports = {
   content: [
     "./user/themes/portfolio-luis/templates/**/*.{html,twig}",
-    "./user/themes/portfolio-luis/css/**/*.css",
-    "./user/themes/portfolio-luis/**/*.html",
-    "./user/themes/portfolio-luis/**/*.twig"
+    './user/themes/portfolio-luis/assets/js/*.js'
   ],
   theme: {
     extend: {
@@ -24,6 +22,6 @@ module.exports = {
     },
   },
   plugins: [
-  require('@tailwindcss/typography'),
-],
+    require('@tailwindcss/typography'),
+  ],
 }
