@@ -2,13 +2,19 @@
 
 :root {
   /* Colores principales */
-  --color-primary: #3b82f6;
-  --color-primary-dark: #2563eb;
-  --color-secondary: #8b5cf6;
+  --color-primary: #008844;
+  --color-primary-dark: #076a38;
+  --color-secondary: #32F191;
+  --color-Tertiary: #000000;
   --color-accent: #06b6d4;
   --color-success: #10b981;
   --color-warning: #f59e0b;
   --color-error: #ef4444;
+
+  /* Colores principales */
+  --text-primary: #333333;
+  --text-secondary: #7F7F7F;
+  --text-accent: #ffffff;
 
   /* Escala de grises */
   --gray-50: #f9fafb;
@@ -60,4 +66,30 @@
   --text-2xl: 1.5rem;
   --text-3xl: 1.875rem;
   --text-4xl: 2.25rem;
+}
+
+/* button styles */
+.btn-primary {
+  @apply transform h-auto w-auto text-white text-lg bg-black hover:text-primary-100 rounded-full px-8 py-4 transition duration-500 hover:scale-105 flex justify-center items-center;
+}
+
+/* link styles */
+.hover-underline {
+  @apply text-lg relative font-medium after:absolute after:bottom-0 after:left-0 after:h-1 after:w-0 after:bg-primary-100 after:transition-all after:duration-300 cursor-pointer;
+}
+
+.hover-underline::after {
+  content: '';
+  bottom: 0;  
+  left: 0;
+  height: 2px;
+  width: 0%;
+}
+
+.hover-underline:hover::after,
+.hover-underline:focus::after {
+  width: 100%;
+}
+.selected-underline {
+  @apply font-semibold text-primary-50 after:bottom-0 after:h-1px after:w-full after:bg-primary-100;
 }

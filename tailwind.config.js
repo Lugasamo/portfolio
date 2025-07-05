@@ -1,7 +1,7 @@
-/** @type {import('tailwindcss').Config} */
+/* @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./user/themes/portfolio-luis/templates/**/*.{html,twig}",
+    './user/themes/portfolio-luis/templates/**/*.{html,twig}',
     './user/themes/portfolio-luis/assets/js/*.js'
   ],
   theme: {
@@ -13,7 +13,8 @@ module.exports = {
       },
       colors: {
         primary: {
-          50: '#eff6ff',
+          50: '#008844',
+          100: '#32F191',
           500: '#3b82f6',
           600: '#2563eb',
           700: '#1d4ed8',
