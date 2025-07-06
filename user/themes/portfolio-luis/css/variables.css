@@ -75,7 +75,7 @@
 
 /* link styles */
 .hover-underline {
-  @apply text-lg relative font-medium after:absolute after:bottom-0 after:left-0 after:h-1 after:w-0 after:bg-primary-100 after:transition-all after:duration-300 cursor-pointer;
+  @apply text-lg text-neutral-600 relative font-medium after:absolute after:bottom-0 after:left-0 after:h-1 after:w-0 after:bg-primary-100 after:transition-all after:duration-300 cursor-pointer;
 }
 
 .hover-underline::after {
@@ -84,6 +84,7 @@
   left: 0;
   height: 2px;
   width: 0%;
+  
 }
 
 .hover-underline:hover::after,
@@ -91,5 +92,5 @@
   width: 100%;
 }
 .selected-underline {
-  @apply font-semibold text-primary-50 after:bottom-0 after:h-1px after:w-full after:bg-primary-100;
+  @apply font-semibold after:bottom-0 after:h-[1px] after:w-full after:bg-primary-100;
 }

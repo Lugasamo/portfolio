@@ -37,11 +37,11 @@
 {% block content %}
 <div class="relative">
     {# Hero Section #}
-    <section class="relative bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 py-20 lg:py-28">
+    <section class="relative bg-gradient-to-br from-primary-50 via-primary-100 to-primary-800 py-20 lg:py-28">
         <div class="absolute inset-0 bg-black/10"></div>
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h1 class="text-[8rem] md:text-[16rem] lg:text-[20rem] text-nowrap font-bold text-white mb-6 leading-tight">
-                {{ page.title ?: 'Mis Proyectos' }}
+                {{ page.title}}
             </h1>
             {% if page.header.subtitle %}
                 <p class="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto mb-8">

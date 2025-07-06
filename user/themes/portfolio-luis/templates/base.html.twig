@@ -26,7 +26,7 @@
     {% endblock head %}
 </head>
 
-<body id="top" class="{{ page.body_classes }} font-jakarta antialiased bg-gray-50 text-gray-900">
+<body id="top" class="{{ page.body_classes }}">
     {# Skip to content for accessibility #}
     <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-primary-600 text-white px-4 py-2 rounded-md z-50">
         Skip to main content
@@ -45,11 +45,6 @@
                                  alt="{{ site.title }}" 
                                  class="size-10 sm:size-12 md:size-16 lg:size-20 w-auto transition-transform duration-200 group-hover:scale-105">
                         {% endif %}
-                        {# 
-                        <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">
-                            {{ site.title ?: 'Luis Saavedra' }}
-                        </span>
-                        #}
                     </a>
                 </div>
 
