@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'partials/base.html.twig' %}
 
 {% block head %}
     {{ parent() }}
@@ -120,21 +120,6 @@ Page template: {{ page.template }}
                     </p>
                 {% endif %}
             </div>
-
-            {# Tags - if defined #}
-            {% if page.taxonomy.tag %}
-            <footer class="mt-12 pt-8 border-t border-gray-200">
-                <div class="flex flex-wrap items-center gap-2">
-                    <span class="text-sm font-medium text-gray-700">Etiquetas:</span>
-                    {% for tag in page.taxonomy.tag %}
-                        <a href="{{ base_url }}/tag{{ config.system.param_sep }}{{ tag }}" 
-                           class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-primary-100 text-primary-800 hover:bg-primary-200 transition-colors">
-                            {{ tag }}
-                        </a>
-                    {% endfor %}
-                </div>
-            </footer>
-            {% endif %}
         </div>
     </article>
 
@@ -180,6 +165,7 @@ Page template: {{ page.template }}
         </div>
     </section>
     {% endif %}
+
 
     {# Call to Action - if defined in page header #}
     {% if page.header.cta %}

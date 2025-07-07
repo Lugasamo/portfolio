@@ -4,6 +4,8 @@ logs/
 backup/
 tmp/
 user/data/
+user/pages
+images/
 .DS_Store
 *.log
 vendor/
