@@ -26,7 +26,7 @@
     {% endblock head %}
 </head>
 
-<body id="top" class="{{ page.body_classes }}">
+<body id="top" class="dots">
     {# Skip to content for accessibility #}
     <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-primary-600 text-white px-4 py-2 rounded-md z-50">
         Skip to main content
@@ -39,7 +39,7 @@
 
                 {# Logo/Brand #}
                 <div class="flex-shrink-0">
-                    <a href="{{ base_url_absolute }}" class=" group">
+                    <a href="{{ base_url_absolute }}" class="group">
                         {% if config.site.logo %}
                             <img src="{{ url(config.site.logo) }}" 
                                  alt="{{ site.title }}" 
@@ -67,7 +67,7 @@
                         <svg class="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 7.89a2 2 0 002.83 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                         </svg>
-                        <span class="hidden text-md md:text-md lg:text-lg font-medium sm:inline">Contacto</span>
+                        <span class="hidden text-md md:text-md lg:text-lg font-medium sm:inline">Contact</span>
                         <svg class="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                         </svg>
@@ -117,14 +117,12 @@
     {% endblock %}
 
     {# Main Content - Full Width #}
-    <main id="main-content" class="w-full">
+    <main id="main-content" class="w-full bg-black dots">
         {% block content %}{% endblock %}
     </main>
 
     {% block footer %}
-    <footer id="footer" class="w-full">
         {% include 'partials/footer.html.twig' %}
-    </footer>
     {% endblock %}
 
     {% block javascripts %}

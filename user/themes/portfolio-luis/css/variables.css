@@ -68,10 +68,22 @@
   --text-4xl: 2.25rem;
 }
 
+.dots {
+    background-image: url("../images/dots-pattern.svg");
+}
+
 /* button styles */
+.btn {
+      @apply h-auto max-w-fit rounded-full px-8 py-4 transition duration-500 hover:scale-105 justify-center items-center;
+}
+
 .btn-primary {
   @apply transform h-auto w-auto text-white text-lg bg-black hover:text-primary-100 rounded-full px-8 py-4 transition duration-500 hover:scale-105 flex justify-center items-center;
 }
+
+.btn-secondary {
+  @apply transform h-auto w-auto text-white text-lg bg-transparent border-white hover:text-primary-100 rounded-full px-8 py-4 transition duration-500 hover:scale-105 flex justify-center items-center;
+}   
 
 /* link styles */
 .hover-underline {

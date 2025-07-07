@@ -55,35 +55,8 @@ Page content exists: {{ page.content ? 'YES' : 'NO' }}
 Page template: {{ page.template }}
 -->
 
-<div class="relative">
-    {# Hero Section - if hero_image is defined #}
-    {% if page.header.hero_image %}
-    <section class="relative h-64 md:h-80 lg:h-96 overflow-hidden bg-gradient-to-br from-primary-600 to-primary-700">
-        <div class="absolute inset-0">
-            <img src="{{ url(page.media[page.header.hero_image].url) }}" 
-                 alt="{{ page.header.hero_alt ?: page.title }}"
-                 class="w-full h-full object-cover object-center opacity-20">
-        </div>
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
-            <div class="text-white">
-                <h1 class="text-[20rem] md:text-4xl lg:text-[20rem] font-bold mb-4 leading-tight hero-title">
-                    {% if page.header.hero_icon %}
-                        <i class="{{ page.header.hero_icon }} mr-2"></i>
-                    {% endif %}
-                    {{ page.title }}
-                </h1>
-                {% if page.header.subtitle %}
-                    <p class="text-lg md:text-xl text-white/90 max-w-2xl">
-                        {{ page.header.subtitle }}
-                    </p>
-                {% endif %}
-            </div>
-        </div>
-    </section>
-    {% endif %}
-    
     {# Main Content Area #}
-    <article class="py-12 lg:py-20">
+    <div class="py-12 lg:py-20 bg-white dots rounded-b-3xl">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             {# Page Title - only show if no hero image #}
             {% if not page.header.hero_image %}
@@ -105,11 +78,7 @@ Page template: {{ page.template }}
             {% endif %}
 
             {# Page Content #}
-            <div class="prose prose-lg prose-gray max-w-none 
-                        prose-headings:text-gray-900 prose-headings:font-bold
-                        prose-p:text-gray-700 prose-p:leading-relaxed
-                        prose-a:text-primary-600 prose-a:no-underline hover:prose-a:underline
-                        prose-strong:text-gray-900 prose-strong:font-semibold">
+            <div>
                 {% if page.content %}
                     {{ page.content|raw }}
                 {% else %}
@@ -121,7 +90,7 @@ Page template: {{ page.template }}
                 {% endif %}
             </div>
         </div>
-    </article>
+    </div>
 
     {# Related/Featured Content #}
     {% if page.header.show_related and page.collection() %}
@@ -165,34 +134,4 @@ Page template: {{ page.template }}
         </div>
     </section>
     {% endif %}
-
-
-    {# Call to Action - if defined in page header #}
-    {% if page.header.cta %}
-    <section class="py-12 bg-gradient-to-r from-primary-600 to-primary-700">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">
-                {{ page.header.cta.title ?: '¿Listo para trabajar juntos?' }}
-            </h2>
-            {% if page.header.cta.description %}
-                <p class="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
-                    {{ page.header.cta.description }}
-                </p>
-            {% endif %}
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="{{ page.header.cta.primary_link ?: '/contacto' }}" 
-                   class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-primary-700 bg-white hover:bg-gray-50 transition-colors duration-200">
-                    {{ page.header.cta.primary_text ?: 'Hablemos' }}
-                </a>
-                {% if page.header.cta.secondary_link %}
-                    <a href="{{ page.header.cta.secondary_link }}" 
-                       class="inline-flex items-center justify-center px-6 py-3 border-2 border-white text-base font-medium rounded-md text-white hover:bg-white hover:text-primary-700 transition-colors duration-200">
-                        {{ page.header.cta.secondary_text ?: 'Ver portfolio' }}
-                    </a>
-                {% endif %}
-            </div>
-        </div>
-    </section>
-    {% endif %}
-</div>
 {% endblock %}

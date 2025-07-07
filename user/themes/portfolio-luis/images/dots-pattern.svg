@@ -1,13 +1,6 @@
-<svg width="26" height="104" viewBox="0 0 26 104" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g clip-path="url(#clip0_8_34)">
-<line y1="25.5" x2="26" y2="25.5" stroke="#333333" stroke-dasharray="1 0 20 0"/>
-<line y1="51.5" x2="26" y2="51.5" stroke="#333333" stroke-dasharray="1 0 20 0"/>
-<line y1="77.5" x2="26" y2="77.5" stroke="#333333" stroke-dasharray="1 0 20 0"/>
-<line y1="103.5" x2="26" y2="103.5" stroke="#333333" stroke-dasharray="1 0 20 0"/>
-</g>
-<defs>
-<clipPath id="clip0_8_34">
-<rect width="26" height="104" fill="white"/>
-</clipPath>
-</defs>
+<svg width="25" height="100" viewBox="0 0 25 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect y="24" width="1" height="1" fill="#333333"/>
+<rect y="49" width="1" height="1" fill="#333333"/>
+<rect y="74" width="1" height="1" fill="#333333"/>
+<rect y="99" width="1" height="1" fill="#333333"/>
 </svg>
