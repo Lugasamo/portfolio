@@ -76,6 +76,23 @@ html body {
     background-image: url("../images/dots-pattern.svg");
 }
 
+.icon {
+  @apply inline-block fill-current;
+}
+
+.icon-sm { @apply w-4 h-4; }
+.icon-md { @apply w-6 h-6; }
+.icon-lg { @apply w-8 h-8; }
+.icon-xl { @apply w-10 h-10; }
+
+.icon-interactive {
+  @apply transition-colors duration-200 hover:scale-105 cursor-pointer;
+}
+
+.icon-button {
+  @apply p-2 rounded-full hover:bg-gray-100 transition-colors duration-200;
+}
+
 /* button styles */
 .btn {
       @apply h-auto max-w-fit flex-none rounded-full px-8 py-4 transition duration-500 hover:scale-105 justify-center items-center;
