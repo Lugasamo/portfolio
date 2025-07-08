@@ -68,9 +68,6 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 7.89a2 2 0 002.83 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                         </svg>
                         <span class="hidden text-md md:text-md lg:text-lg font-medium sm:inline">Contact</span>
-                        <svg class="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                        </svg>
                     </a>
                 </div>
 
@@ -119,6 +116,9 @@
     {# Main Content - Full Width #}
     <main id="main-content" class="w-full dots">
         {% block content %}{% endblock %}
+        <h1>hello</h1>
+        {{ svg('test', 'w-6 h-6 text-blue-500') }}
+        {{ svg('theme://portfolio-luis/icons/search.test', 'icon')|raw }}
     </main>
 
     {% block footer %}
