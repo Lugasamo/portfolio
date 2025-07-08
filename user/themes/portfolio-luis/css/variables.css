@@ -67,6 +67,10 @@
   --text-3xl: 1.875rem;
   --text-4xl: 2.25rem;
 }
+html body {
+    height: 100%;
+}
+
 
 .dots {
     background-image: url("../images/dots-pattern.svg");
@@ -74,7 +78,7 @@
 
 /* button styles */
 .btn {
-      @apply h-auto max-w-fit rounded-full px-8 py-4 transition duration-500 hover:scale-105 justify-center items-center;
+      @apply h-auto max-w-fit flex-none rounded-full px-8 py-4 transition duration-500 hover:scale-105 justify-center items-center;
 }
 
 .btn-primary {
