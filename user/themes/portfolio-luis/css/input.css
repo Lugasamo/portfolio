@@ -1,25 +1,6 @@
-@import 'variables.css';
-
 /* portfolio-luis/css/input.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Custom Components */
-@layer components {
-  /* Add any custom components here */
-  .btn-primary {
-    @apply bg-blue-600 text-white px-4 py-2 rounded-md font-medium hover:bg-blue-700 transition-colors;
-  }
-  
-  .card {
-    @apply bg-white rounded-lg shadow-md p-6;
-  }
-}
-
-/* Custom Utilities */
-@layer utilities {
-  .text-shadow {
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-  }
-}
+@import 'variables.css';
