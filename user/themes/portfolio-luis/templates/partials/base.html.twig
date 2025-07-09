@@ -2,41 +2,36 @@
 <html "{{ grav.language.getActive ?: site.default_lang ?: 'en' }}">
 <head class="flex-grow">
     {% block head %}
-    <meta charset="utf-8" />
-    <title>{% if page.title %}{{ page.title|e('html') }} | {% endif %}{{ site.title|e('html') }}</title>
-    
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/png" href="{{ url('theme://images/favicon.png') }}" />
-    <link rel="canonical" href="{{ page.url(true, true) }}" />
-    
-    {% include 'partials/metadata.html.twig' %}
-    
-    {# Preload critical fonts #}
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Barlow:wght@600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Barlow:wght@600;700;800&display=swap"></noscript>
-    
-    {# Stylesheets #}
-    {% block stylesheets %}
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% if page.title %}{{ page.title|e('html') }} | {% endif %}{{ site.title|e('html') }}</title>
+        <link rel="icon" type="image/png" href="{{ url('theme://images/favicon.png') }}" />
+        <link rel="canonical" href="{{ page.url(true, true) }}" />
+        {# Preload critical fonts #}
+        <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Barlow:wght@600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Barlow:wght@600;700;800&display=swap"></noscript>
+        {# Stylesheets #}
+        {% block stylesheets %}
         {# Tailwind CSS output - main stylesheet #}
         <link href="{{ url('theme://css/output.css') }}" rel="stylesheet">
-    {% endblock %}
-    
-    {% block head_bottom %}{% endblock %}
+        {% endblock %}
+        {% include 'partials/metadata.html.twig' %}
+        {% block head_bottom %}
+        {% endblock %}
     {% endblock head %}
 </head>
 
 <body id="top" class="flex flex-col h-screen">
     {# Skip to content for accessibility #}
-    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-primary-600 text-white px-4 py-2 rounded-md z-50">
-        Skip to main content
-    </a>
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-primary-50 text-white px-4 py-2 rounded-md z-50">Skip to main content</a>
     
     {% block header %}
     <header class="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-gray-200/50 transition-all duration-300" id="header">
-        <nav class="w-full px-4 sm:px-6 lg:px-8" aria-label="Main navigation">
-            <div class="flex justify-between items-center py-2">
 
+        <nav class="p-ls p-ls-padding" aria-label="Main navigation">
+
+            <div class="flex justify-between items-center py-2">
                 {# Logo/Brand #}
                 <div class="flex-shrink-0">
                     <a href="{{ base_url_absolute }}" class="group">
@@ -76,12 +71,12 @@
                 </div>
 
                 {# Mobile menu button #}
-                <div class="flex lg:hidden absolute right-4">
-                    <button type="button" 
-                            class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500" 
+                <div class="lg:hidden">
+                    <button onclick="toggleMobileMenu()"
+                            id="mobile-menu-button"
+                            class="mobile-menu-button inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500"
                             aria-controls="mobile-menu" 
-                            aria-expanded="false"
-                            id="mobile-menu-button">
+                            aria-expanded="false">
                         <span class="sr-only">Open main menu</span>
                         <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
@@ -89,73 +84,137 @@
                     </button>
                 </div>
             </div>
-
+            
             {# Mobile Navigation #}
-            <div class="md:hidden hidden" id="mobile-menu">
-                <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t border-gray-200">
-                    {# Mobile Contact Button #}
-                    <a href="{{ base_url_absolute }}/contact" 
-                       class="flex items-center justify-center w-full px-3 py-3 mb-3 text-sm font-semibold text-white bg-gradient-to-r from-primary-600 to-primary-700 rounded-lg hover:from-primary-700 hover:to-primary-800 transition-all duration-300">
-                        <svg class="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 7.89a2 2 0 002.83 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                        </svg>
-                        Contacto
+            <div id="mobile-menu" 
+                 style="display: none; position: absolute; top: 100%; left: 0; right: 0; background: white; border-top: 1px solid #e5e7eb; box-shadow: 0 10px 25px rgba(0,0,0,0.1); z-index: 1000; padding: 16px;">
+                
+                <p style="color: #059669; font-weight: bold; margin-bottom: 12px; font-size: 14px;">
+                    ✅ Mobile Menu Working!
+                </p>
+                
+                {# Mobile Contact Button #}
+                <a href="{{ base_url_absolute }}/contact" 
+                   onclick="closeMobileMenu()"
+                   class="mobile-contact-btn"
+                   style="display: flex; align-items: center; justify-content: center; width: 100%; padding: 12px; margin-bottom: 16px; background: linear-gradient(to right, #2563eb, #1d4ed8); color: white; text-decoration: none; border-radius: 8px; font-weight: 600; transition: all 0.3s ease;">
+                    <svg style="margin-right: 8px; width: 16px; height: 16px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 7.89a2 2 0 002.83 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                    </svg>
+                    📧 Contact
+                </a>
+                
+                {# Mobile Menu Items #}
+                {% for page in pages.children.visible %}
+                    {% set current_page = (page.active or page.activeChild) ? 'current' : '' %}
+                    <a href="{{ page.url }}" 
+                       onclick="closeMobileMenu()"
+                       class="mobile-menu-link"
+                       style="display: block; padding: 12px 16px; color: #374151; text-decoration: none; border-radius: 6px; margin-bottom: 4px; transition: all 0.2s ease; {{ current_page ? 'color: #2563eb; background-color: #dbeafe; font-weight: 600;' : '' }}"
+                       {% if current_page %}aria-current="page"{% endif %}>
+                        {{ page.menu ?: page.title }}
                     </a>
-                    
-                    {# Mobile Menu Items #}
-                    {% for page in pages.children.visible %}
-                        {% set current_page = (page.active or page.activeChild) ? 'current' : '' %}
-                        <a href="{{ page.url }}" 
-                           class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-md transition-colors {{ current_page ? 'text-primary-600 bg-primary-50' : '' }}"
-                           {% if current_page %}aria-current="page"{% endif %}>
-                            {{ page.menu ?: page.title }}
-                        </a>
-                    {% endfor %}
-                </div>
+                {% endfor %}
             </div>
+
         </nav>
+
     </header>
     {% endblock %}
 
     {# Main Content - Full Width #}
     <main id="main-content" class="w-full dots">
-        {% block content %}{% endblock %}
-        <h1>hello</h1>
-        {{ svg('test', 'w-6 h-6 text-blue-500') }}
-        {{ svg('theme://portfolio-luis/icons/search.test', 'icon')|raw }}
+        {% block content %}
+        {% endblock %}
     </main>
 
     {% block footer %}
         {% include 'partials/footer.html.twig' %}
     {% endblock %}
 
-    {% block javascripts %}
-        {# No assets pipeline - direct JS inclusion #}
-        <script src="{{ url('theme://js/mobile-menu.js') }}"></script>
-    {% endblock %}
-
-    {# Mobile menu toggle script - inline for immediate functionality #}
+    {# Mobile Menu JavaScript #}
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const menuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
+        // Mobile Menu Functions
+        function toggleMobileMenu() {
+            console.log('Toggle mobile menu');
+            var menu = document.getElementById('mobile-menu');
+            var button = document.querySelector('.mobile-menu-button');
             
-            if (menuButton && mobileMenu) {
-                menuButton.addEventListener('click', function() {
-                    const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
-                    menuButton.setAttribute('aria-expanded', !isExpanded);
-                    mobileMenu.classList.toggle('hidden');
-                    
-                    // Toggle icon
-                    const icon = menuButton.querySelector('svg');
-                    if (isExpanded) {
-                        icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />';
-                    } else {
-                        icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />';
-                    }
-                });
+            if (menu.style.display === 'none' || menu.style.display === '') {
+                // Show menu
+                menu.style.display = 'block';
+                menu.style.opacity = '0';
+                menu.style.transform = 'translateY(-10px)';
+                
+                // Animate in
+                setTimeout(function() {
+                    menu.style.transition = 'all 0.2s ease-out';
+                    menu.style.opacity = '1';
+                    menu.style.transform = 'translateY(0)';
+                }, 10);
+                
+                button.setAttribute('aria-expanded', 'true');
+                console.log('Menu shown');
+            } else {
+                // Hide menu
+                menu.style.transition = 'all 0.2s ease-in';
+                menu.style.opacity = '0';
+                menu.style.transform = 'translateY(-10px)';
+                
+                setTimeout(function() {
+                    menu.style.display = 'none';
+                }, 200);
+                
+                button.setAttribute('aria-expanded', 'false');
+                console.log('Menu hidden');
+            }
+        }
+
+        function closeMobileMenu() {
+            console.log('Close mobile menu');
+            var menu = document.getElementById('mobile-menu');
+            var button = document.querySelector('.mobile-menu-button');
+            
+            if (menu.style.display !== 'none') {
+                menu.style.transition = 'all 0.2s ease-in';
+                menu.style.opacity = '0';
+                menu.style.transform = 'translateY(-10px)';
+                
+                setTimeout(function() {
+                    menu.style.display = 'none';
+                }, 200);
+                
+                if (button) {
+                    button.setAttribute('aria-expanded', 'false');
+                }
+            }
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            var menu = document.getElementById('mobile-menu');
+            var button = e.target.closest('.mobile-menu-button');
+            
+            // If click is not on button or inside menu, close menu
+            if (!button && !menu.contains(e.target) && menu.style.display !== 'none') {
+                closeMobileMenu();
             }
         });
+
+        // Close menu on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeMobileMenu();
+            }
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            if (window.innerWidth >= 1024) {
+                closeMobileMenu();
+            }
+        });
+
     </script>
 </body>
 </html>
