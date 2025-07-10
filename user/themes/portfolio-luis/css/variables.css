@@ -5,7 +5,7 @@
   --color-primary: #008844;
   --color-primary-dark: #076a38;
   --color-secondary: #32F191;
-  --color-Tertiary: #000000;
+  --color-Tertiary: #0F0F0F;
   --color-accent: #06b6d4;
   --color-success: #10b981;
   --color-warning: #f59e0b;
@@ -63,7 +63,7 @@
   --text-base: 1rem;
   --text-lg: 1.125rem;
   --text-xl: 1.25rem;
-  --text-2xl: 1.5rem;
+  --text-2xl: 1.75rem;
   --text-3xl: 1.875rem;
   --text-4xl: 2.25rem;
 }
@@ -75,21 +75,63 @@ html body {
     background-image: url("../images/dots-pattern.svg");
 }
 
-/*layout*/
-.p-ls-padding {
-    @apply px-4 sm:px-6 lg:px-8;
+  /* Headings */
+@layer components {
+  .text-xs {
+    @apply text-[var(--text-xs)];
+  }
+  .text-sm {
+    @apply text-[var(--text-sm)];
+  }
+  .text-base {
+    @apply text-[var(--text-base)];
+  }
+  .text-lg {
+    @apply text-[var(--text-lg)];
+  }
+  .text-xl {
+    @apply text-[var(--text-xl)];
+  }
+  .text-2xl {
+    @apply text-[var(--text-2xl)];
+  }
+  .text-3xl {
+    @apply text-[var(--text-3xl)];
+  }
+  .text-4xl {
+    @apply text-[var(--text-4xl)];
+  }
+}
+@layer base {
+  h1 {
+    @extend .text-4xl;
+    @apply font-medium;
+  }
+
+  h2 {
+    @extend .text-2xl;
+    @apply font-medium;
+  }
+
+  h3 {
+    @extend .text-2xl;
+    @apply font-medium;
+  }
 }
 
-/* Navigation styles */
-.p-ls {
-    @apply w-full px-4 sm:px-6 lg:px-8;
+/*Layout*/
+.p-ls-padding-h {
+    @apply w-full px-4 sm:px-2 lg:px-8;
+}
+
+.p-ls-padding-v {
+    @apply h-full py-8 sm:py-4 lg:py-16;
+}
+button.mobile-menu-button {
+  @apply rounded-full space-x-2 bg-black px-4 py-2 text-white inline-flex items-center justify-center hover:text-primary-100;
 }
 
 /* button styles */
-.btn {
-      @apply h-auto max-w-fit flex-none rounded-full px-8 py-4 transition duration-500 hover:scale-105 justify-center items-center;
-}
-
 .btn-primary {
   @apply transform h-auto w-auto text-white text-lg bg-black hover:text-primary-100 rounded-full px-8 py-4 transition duration-500 hover:scale-105 flex justify-center items-center;
 }
@@ -197,23 +239,4 @@ html body {
     padding-top: 1rem;
     text-align: center;
     color: #ccc;
-}
-
-/* Container for consistent spacing */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .footer-content {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-    
-    .social-links {
-        justify-content: center;
-    }
 }

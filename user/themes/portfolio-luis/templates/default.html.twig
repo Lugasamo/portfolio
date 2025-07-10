@@ -48,90 +48,69 @@
 {% endblock %}
 
 {% block content %}
-{# DEBUG: Let's see what we have #}
-<!-- DEBUG INFO:
-Page title: {{ page.title }}
-Page content exists: {{ page.content ? 'YES' : 'NO' }}
-Page template: {{ page.template }}
--->
 
-    {# Main Content Area #}
-    <div class="py-12 lg:py-20 bg-white dots rounded-b-3xl">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            {# Page Title - only show if no hero image #}
-            {% if not page.header.hero_image %}
-            <header class="mb-12 text-center">
-                <h1 class="text-[20rem] text-nowrap font-bold text-gray-900 mb-6 leading-tight">
-                    {{ page.title }}
-                </h1>
-                {% if page.header.subtitle %}
-                    <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto"> 
-                        {{ page.header.subtitle }}
-                    </p>
-                {% endif %}
-                {% if page.date %}
-                    <time class="inline-block mt-4 text-sm text-gray-500" datetime="{{ page.date|date('c') }}">
-                        {{ page.date|date('j F Y') }}
-                    </time>
-                {% endif %}
-            </header>
-            {% endif %}
-
-            {# Page Content #}
-            <div>
-                {% if page.content %}
-                    {{ page.content|raw }}
-                {% else %}
-                    <p class="text-gray-500 italic">No hay contenido disponible para esta página.</p>
-                    <p class="text-sm text-gray-400 mt-4">
-                        DEBUG: Template actual: {{ page.template ?: 'default' }}<br>
-                        Archivo de página: {{ page.filePathClean ?: 'No definido' }}
-                    </p>
-                {% endif %}
-            </div>
-        </div>
-    </div>
-
-    {# Related/Featured Content #}
-    {% if page.header.show_related and page.collection() %}
-    <section class="py-12 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-8 text-center">
-                Contenido relacionado
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {% for related_page in page.collection().limit(3) %}
-                    {% if related_page.url != page.url %}
-                    <article class="bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 overflow-hidden group">
-                        {% if related_page.header.featured_image %}
-                        <div class="aspect-w-16 aspect-h-9 overflow-hidden">
-                            <img src="{{ url(related_page.media[related_page.header.featured_image].url) }}" 
-                                 alt="{{ related_page.title }}"
-                                 class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
-                        </div>
-                        {% endif %}
-                        <div class="p-6">
-                            <h3 class="text-lg font-semibold text-gray-900 mb-2 group-hover:text-primary-600 transition-colors">
-                                <a href="{{ related_page.url }}" class="stretched-link">
-                                    {{ related_page.title }}
-                                </a>
-                            </h3>
-                            {% if related_page.summary %}
-                                <p class="text-gray-600 text-sm line-clamp-3">
-                                    {{ related_page.summary }}
-                                </p>
-                            {% endif %}
-                            {% if related_page.date %}
-                                <time class="block mt-3 text-xs text-gray-500" datetime="{{ related_page.date|date('c') }}">
-                                    {{ related_page.date|date('j M Y') }}
-                                </time>
-                            {% endif %}
-                        </div>
-                    </article>
-                    {% endif %}
-                {% endfor %}
-            </div>
+    {# ✅ Hero Section #}
+    <section class="bg-cover bg-center bg-no-repeat bg-primary-50 text-white px-6 py-16 xl:px-20 xl:py-32" style="background-image: url('{{ page.media.images[page.header.hero_image].url }}');">
+        <div class="container mx-auto text-center">
+            <h1 class="text-5xl font-bold mb-4">
+                {{ page.header.hero_title ?: page.title }}
+            </h1>
         </div>
     </section>
-    {% endif %}
-{% endblock %}
+
+    <div class="px-6 py-6 xl:px-20 xl:py-20 bg-amber-200 align-middle space-y-12 space-x-12 lg:space-y-20 lg:space-x-20">
+        {# ✅ Description / Intro #}
+        {% if page.header.intro %}
+            <div class="p-ls-padding-h">
+                <p class="text-xl">
+                    {{ page.header.intro }}
+                </p>
+            </div>
+        {% endif %}
+
+        {# ✅ Main Page Content (from Markdown) #}
+        {% if page.content %}
+        <div class="p-ls-padding-v">
+            {{ page.content|raw }}
+        </div>
+        {% endif %}
+
+        {# ✅ Profile Section (optional structured content) #}
+        {% if page.header.profile %}
+            <section class="p-ls-padding-h flex flex-col xl:flex-row flex-auto">
+                <div class="flex flex-col lg:flex-row flex-auto">
+                    <div class="content-center w-56 h-auto space-y-4 px-6 bg-red-300 m-auto lg:m">
+                    {# Image Content #}
+                        {% set profileImage = page.media[page.header.profile.image] ?? null %}
+                        
+                        {% if profileImage %}
+                        <img 
+                            src="{{ profileImage.url }}"
+                            alt="{{ page.header.profile.name ?: 'Profile Picture' }}" 
+                            class="transition-transform duration-300 hover:scale-105"
+                            loading="lazy"
+                        >
+                        {% endif %}
+                    </div>
+                    <div class="flex-1 max-w-9xl content-center space-y-4 px-6 bg-orange-300 text-center lg:text-left">
+                    {# Text Content #}
+                        <h2 class="text-3xl">{{ page.header.profile.name }}</h2>
+                        <p class="text-lg">{{ page.header.profile.bio }}</p>
+                    </div>
+                </div>
+                <div class="flex flex-col lg:flex-row flex-auto w-full space-y-4 px-6 bg-blue-300">
+                    <h3 class="w-full w-64 content-center text-2xl leading-10 text-center xl:text-left">
+                    {# Skills Content #}
+                        {{ header.columnl.skills | raw }}
+                    </h3>
+                    <h3 class="w-full w-64 content-center text-2xl leading-10 text-center xl:text-left">
+                    {# Skills Content #}
+                        {{ header.columnr.skills | raw }}
+                    </h3>  
+                </div>
+            </section>
+        {% endif %}
+
+    </div>
+    
+{% endblock %}  

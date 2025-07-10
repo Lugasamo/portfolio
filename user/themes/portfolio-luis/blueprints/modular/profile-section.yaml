@@ -1,0 +1,44 @@
+title: Profile Section
+'@extends': default
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+
+      fields:
+        content:
+          type: tab
+          title: Content
+
+          fields:
+            header.title:
+              type: text
+              label: Title
+              validate:
+                required: true
+
+            header.description:
+              type: textarea
+              label: Description
+              validate:
+                required: true
+
+            header.image:
+              type: file
+              label: Image
+              multiple: false
+              destination: 'user/pages/images'
+              accept:
+                - image/*
+
+            header.list_col_left:
+              type: textarea
+              label: List Column Left
+              description: Enter each item on a new line
+
+            header.list_col_right:
+              type: textarea
+              label: List Column Right
+              description: Enter each item on a new line

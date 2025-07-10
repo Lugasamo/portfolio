@@ -1,0 +1,69 @@
+title: Default Page
+'@extends': default
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+
+      fields:
+        content:
+          type: tab
+          title: Content
+
+          fields:
+            header.hero_title:
+              type: text
+              label: Hero Title
+
+            header.intro:
+              type: textarea
+              label: Intro Text
+
+            header.hero_image:
+              type: filepicker
+              label: Hero Background Image
+              folder: '@self'
+              preview_images: true
+              accept:
+                - .jpg
+                - .jpeg
+                - .png
+              help: Upload an image to be used as the hero section background
+
+            content:
+              type: markdown
+              label: Page Content
+
+        profile:
+          type: tab
+          title: Profile
+
+          fields:
+            header.profile.name:
+              type: text
+              label: Name
+
+            header.profile.bio:
+              type: textarea
+              label: Bio
+
+            header.columnl.skills:
+              type: textarea
+              label: Skill Left
+
+            header.columnr.skills:
+              type: textarea
+              label: Skill Right
+
+            header.profile.image:
+              type: filepicker
+              folder: '@self'
+              preview_images: true
+              accept:
+                - .jpg
+                - .jpeg
+                - .png
+              label: Profile Image
+            

@@ -1,6 +1,6 @@
+@import 'variables.css';
+
 /* portfolio-luis/css/input.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import 'variables.css';
