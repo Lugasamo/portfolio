@@ -58,11 +58,11 @@
         </div>
     </section>
 
-    <div class="px-6 py-6 xl:px-20 xl:py-20 bg-amber-200 align-middle space-y-12 space-x-12 lg:space-y-20 lg:space-x-20">
+    <div class="px-6 py-12 xl:px-20 lg:py-20 {# bg-amber-200 #} align-middle space-y-12">
         {# ✅ Description / Intro #}
         {% if page.header.intro %}
-            <div class="p-ls-padding-h">
-                <p class="text-xl">
+            <div class="px-6">
+                <p class="text-xl text-center xl:text-left">
                     {{ page.header.intro }}
                 </p>
             </div>
@@ -70,16 +70,16 @@
 
         {# ✅ Main Page Content (from Markdown) #}
         {% if page.content %}
-        <div class="p-ls-padding-v">
+        <div class="px-6">
             {{ page.content|raw }}
         </div>
         {% endif %}
 
         {# ✅ Profile Section (optional structured content) #}
         {% if page.header.profile %}
-            <section class="p-ls-padding-h flex flex-col xl:flex-row flex-auto">
-                <div class="flex flex-col lg:flex-row flex-auto">
-                    <div class="content-center w-56 h-auto space-y-4 px-6 bg-red-300 m-auto lg:m">
+            <section class="mx-0 my-0 flex-none lg:flex space-y-6">
+                <div class="flex flex-col lg:flex-row w-full space-y-4">
+                    <div class="content-center w-56 h-auto space-y-4 px-6 {# bg-red-300 #} m-auto lg:m">
                     {# Image Content #}
                         {% set profileImage = page.media[page.header.profile.image] ?? null %}
                         
@@ -92,18 +92,18 @@
                         >
                         {% endif %}
                     </div>
-                    <div class="flex-1 max-w-9xl content-center space-y-4 px-6 bg-orange-300 text-center lg:text-left">
+                    <div class="flex-1 w-full content-center space-y-4 px-6 {# bg-orange-300 #} text-center lg:text-left">
                     {# Text Content #}
                         <h2 class="text-3xl">{{ page.header.profile.name }}</h2>
                         <p class="text-lg">{{ page.header.profile.bio }}</p>
                     </div>
                 </div>
-                <div class="flex flex-col lg:flex-row flex-auto w-full space-y-4 px-6 bg-blue-300">
-                    <h3 class="w-full w-64 content-center text-2xl leading-10 text-center xl:text-left">
+                <div class="flex flex-col xl:flex-row flex-auto w-auto {# bg-blue-300 #}">
+                    <h3 class="w-full lg:w-80 content-center text-2xl leading-10 text-center lg:text-left px-2 lg:px-6">
                     {# Skills Content #}
                         {{ header.columnl.skills | raw }}
                     </h3>
-                    <h3 class="w-full w-64 content-center text-2xl leading-10 text-center xl:text-left">
+                    <h3 class="w-full lg:w-80 content-center text-2xl leading-10 text-center lg:text-left px-2 lg:px-6">
                     {# Skills Content #}
                         {{ header.columnr.skills | raw }}
                     </h3>  
