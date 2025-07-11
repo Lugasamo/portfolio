@@ -1,19 +1,87 @@
-<div class="container">
+{% extends 'partials/base.html.twig' %}
+{% block content %}
 
-  <!-- custom text field content from default.yaml blueprints file -->
-  <h1 class="customTitle">
-    {{page.header.project.customField}}
-  </h1>
-    <h1 class="customTitle">
-    {{page.header.projectText.customField}}
-  </h1>
-    <h1 class="customTitle">
-    {{page.hheader.custom.coverImage}}
-  </h1>
-
-    <!-- main content / markdown area! -->
-    <div class="mainContent">
-      {{page.content}}
+{# ✅ Hero Section #}
+<section 
+    class="bg-cover bg-primary-50 bg-center bg-no-repeat text-white px-6 py-16 xl:px-20 xl:py-32"
+    >
+    <div class="container mx-auto text-center">
+        <h1 class="text-5xl font-bold mb-4">
+            {{ page.header.hero_title ?: page.title }}
+        </h1>
     </div>
+</section>
 
+<div class="px-6 py-12 xl:px-20 lg:py-20 {# bg-amber-200 #} align-middle space-y-12">
+
+  <div class="flex space-x-12">
+
+    {# ✅ left #}
+    {% if page.content %}
+      <div class="flex-col p-16 bg-orange-200 rounded-3xl shadow-lg">
+        <h1 class="text-3xl pb-4">{{ page.header.hero_title|raw }}</h1>
+        <p>{{ page.content|raw }}</p>
+      </div>
+    {% endif %}
+
+    {# ✅ right #}
+
+          <div class="sticky-sidebar w-80 bg-blue-200  rounded-3xl shadow-lg px-12 py-8">
+            <div class="flex items-center justify-between mb-4">
+              <h1 class="text-2xl">
+                {{page.header.client}}
+              </h1>
+            </div>
+
+            <div class="space-y-4">
+              {% if page.header.role %}
+                <div>
+                  <label class="text-sm font-medium text-gray-500">Role</label>
+                  <p class="text-gray-900">{{page.header.role}}</p>
+                </div>
+                {% endif %}
+
+                {% if page.header.duration %}
+                <div>
+                  <label class="text-sm font-medium text-gray-500">Duration</label>
+                  <p class="text-gray-900">{{page.header.duration}}</p>
+                </div>
+                {% endif %}
+
+                {% if page.header.team_size %}
+                <div>
+                  <label class="text-sm font-medium text-gray-500">Team Size</label>
+                  <p class="text-gray-900">{{page.header.team_size}}</p>
+                </div>
+                {% endif %}
+
+                {% if header.project_status %}
+                <div>
+                  <label class="text-sm font-medium text-gray-500">Project Status</label>
+                  <p class="text-gray-900">{{header.project_status}}</p>
+                </div>
+                {% endif %}
+
+                {% if page.header.tags %}
+                <div>
+                  <label class="text-sm font-medium text-gray-500">Project Status</label>
+                  <ul class="tags">
+                    {% for tag in page.header.tags %}
+                      <li class="tag">{{ tag }}</li>
+                    {% endfor %}
+                  </ul>
+                </div>
+                {% endif %}
+              </div>
+
+            {% if header.project_url %}
+              <div>
+                <a class="btn" href="{{header.project_url}}">Visit site</a>
+              </div>
+            {% endif %}
+          </div>
+
+  </div>
 </div>
+  
+{% endblock %}

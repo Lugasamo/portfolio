@@ -75,50 +75,6 @@ html body {
     background-image: url("../images/dots-pattern.svg");
 }
 
-  /* Headings */
-@layer components {
-  .text-xs {
-    @apply text-[var(--text-xs)];
-  }
-  .text-sm {
-    @apply text-[var(--text-sm)];
-  }
-  .text-base {
-    @apply text-[var(--text-base)];
-  }
-  .text-lg {
-    @apply text-[var(--text-lg)];
-  }
-  .text-xl {
-    @apply text-[var(--text-xl)];
-  }
-  .text-2xl {
-    @apply text-[var(--text-2xl)];
-  }
-  .text-3xl {
-    @apply text-[var(--text-3xl)];
-  }
-  .text-4xl {
-    @apply text-[var(--text-4xl)];
-  }
-}
-@layer base {
-  h1 {
-    @extend .text-4xl;
-    @apply font-medium;
-  }
-
-  h2 {
-    @extend .text-2xl;
-    @apply font-medium;
-  }
-
-  h3 {
-    @extend .text-2xl;
-    @apply font-medium;
-  }
-}
-
 /*Layout*/
 .p-ls-padding-h {
     @apply w-full px-4 sm:px-2 lg:px-8;

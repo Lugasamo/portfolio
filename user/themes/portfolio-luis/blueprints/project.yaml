@@ -1,39 +1,341 @@
-title: project
-'@extends': default
+title: Project
+'@extends':
+  type: default
 
 form:
   fields:
     tabs:
       type: tabs
       active: 1
-
       fields:
         content:
           type: tab
-
-          #
-          # Add your custom fields here.
-          # These fields will be available in the page's Content tab
-          # inside the Admin Panel.
-          #
+          title: Content
           fields:
-            #
-            # Custom text field
-            #
-            header.project.customField:
+            header.title:
               type: text
-              label: Project Custom Field
-
-            header.projectText.customField:
-              type: textarea
-              label: Project Text Custom Field
-            #
-            # Cover image
-            #
-            header.custom.coverImage:
+              label: Project Title
+              placeholder: e.g., Learnit
+              validate:
+                required: true
+            
+            header.project_type:
+              type: select
+              label: Project Type
+              options:
+                'web-design': 'Web Design'
+                'mobile-app': 'Mobile App'
+                'branding': 'Branding'
+                'ui-ux': 'UI/UX Design'
+                'frontend': 'Frontend Development'
+                'backend': 'Backend Development'
+                'fullstack': 'Full Stack Development'
+              validate:
+                required: true
+            
+            header.client:
+              type: text
+              label: Client
+              placeholder: e.g., Tangosquared
+              validate:
+                required: true
+            
+            header.role:
+              type: text
+              label: Role
+              placeholder: e.g., UX UI Designer
+              validate:
+                required: true
+            
+            header.year:
+              type: text
+              label: Year
+              placeholder: e.g., 2024
+              validate:
+                required: true
+            
+            header.duration:
+              type: text
+              label: Duration
+              placeholder: e.g., 3 months
+            
+            header.project_url:
+              type: url
+              label: Project URL
+              placeholder: https://example.com
+            
+            header.featured:
+              type: toggle
+              label: Featured Project
+              help: Display this project prominently
+              highlight: 1
+              default: 0
+              options:
+                1: PLUGIN_ADMIN.ENABLED
+                0: PLUGIN_ADMIN.DISABLED
+              validate:
+                type: bool
+            
+            header.tags:
+              type: selectize
+              label: Tags
+              help: Add relevant tags for the project
+              validate:
+                type: commalist
+              options:
+                'ui-case': 'UI Case'
+                'ux-case': 'UX Case'
+                'web-design': 'Web Design'
+                'mobile-design': 'Mobile Design'
+                'branding': 'Branding'
+                'frontend': 'Frontend'
+                'backend': 'Backend'
+                'fullstack': 'Full Stack'
+                'react': 'React'
+                'vue': 'Vue'
+                'angular': 'Angular'
+                'php': 'PHP'
+                'laravel': 'Laravel'
+                'wordpress': 'WordPress'
+                'shopify': 'Shopify'
+                'ecommerce': 'E-commerce'
+                'saas': 'SaaS'
+                'startup': 'Startup'
+                'enterprise': 'Enterprise'
+            
+            header.hero_image:
               type: file
-              label: Cover image
+              label: Hero Image
               destination: 'self@'
               multiple: false
               accept:
                 - image/*
+              help: Main hero image for the project
+            
+            header.project_images:
+              type: file
+              label: Project Images
+              destination: 'self@'
+              multiple: true
+              accept:
+                - image/*
+              help: Gallery images for the project
+            
+            header.challenge:
+              type: textarea
+              label: Challenge
+              placeholder: Describe the main challenge or problem this project solved
+              help: Brief description of the project challenge
+            
+            header.solution:
+              type: textarea
+              label: Solution
+              placeholder: Describe the solution or approach taken
+              help: Brief description of the solution
+            
+            content:
+              type: textarea
+              label: Project Description
+              size: large
+              help: Detailed description of the project (supports Markdown)
+              placeholder: |
+                Write a detailed description of your project here. 
+                
+                You can use Markdown formatting:
+                - **Bold text**
+                - *Italic text*
+                - [Links](https://example.com)
+                - Lists and more
+            
+        gallery:
+          type: tab
+          title: Gallery
+          fields:
+            header.gallery_settings:
+              type: section
+              title: Gallery Settings
+              text: Configure how images are displayed in the gallery
+              underline: true
+            
+            header.gallery_layout:
+              type: select
+              label: Gallery Layout
+              options:
+                'grid': 'Grid Layout'
+                'masonry': 'Masonry Layout'
+                'carousel': 'Carousel'
+                'lightbox': 'Lightbox'
+              default: 'lightbox'
+            
+            header.gallery_columns:
+              type: select
+              label: Gallery Columns
+              options:
+                '2': '2 Columns'
+                '3': '3 Columns'
+                '4': '4 Columns'
+              default: '2'
+            
+            header.enable_lightbox:
+              type: toggle
+              label: Enable Lightbox
+              help: Allow images to be opened in a modal
+              highlight: 1
+              default: 1
+              options:
+                1: PLUGIN_ADMIN.ENABLED
+                0: PLUGIN_ADMIN.DISABLED
+              validate:
+                type: bool
+            
+            header.image_captions:
+              type: toggle
+              label: Show Image Captions
+              help: Display captions below images
+              highlight: 1
+              default: 0
+              options:
+                1: PLUGIN_ADMIN.ENABLED
+                0: PLUGIN_ADMIN.DISABLED
+              validate:
+                type: bool
+        
+        seo:
+          type: tab
+          title: SEO
+          fields:
+            header.seo_settings:
+              type: section
+              title: SEO Settings
+              text: Configure SEO settings for this project
+              underline: true
+            
+            header.meta_description:
+              type: textarea
+              label: Meta Description
+              placeholder: Brief description for search engines (150-160 characters)
+              help: This description will appear in search engine results
+              maxlength: 160
+            
+            header.meta_keywords:
+              type: text
+              label: Meta Keywords
+              placeholder: keyword1, keyword2, keyword3
+              help: Comma-separated keywords for search engines
+            
+            header.og_image:
+              type: file
+              label: Open Graph Image
+              destination: 'self@'
+              multiple: false
+              accept:
+                - image/*
+              help: Image for social media sharing (1200x630px recommended)
+            
+            header.canonical_url:
+              type: url
+              label: Canonical URL
+              placeholder: https://example.com/projects/project-name
+              help: Canonical URL for this project (optional)
+        
+        advanced:
+          type: tab
+          title: Advanced
+          fields:
+            header.advanced_settings:
+              type: section
+              title: Advanced Settings
+              text: Advanced configuration options
+              underline: true
+            
+            header.custom_css:
+              type: textarea
+              label: Custom CSS
+              placeholder: |
+                /* Custom CSS for this project */
+                .project-specific {
+                  /* Your styles here */
+                }
+              help: Add custom CSS specific to this project
+            
+            header.custom_js:
+              type: textarea
+              label: Custom JavaScript
+              placeholder: |
+                // Custom JavaScript for this project
+                document.addEventListener('DOMContentLoaded', function() {
+                  // Your code here
+                });
+              help: Add custom JavaScript specific to this project
+            
+            header.schema_markup:
+              type: toggle
+              label: Enable Schema Markup
+              help: Add structured data for better SEO
+              highlight: 1
+              default: 1
+              options:
+                1: PLUGIN_ADMIN.ENABLED
+                0: PLUGIN_ADMIN.DISABLED
+              validate:
+                type: bool
+            
+            header.back_to_portfolio:
+              type: text
+              label: Back to Portfolio Text
+              placeholder: e.g., Back to BrandGrandits
+              default: Back to Portfolio
+              help: Text for the back navigation link
+            
+            header.portfolio_url:
+              type: text
+              label: Portfolio URL
+              placeholder: /portfolio
+              default: /portfolio
+              help: URL to return to portfolio page
+            
+            header.next_project:
+              type: text
+              label: Next Project
+              placeholder: Next project slug or URL
+              help: Link to the next project in sequence
+            
+            header.previous_project:
+              type: text
+              label: Previous Project
+              placeholder: Previous project slug or URL
+              help: Link to the previous project in sequence
+            
+            header.related_projects:
+              type: selectize
+              label: Related Projects
+              help: Select related projects to show
+              validate:
+                type: commalist
+              options:
+                # This would be populated dynamically with other projects
+            
+            header.project_weight:
+              type: number
+              label: Project Weight
+              placeholder: 0
+              help: Order weight for project listing (lower numbers appear first)
+              default: 0
+            
+            header.hide_sidebar:
+              type: toggle
+              label: Hide Sidebar
+              help: Hide the project details sidebar
+              highlight: 1
+              default: 0
+              options:
+                1: PLUGIN_ADMIN.ENABLED
+                0: PLUGIN_ADMIN.DISABLED
+              validate:
+                type: bool
+            
+            header.custom_template:
+              type: text
+              label: Custom Template
+              placeholder: custom-project
+              help: Use a custom template file (optional)
