@@ -35,3 +35,4 @@ output/
 .idea/
 .vscode/
 *.sw?
+assets/admin-preset.css
