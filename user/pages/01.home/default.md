@@ -1,5 +1,7 @@
 ---
 title: Home
+breadcrumbs:
+  may_descend: false # Breadcrumbs will not be generated for pages underneath this one.
 template: default
 hero_title: 'UX/UI & UI Developer / Digital Product Design'
 intro: 'I specialize in driving the creation of intuitive, high-performing digital products across diverse platforms, leveraging expertise in UX, UI, and front-end development. Based in Melbourne, I focus on e-commerce CRO and robust design systems.'

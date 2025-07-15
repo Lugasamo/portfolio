@@ -87,6 +87,10 @@ button.mobile-menu-button {
   @apply rounded-full space-x-2 bg-black px-4 py-2 text-white inline-flex items-center justify-center hover:text-primary-100;
 }
 
+.paragraph p{
+    @apply mb-6;
+}
+
 /* button styles */
 .btn-primary {
   @apply transform h-auto w-auto text-white text-lg bg-black hover:text-primary-100 rounded-full px-8 py-4 transition duration-500 hover:scale-105 flex justify-center items-center;
@@ -116,6 +120,39 @@ button.mobile-menu-button {
 }
 .selected-underline {
   @apply font-semibold after:bottom-0 after:h-[1px] after:w-full after:bg-primary-100;
+}
+
+/* filter */
+.filter-btn {
+    @apply rounded-full bg-primary-100 text-black font-medium px-6 py-2;
+}
+
+.filter-btn.active {
+    @apply bg-transparen;
+}
+
+
+/* ✅ SCHABO Font Integration */
+@font-face {
+  font-family: 'SCHABO';
+  src:  url("../fonts/SCHABO.otf") format('otf'),
+        url("../fonts/SCHABO.woff") format('otf'),
+        url("../fonts/SCHABO.woff2") format('otf');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+.hero-height {
+    height: 20rem;
+}
+.hero-font {
+    font-family: 'SCHABO';
+    text-transform: uppercase;
+}
+
+.hero-size {
+    font-size: 26rem;
+    line-height: normal;
 }
 
 /* Footer Styles */

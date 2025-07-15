@@ -1,4 +1,6 @@
 title: Default Page
+process:
+  breadcrumbs: true
 '@extends': default
 
 form:
@@ -21,16 +23,18 @@ form:
               type: textarea
               label: Intro Text
 
-            header.hero_image:
-              type: filepicker
-              label: Hero Background Image
-              folder: '@self'
-              preview_images: true
+            header.project_media:
+              type: file
+              label: Project Media Gallery
+              destination: 'self@'
+              multiple: true
               accept:
-                - .jpg
-                - .jpeg
-                - .png
-              help: Upload an image to be used as the hero section background
+                - image/jpeg
+                - image/png
+                - image/gif
+                - video/mp4
+                - video/webm
+              help: Upload images (JPG, PNG, GIF) or videos (MP4, WEBM) to display in the project gallery.
 
             content:
               type: markdown

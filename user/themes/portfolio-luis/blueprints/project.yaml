@@ -1,4 +1,6 @@
 title: Project
+process:
+  breadcrumbs: true
 '@extends':
   type: default
 
@@ -91,17 +93,9 @@ form:
                 'frontend': 'Frontend'
                 'backend': 'Backend'
                 'fullstack': 'Full Stack'
-                'react': 'React'
-                'vue': 'Vue'
-                'angular': 'Angular'
-                'php': 'PHP'
-                'laravel': 'Laravel'
                 'wordpress': 'WordPress'
                 'shopify': 'Shopify'
                 'ecommerce': 'E-commerce'
-                'saas': 'SaaS'
-                'startup': 'Startup'
-                'enterprise': 'Enterprise'
             
             header.hero_image:
               type: file
@@ -112,14 +106,19 @@ form:
                 - image/*
               help: Main hero image for the project
             
-            header.project_images:
+            header.project_media:
               type: file
-              label: Project Images
+              label: Project Media Gallery
               destination: 'self@'
               multiple: true
               accept:
-                - image/*
-              help: Gallery images for the project
+                - image/jpeg
+                - image/png
+                - image/gif
+                - video/mp4
+                - video/mov
+                - video/webm
+              help: Upload images (JPG, PNG, GIF) or videos (MP4, MOV, WEBM) to display in the project gallery.
             
             header.challenge:
               type: textarea
