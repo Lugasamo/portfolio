@@ -1,0 +1,304 @@
+{% extends 'partials/base.html.twig' %}
+
+{% block content %}
+
+{# Hero Section #}
+<section class="hero-height mx-auto text-center bg-gradient-to-b from-white to-gray-100">
+    <div class="mx-auto text-center px-4">
+        <h1 class="hero-font hero-size text-primary-100 mb-4">
+            {{ page.header.title | default('Get In Touch') }}
+        </h1>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+            {{ page.header.subtitle | default('Ready to start your next project? Let\'s discuss how we can work together.') }}
+        </p>
+    </div>
+</section>
+
+<div class="px-6 py-12 bg-gray-50 min-h-screen">
+    <div class="max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            
+            {# Contact Information #}
+            <div class="bg-white rounded-3xl shadow-xl p-8 lg:p-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-8">Let's Connect</h2>
+                
+                <div class="space-y-6">
+                    <div class="flex items-center space-x-4">
+                        <div class="flex-shrink-0">
+                            <svg class="w-6 h-6 text-primary-100" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-900">Email</h3>
+                            <p class="text-gray-600">{{ site.author.email | default('your.email@example.com') }}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center space-x-4">
+                        <div class="flex-shrink-0">
+                            <svg class="w-6 h-6 text-primary-100" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-900">Location</h3>
+                            <p class="text-gray-600">{{ site.author.location | default('Melbourne, Australia') }}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center space-x-4">
+                        <div class="flex-shrink-0">
+                            <svg class="w-6 h-6 text-primary-100" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-900">Response Time</h3>
+                            <p class="text-gray-600">Within 24 hours</p>
+                        </div>
+                    </div>
+                </div>
+                
+                {# Social Links #}
+                <div class="mt-8 pt-8 border-t border-gray-200">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Follow Me</h3>
+                    <div class="flex space-x-4">
+                        {% if site.author.social.linkedin %}
+                            <a href="{{ site.author.social.linkedin }}" class="text-gray-400 hover:text-primary-100 transition-colors">
+                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                                </svg>
+                            </a>
+                        {% endif %}
+                        {% if site.author.social.github %}
+                            <a href="{{ site.author.social.github }}" class="text-gray-400 hover:text-primary-100 transition-colors">
+                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                </svg>
+                            </a>
+                        {% endif %}
+                        {% if site.author.social.twitter %}
+                            <a href="{{ site.author.social.twitter }}" class="text-gray-400 hover:text-primary-100 transition-colors">
+                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                                </svg>
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            
+            {# Contact Form #}
+            <div class="bg-white rounded-3xl shadow-xl p-8 lg:p-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-8">Send a Message</h2>
+                
+                {# Form Messages #}
+                {% if form.message %}
+                    <div class="mb-6 p-4 rounded-lg {% if form.message.type == 'success' %}bg-green-50 border border-green-200 text-green-800{% else %}bg-red-50 border border-red-200 text-red-800{% endif %}">
+                        {{ form.message.message }}
+                    </div>
+                {% endif %}
+                
+                {# Contact Form #}
+                <form 
+                    method="POST" 
+                    action="{{ form.action }}" 
+                    id="contact-form"
+                    class="space-y-6"
+                    novalidate
+                >
+                    {# CSRF Token #}
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    
+                    {# Form timestamp for time-based validation #}
+                    <input type="hidden" name="form_time" id="form_time" value="">
+                    
+                    {# Honeypot field (hidden) #}
+                    <div style="display: none;">
+                        <label for="honeypot">Leave this field blank</label>
+                        <input type="text" name="honeypot" id="honeypot" tabindex="-1" autocomplete="off">
+                    </div>
+                    
+                    {# Name and Email row #}
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
+                                Full Name *
+                            </label>
+                            <input 
+                                type="text" 
+                                name="name" 
+                                id="name" 
+                                required
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-100 focus:border-transparent transition-colors"
+                                placeholder="Enter your full name"
+                                value="{{ form.value.name }}"
+                            >
+                            {% if form.errors.name %}
+                                <span class="text-red-600 text-sm mt-1">{{ form.errors.name }}</span>
+                            {% endif %}
+                        </div>
+                        
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+                                Email Address *
+                            </label>
+                            <input 
+                                type="email" 
+                                name="email" 
+                                id="email" 
+                                required
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-100 focus:border-transparent transition-colors"
+                                placeholder="your.email@example.com"
+                                value="{{ form.value.email }}"
+                            >
+                            {% if form.errors.email %}
+                                <span class="text-red-600 text-sm mt-1">{{ form.errors.email }}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    {# Company field #}
+                    <div>
+                        <label for="company" class="block text-sm font-medium text-gray-700 mb-2">
+                            Company / Organization
+                        </label>
+                        <input 
+                            type="text" 
+                            name="company" 
+                            id="company" 
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-100 focus:border-transparent transition-colors"
+                            placeholder="Your company name (optional)"
+                            value="{{ form.value.company }}"
+                        >
+                    </div>
+                    
+                    {# Subject and Budget row #}
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">
+                                Subject *
+                            </label>
+                            <select 
+                                name="subject" 
+                                id="subject" 
+                                required
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-100 focus:border-transparent transition-colors"
+                            >
+                                <option value="">Select a subject</option>
+                                <option value="general" {% if form.value.subject == 'general' %}selected{% endif %}>General Inquiry</option>
+                                <option value="project" {% if form.value.subject == 'project' %}selected{% endif %}>Project Discussion</option>
+                                <option value="collaboration" {% if form.value.subject == 'collaboration' %}selected{% endif %}>Collaboration</option>
+                                <option value="freelance" {% if form.value.subject == 'freelance' %}selected{% endif %}>Freelance Work</option>
+                                <option value="consultation" {% if form.value.subject == 'consultation' %}selected{% endif %}>Consultation</option>
+                                <option value="other" {% if form.value.subject == 'other' %}selected{% endif %}>Other</option>
+                            </select>
+                            {% if form.errors.subject %}
+                                <span class="text-red-600 text-sm mt-1">{{ form.errors.subject }}</span>
+                            {% endif %}
+                        </div>
+                        
+                        <div>
+                            <label for="budget" class="block text-sm font-medium text-gray-700 mb-2">
+                                Project Budget
+                            </label>
+                            <select 
+                                name="budget" 
+                                id="budget" 
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-100 focus:border-transparent transition-colors"
+                            >
+                                <option value="">Select budget range</option>
+                                <option value="under-5k" {% if form.value.budget == 'under-5k' %}selected{% endif %}>Under $5,000</option>
+                                <option value="5k-10k" {% if form.value.budget == '5k-10k' %}selected{% endif %}>$5,000 - $10,000</option>
+                                <option value="10k-25k" {% if form.value.budget == '10k-25k' %}selected{% endif %}>$10,000 - $25,000</option>
+                                <option value="25k-50k" {% if form.value.budget == '25k-50k' %}selected{% endif %}>$25,000 - $50,000</option>
+                                <option value="over-50k" {% if form.value.budget == 'over-50k' %}selected{% endif %}>Over $50,000</option>
+                                <option value="discuss" {% if form.value.budget == 'discuss' %}selected{% endif %}>Let's discuss</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    {# Timeline field #}
+                    <div>
+                        <label for="timeline" class="block text-sm font-medium text-gray-700 mb-2">
+                            Project Timeline
+                        </label>
+                        <select 
+                            name="timeline" 
+                            id="timeline" 
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-100 focus:border-transparent transition-colors"
+                        >
+                            <option value="">Select timeline</option>
+                            <option value="asap" {% if form.value.timeline == 'asap' %}selected{% endif %}>ASAP</option>
+                            <option value="1-month" {% if form.value.timeline == '1-month' %}selected{% endif %}>Within 1 month</option>
+                            <option value="2-3-months" {% if form.value.timeline == '2-3-months' %}selected{% endif %}>2-3 months</option>
+                            <option value="3-6-months" {% if form.value.timeline == '3-6-months' %}selected{% endif %}>3-6 months</option>
+                            <option value="flexible" {% if form.value.timeline == 'flexible' %}selected{% endif %}>Flexible</option>
+                        </select>
+                    </div>
+                    
+                    {# Message field #}
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-gray-700 mb-2">
+                            Message *
+                        </label>
+                        <textarea 
+                            name="message" 
+                            id="message" 
+                            rows="6" 
+                            required
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-100 focus:border-transparent transition-colors resize-vertical"
+                            placeholder="Tell me about your project or inquiry..."
+                        >{{ form.value.message }}</textarea>
+                        {% if form.errors.message %}
+                            <span class="text-red-600 text-sm mt-1">{{ form.errors.message }}</span>
+                        {% endif %}
+                    </div>
+                    
+                    {# Privacy checkbox #}
+                    <div class="flex items-start">
+                        <input 
+                            type="checkbox" 
+                            name="privacy" 
+                            id="privacy" 
+                            required
+                            class="mt-1 h-4 w-4 text-primary-100 border-gray-300 rounded focus:ring-primary-100"
+                            {% if form.value.privacy %}checked{% endif %}
+                        >
+                        <label for="privacy" class="ml-2 text-sm text-gray-600">
+                            I agree to the <a href="/privacy" class="text-primary-100 hover:underline">privacy policy</a> and terms of service *
+                        </label>
+                    </div>
+                    {% if form.errors.privacy %}
+                        <span class="text-red-600 text-sm">{{ form.errors.privacy }}</span>
+                    {% endif %}
+                    
+                    {# Submit button #}
+                    <div class="pt-4">
+                        <button 
+                            type="submit" 
+                            id="submit-btn"
+                            class="w-full bg-primary-100 text-white py-3 px-6 rounded-lg font-semibold hover:bg-primary-200 focus:ring-2 focus:ring-primary-100 focus:ring-offset-2 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
+                            <span id="submit-text">Send Message</span>
+                            <span id="submit-loading" class="hidden">
+                                <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                                Sending...
+                            </span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{# Include contact form JavaScript #}
+<script src="{{ base_url }}/user/themes/{{ theme_name }}/js/contact-form.js" defer></script>
+
+{% endblock %}

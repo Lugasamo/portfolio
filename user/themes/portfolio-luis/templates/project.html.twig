@@ -1,15 +1,10 @@
 {% extends 'partials/base.html.twig' %}
 {% block content %}
 
-{# ✅ Hero Section #}
-<section 
-    class="hero-height mx-auto text-center bg-gradient-to-b from-white to-gray-100">
-    <div class="mx-auto text-center">
-        <h1 class="hero-font hero-size text-primary-100">
-            {{ page.header.title }}
-        </h1>
-    </div>
-</section>
+{# Header #} 
+{% if page.header.title %}
+    {% include 'partials/hero.html.twig' %}
+{% endif %}
 
 <div class="px-6 py-4 xl:px-8 xl:py-12 bg-gray-100">
     <div class="flex flex-row flex-wrap">

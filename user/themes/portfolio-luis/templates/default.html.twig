@@ -49,69 +49,33 @@
 
 {% block content %}
 
-    {# ✅ Hero Section #}
-    <section class="bg-cover bg-center bg-no-repeat bg-primary-50 text-white px-6 py-16 xl:px-20 xl:py-32">
-        <div class="container mx-auto text-center">
-            <h1 class="text-5xl font-bold mb-4">
-                {{ page.header.hero_title ?: page.title }}
-            </h1>
-        </div>
-    </section>
+{# ✅ Header #} 
+    {% if page.header.title %}
+        {% include 'partials/hero.html.twig' %}
+    {% endif %}
 
     <div class="px-6 py-12 xl:px-20 lg:py-20 {# bg-amber-200 #} align-middle space-y-12">
         {# ✅ Description / Intro #}
-        {% if page.header.intro %}
-            <div class="px-6">
-                <p class="text-xl text-center xl:text-left">
-                    {{ page.header.intro }}
-                </p>
-            </div>
-        {% endif %}
+            {% if page.header.intro %}
+                <div class="px-6">
+                    <p class="text-xl text-center xl:text-left">
+                        {{ page.header.intro }}
+                    </p>
+                </div>
+            {% endif %}
 
         {# ✅ Main Page Content (from Markdown) #}
         
-        {% if page.content %}
-        <div class="px-6">
-            {{ page.content|raw }}
-        </div>
-        {% endif %}
-
-        {# ✅ Profile Section (optional structured content) #}
-        {% if page.header.profile %}
-            <section class="mx-0 my-0 flex-none lg:flex space-y-6">
-                <div class="flex flex-col lg:flex-row w-full space-y-4">
-                    <div class="content-center w-56 h-auto space-y-4 px-6 {# bg-red-300 #} m-auto lg:m">
-                    {# Image Content #}
-                        {% set profileImage = page.media[page.header.profile.image] ?? null %}
-                        
-                        {% if profileImage %}
-                        <img 
-                            src="{{ profileImage.url }}"
-                            alt="{{ page.header.profile.name ?: 'Profile Picture' }}" 
-                            class="transition-transform duration-300 hover:scale-105"
-                            loading="lazy"
-                        >
-                        {% endif %}
-                    </div>
-                    <div class="flex-1 w-full content-center space-y-4 px-6 {# bg-orange-300 #} text-center lg:text-left">
-                    {# Text Content #}
-                        <h2 class="text-3xl">{{ page.header.profile.name }}</h2>
-                        <p class="text-lg">{{ page.header.profile.bio }}</p>
-                    </div>
-                </div>
-                <div class="flex flex-col xl:flex-row flex-auto w-auto {# bg-blue-300 #}">
-                    <h3 class="w-full lg:w-80 content-center text-2xl leading-10 text-center lg:text-left px-2 lg:px-6">
-                    {# Skills Content #}
-                        {{ header.columnl.skills | raw }}
-                    </h3>
-                    <h3 class="w-full lg:w-80 content-center text-2xl leading-10 text-center lg:text-left px-2 lg:px-6">
-                    {# Skills Content #}
-                        {{ header.columnr.skills | raw }}
-                    </h3>  
-                </div>
-            </section>
-        {% endif %}
-
+            {% if page.content %}
+            <div class="px-6">
+                {{ page.content|raw }}
+            </div>
+            {% endif %}
     </div>
+    
+    {# ✅ profile #} 
+        {% if page.header.profile %}
+            {% include 'partials/profile.html.twig' %}
+        {% endif %}
     
 {% endblock %}  
