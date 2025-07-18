@@ -1,44 +1,46 @@
 /* Button components */
+
 .btn {
-  display: inline-flex;
-  align-items: center;
-  padding: var(--space-sm) var(--space-lg);
-  border-radius: var(--radius);
-  font-weight: 600;
-  text-decoration: none;
-  transition: var(--transition);
-  cursor: pointer;
-  border: none;
-  font-size: var(--font-base);
+  @apply inline-flex items-center px-8 py-4 space-x-4 inline-block rounded-full font-semibold no-underline cursor-pointer border-none text-base ease-in-out transition-all duration-300;
 }
 
-.btn-sm { padding: var(--space-xs) var(--space-sm); font-size: var(--font-sm); }
-.btn-lg { padding: var(--space-md) var(--space-xl); font-size: var(--font-lg); }
+.btn-sm {
+  @apply text-sm px-4 py-2;
+}
+
+.btn-lg {
+  @apply text-lg px-8 py-4;
+}
+
+.btn-xl {
+  @apply text-xl px-9 py-5;
+}
 
 .btn-primary { 
-  background: linear-gradient(135deg, var(--primary), var(--secondary)); 
-  color: white; 
+  @apply text-black hover:text-primary-100;
 }
+
 .btn-primary:hover { 
-  transform: translateY(-2px); 
-  box-shadow: var(--shadow-lg); 
+  @apply -translate-y-1 shadow-lg;
 }
 
 .btn-outline { 
-  background: transparent; 
-  color: var(--primary); 
-  border: 2px solid var(--primary); 
+  @apply bg-transparent text-white;
 }
 .btn-outline:hover { 
-  background: var(--primary); 
-  color: white; 
+    @apply bg-transparent text-black border-solid border-black/50;
 }
-
-.btn-ghost { 
-  background: transparent; 
-  color: var(--gray-600); 
+.btn-ghost {
+  @apply bg-transparent text-primary-50 border-solid border-primary-50;
 }
 .btn-ghost:hover { 
-  background: var(--gray-100); 
-  color: var(--gray-800); 
+  @apply bg-transparent text-black border-solid  border-black;
 }
+
+/* button styles
+.btn-primary {
+  @apply transform h-auto w-auto text-white text-lg bg-black hover:text-primary-100 rounded-full px-8 py-4 transition duration-500 hover:scale-105 flex justify-center items-center;
+}
+
+.btn-secondary {
+  @apply transform h-auto w-auto text-white text-lg bg-transparent border-white hover:text-primary-100 rounded-full px-8 py-4 transition duration-500 hover:scale-105 flex justify-center items-center; */

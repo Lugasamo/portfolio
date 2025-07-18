@@ -16,7 +16,7 @@
 {% set project_types = project_types|array_unique %}
 
 {% if project_types|length > 0 %}
-<section class="py-8 bg-white border-b border-gray-200 relative">
+<section class="py-8 bg-white border-b border-gray-200 relative  bg-gradient-to-b to-gray-100 from-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex flex-wrap justify-center gap-3">
             <button class="filter-btn active" data-filter="all">
@@ -27,7 +27,7 @@
                     {% if project_type == 'web-design' %}Web Design
                     {% elseif project_type == 'mobile-app' %}Mobile App
                     {% elseif project_type == 'branding' %}Branding
-                    {% elseif project_type == 'ui-ux' %}UI/UX Design
+                    {% elseif project_type == 'ui-ux' %}UI UX Design
                     {% elseif project_type == 'frontend' %}Frontend Development
                     {% elseif project_type == 'backend' %}Backend Development
                     {% elseif project_type == 'fullstack' %}Full Stack Development
@@ -41,9 +41,9 @@
 {% endif %}
 
 {# Optimized Bento Grid Projects #}
-<section class="py-16 lg:py-24 bg-gray-50 text-black">
+<section class="py-16 lg:py-24 text-black bg-gradient-to-b to-gray-100 from-white">
     <div class="w-full px-4 sm:px-6 lg:px-8">
-        <div class="bento-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6 auto-rows-[200px]">
+        <div class="bento-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6 auto-rows-[200px] delay-[100ms] duration-[600ms] taos:translate-y-[10%] taos:opacity-0" data-taos-offset="200">
             {% for project in page.collection() %}
                 {% set gridClass = '' %}
                 {% if loop.index == 1 %}
@@ -56,7 +56,7 @@
                     {% set gridClass = 'lg:col-span-2' %}
                 {% endif %}
                 
-                <article class="project-card group relative overflow-hidden rounded-2xl bg-white text-black shadow-sm hover:shadow-xl transition-all duration-300 {{ gridClass }}"
+                <article class="project-card group relative overflow-hidden rounded-2xl bg-white text-black shadow-sm hover:shadow-xl {{ gridClass }}"
                          data-category="{{ project.header.project_type ? project.header.project_type : 'uncategorized' }}">
 
                     {# Full tile clickable link #}
@@ -71,7 +71,7 @@
                             <div class="absolute inset-0">
                                 <img src="{{ image.url }}"
                                     alt="{{ project.title }}"
-                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                    class="w-full h-full object-cover group-hover:scale-105"
                                     loading="lazy"
                                     decoding="async">
                                 <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
@@ -90,7 +90,7 @@
                                     {% if project.header.project_type == 'web-design' %}Web Design
                                     {% elseif project.header.project_type == 'mobile-app' %}Mobile App
                                     {% elseif project.header.project_type == 'branding' %}Branding
-                                    {% elseif project.header.project_type == 'ui-ux' %}UI/UX Design
+                                    {% elseif project.header.project_type == 'ui-ux' %}UI UX Design
                                     {% elseif project.header.project_type == 'frontend' %}Frontend
                                     {% elseif project.header.project_type == 'backend' %}Backend
                                     {% elseif project.header.project_type == 'fullstack' %}Full Stack

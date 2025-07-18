@@ -1,13 +1,13 @@
-<footer class="p-ls-padding-h flex flex-col flex-auto bg-black text-white">
-    <div class="flex flex-col lg:flex-row flex-auto py-8">
-        <div class="text-white flex-col flex-auto mb-6 content-center text-center lg:text-left">
+<footer class="flex flex-col flex-auto pb-4">
+    <div class="flex flex-col lg:flex-row flex-auto">
+        <div class="text-white flex-col flex-auto content-center text-center lg:text-left">
             <h2 class="text-2xl lg:text-3xl text-white mb-4">Want to stay in touch?</h2>
-            <p class="font-light">Let's work together on your next project. Let's discuss how I can assist you.</p>
+            <p class="font-light pb-24 pt-0">Let's work together on your next project. Let's discuss how I can assist you.</p>
         </div>
         <div class="text-white flex-col flex lg:flex-row ">
             <div class="content-center m-auto flex space-x-4">
-                <a href="{{ base_url_absolute }}/contact" 
-                class="btn-primary space-x-4 inline-block bg-black flex border border-solid border-white text-white m-1 h-fit">
+                <a href="{{ base_url_absolute }}/projects" 
+                class="btn btn-lg btn-primary bg-primary-100 hover:bg-stone-900 hover:text-white">
                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="{{ class|default('w-5 h-5') }}">
                     <path d="M5 12h14"/><path d="M12 5v14"/>
                 </svg>
@@ -17,7 +17,7 @@
                 </svg>
                 </a>
                 <a href="{{ base_url_absolute }}/contact" 
-                class="btn-primary space-x-4 inline-block bg-primary-50 flex border-white text-white m-1 h-fit">
+                class="btn btn-lg btn-primary bg-black border-white  hover:border-primary-100 text-white hover:text-primary-100 border-solid border-2">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="{{ class|default('w-5 h-5') }}">
                     <path d="M3.714 3.048a.498.498 0 0 0-.683.627l2.843 7.627a2 2 0 0 1 0 1.396l-2.842 7.627a.498.498 0 0 0 .682.627l18-8.5a.5.5 0 0 0 0-.904z"/><path d="M6 12h16"/>
                 </svg>
@@ -27,10 +27,9 @@
                 </svg>
                 </a>
             </div>
-           
         </div>
     </div>
-    <div class="py-4 flex flex-row">
+    <div class="py-4 flex flex-row pb-0 pt-0">
         <div class="flex flex-auto items-center"><p class="text-sm font-light">{{ "now"|date("Y") }} {{ site.title }}. All rights reserved.</p></div>
         <div class="flex-row">
             <a href="{{ base_url_absolute }}/contact" 

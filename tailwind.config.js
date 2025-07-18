@@ -1,8 +1,18 @@
 /* @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    './user/themes/portfolio-luis/templates/**/*.{html,twig}',
-    './user/themes/portfolio-luis/assets/js/*.js'
+  content: {
+    files: [
+      './user/themes/portfolio-luis/templates/**/*.{html,twig}',
+      './user/themes/portfolio-luis/assets/js/*.js',
+      './src/*.{html,js}',
+    ],
+    relative: true,
+    transform: (content) => content.replace(/taos:/g, ''),
+  },
+  safelist: [
+    '!duration-[0ms]',
+    '!delay-[0ms]',
+    'html.js :where([class*="taos:"]:not(.taos-init))'
   ],
   theme: {
     extend: {
@@ -23,5 +33,6 @@ module.exports = {
   },
   plugins: [
     require('@tailwindcss/typography'),
+    require('taos/plugin'),
   ],
 }

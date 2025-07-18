@@ -1,10 +1,9 @@
 {# ✅ Profile Section (optional structured content) #}
-<section class="mx-0 my-0 flex-none lg:flex space-y-6 px-6 py-4 xl:px-16 xl:py-16">
+<section class="mx-0 my-0 flex-none lg:flex space-y-6 p-ls-padding-h p-ls-padding-v bg-gradient-to-b to-white from-gray-100 rounded-b-3xl">
     <div class="flex flex-col lg:flex-row w-full space-y-4">
         <div class="content-center w-56 h-auto space-y-4 px-6 {# bg-red-300 #} m-auto lg:m">
         {# Image Content #}
             {% set profileImage = page.media[page.header.profile.image] ?? null %}
-            
             {% if profileImage %}
             <img 
                 src="{{ profileImage.url }}"
@@ -18,6 +17,62 @@
         {# Text Content #}
             <h2 class="text-3xl">{{ page.header.profile.name }}</h2>
             <p class="text-lg">{{ page.header.profile.bio }}</p>
+
+
+<div class="relative" data-twe-dropdown-position="dropup">
+  <button
+    class="flex items-center rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-primary-3 transition duration-150 ease-in-out hover:bg-primary-accent-300 hover:shadow-primary-2 focus:bg-primary-accent-300 focus:shadow-primary-2 focus:outline-none focus:ring-0 active:bg-primary-600 active:shadow-primary-2 motion-reduce:transition-none dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong"
+    type="button"
+    id="dropdownMenuButton1u"
+    data-twe-dropdown-toggle-ref
+    aria-expanded="false"
+    data-twe-ripple-init
+    data-twe-ripple-color="light">
+    Dropup
+    <span class="ms-2 w-2 [&>svg]:h-5 [&>svg]:w-5">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor">
+        <path
+          fill-rule="evenodd"
+          d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+          clip-rule="evenodd" />
+      </svg>
+    </span>
+  </button>
+  <ul
+    class="absolute z-[1000] float-left m-0 hidden min-w-max list-none overflow-hidden rounded-lg border-none bg-white bg-clip-padding text-base shadow-lg data-[twe-dropdown-show]:block dark:bg-surface-dark"
+    aria-labelledby="dropdownMenuButton1u"
+    data-twe-dropdown-menu-ref>
+    <li>
+      <a
+        class="block w-full whitespace-nowrap bg-white px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-zinc-200/60 focus:bg-zinc-200/60 focus:outline-none active:bg-zinc-200/60 active:no-underline dark:bg-surface-dark dark:text-white dark:hover:bg-neutral-800/25 dark:focus:bg-neutral-800/25 dark:active:bg-neutral-800/25"
+        href="#"
+        data-twe-dropdown-item-ref
+        >Action</a
+      >
+    </li>
+    <li>
+      <a
+        class="block w-full whitespace-nowrap bg-white px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-zinc-200/60 focus:bg-zinc-200/60 focus:outline-none active:bg-zinc-200/60 active:no-underline dark:bg-surface-dark dark:text-white dark:hover:bg-neutral-800/25 dark:focus:bg-neutral-800/25 dark:active:bg-neutral-800/25"
+        href="#"
+        data-twe-dropdown-item-ref
+        >Another action</a
+      >
+    </li>
+    <li>
+      <a
+        class="block w-full whitespace-nowrap bg-white px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-zinc-200/60 focus:bg-zinc-200/60 focus:outline-none active:bg-zinc-200/60 active:no-underline dark:bg-surface-dark dark:text-white dark:hover:bg-neutral-800/25 dark:focus:bg-neutral-800/25 dark:active:bg-neutral-800/25"
+        href="#"
+        data-twe-dropdown-item-ref
+        >Something else here</a
+      >
+    </li>
+  </ul>
+</div>
+
+
         </div>
     </div>
     <div class="flex flex-col xl:flex-row flex-auto w-auto {# bg-blue-300 #}">

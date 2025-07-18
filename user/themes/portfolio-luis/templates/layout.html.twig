@@ -1,0 +1,35 @@
+{% extends 'partials/base.html.twig' %}
+
+
+{% block content %}
+
+    {# ✅ Header #} 
+        {% if page.header.title %}
+            {% include 'partials/hero.html.twig' %}
+        {% endif %}
+
+        <div class="px-6 py-12 xl:px-20 lg:py-20 align-middle space-y-12">
+            {# ✅ Description / Intro #}
+                {% if page.header.intro %}
+                    <div class="px-6">
+                        <p class="text-xl text-center xl:text-left">
+                            {{ page.header.intro }}
+                        </p>
+                    </div>
+                {% endif %}
+
+            {# ✅ Main Page Content (from Markdown) #}
+            
+                {% if page.content %}
+                <div class="px-6">
+                    {{ page.content|raw }}
+                </div>
+                {% endif %}
+        </div>
+        
+        {# ✅ profile #} 
+            {% if page.header.profile %}
+                {% include 'partials/profile.html.twig' %}
+            {% endif %}
+    
+{% endblock %}  

@@ -1,0 +1,126 @@
+title: Timeline
+'@extends':
+  type: default
+  context: blueprints://pages
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+      fields:
+        content:
+          type: tab
+          title: Content
+          fields:
+            header.title:
+              type: text
+              label: Timeline Title
+              size: large
+            
+            header.subtitle:
+              type: text
+              label: Timeline Subtitle
+              help: Optional subtitle for the timeline
+            
+            header.timeline_items:
+              type: list
+              label: Timeline Items
+              help: Add timeline events and milestones
+              collapsed: true
+              btnLabel: Add Timeline Item
+              fields:
+                .date:
+                  type: date
+                  label: Date
+                  help: Date of the timeline event
+                  format: 'Y-m-d'
+                  required: true
+                
+                .title:
+                  type: text
+                  label: Event Title
+                  size: large
+                  required: true
+                
+                .description:
+                  type: textarea
+                  label: Description
+                  help: Brief description of the event
+                  rows: 3
+                
+                .content:
+                  type: editor
+                  label: Full Content
+                  help: Detailed content (supports markdown)
+                
+                .image:
+                  type: filepicker
+                  label: Event Image
+                  folder: '@self'
+                  preview_images: true
+                
+                .category:
+                  type: text
+                  label: Category
+                  help: Optional category for grouping events
+                
+                .featured:
+                  type: toggle
+                  label: Featured Event
+                  help: Mark this as a featured/important event
+                  highlight: 1
+                  default: 0
+                  options:
+                    1: PLUGIN_ADMIN.ENABLED
+                    0: PLUGIN_ADMIN.DISABLED
+                  validate:
+                    type: bool
+            
+            content:
+              type: editor
+              label: Introduction
+              help: Optional introduction text for the timeline
+        
+        options:
+          type: tab
+          title: Options
+          fields:
+            header.timeline_style:
+              type: select
+              label: Timeline Style
+              help: Choose how the timeline should be displayed
+              options:
+                vertical: Vertical Timeline
+                horizontal: Horizontal Timeline
+                cards: Card Layout
+              default: vertical
+            
+            header.show_dates:
+              type: toggle
+              label: Show Dates
+              help: Display dates for each timeline item
+              highlight: 1
+              default: 1
+              options:
+                1: PLUGIN_ADMIN.ENABLED
+                0: PLUGIN_ADMIN.DISABLED
+              validate:
+                type: bool
+            
+            header.sort_order:
+              type: select
+              label: Sort Order
+              help: How to sort timeline items
+              options:
+                asc: Oldest First
+                desc: Newest First
+              default: desc
+            
+            header.items_per_page:
+              type: number
+              label: Items per Page
+              help: Number of timeline items to show per page (0 for all)
+              default: 0
+              validate:
+                min: 0

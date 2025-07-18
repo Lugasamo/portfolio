@@ -81,7 +81,7 @@ html body {
 }
 
 .p-ls-padding-v {
-    @apply h-full py-8 sm:py-4 lg:py-16;
+    @apply h-full py-6 sm:py-4 lg:py-12;
 }
 
 button.mobile-menu-button {
@@ -92,15 +92,14 @@ button.mobile-menu-button {
     @apply mb-6;
 }
 
-
-/* button styles */
-.btn-primary {
-  @apply transform h-auto w-auto text-white text-lg bg-black hover:text-primary-100 rounded-full px-8 py-4 transition duration-500 hover:scale-105 flex justify-center items-center;
+.project-media {
+    margin-bottom: var(--space-md);
 }
 
-.btn-secondary {
-  @apply transform h-auto w-auto text-white text-lg bg-transparent border-white hover:text-primary-100 rounded-full px-8 py-4 transition duration-500 hover:scale-105 flex justify-center items-center;
-}   
+.project-media img:last-child {
+    display: block;
+    margin-bottom: 0;
+}
 
 /* link styles */
 .hover-underline {
@@ -143,7 +142,7 @@ button.mobile-menu-button {
   font-display: swap;
 }
 .hero-height {
-    height: 20rem;
+    height: 22rem;
 }
 .hero-font {
     font-family: 'SCHABO';
@@ -156,56 +155,8 @@ button.mobile-menu-button {
 }
 
 /* Footer Styles */
-.site-footer {
-    background-color: #333;
-    color: #fff;
-    padding: 2rem 0 1rem;
-    margin-top: 3rem;
-}
-
-.footer-content {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin-bottom: 2rem;
-}
-
-.footer-section h3,
-.footer-section h4 {
-    margin-bottom: 1rem;
-    color: #fff;
-}
-
-.footer-section h3 {
-    font-size: 1.5rem;
-}
-
-.footer-section h4 {
-    font-size: 1.2rem;
-}
-
-.footer-section p {
-    color: #ccc;
-    line-height: 1.6;
-}
-
-.footer-section ul {
-    list-style: none;
-    padding: 0;
-}
-
-.footer-section ul li {
-    margin-bottom: 0.5rem;
-}
-
-.footer-section ul li a {
-    color: #ccc;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.footer-section ul li a:hover {
-    color: #fff;
+footer {
+    @apply bg-black text-white p-ls-padding-v p-ls-padding-h;
 }
 
 .social-links {
@@ -225,11 +176,4 @@ button.mobile-menu-button {
 .social-link:hover {
     color: #fff;
     border-color: #fff;
-}
-
-.footer-bottom {
-    border-top: 1px solid #555;
-    padding-top: 1rem;
-    text-align: center;
-    color: #ccc;
 }
