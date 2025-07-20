@@ -5,28 +5,11 @@
 [build.environment]
   PHP_VERSION = "8.1"
   NODE_VERSION = "18"
-  GRAV_ENVIRONMENT = "production"
-
-[build.processing]
-  skip_processing = false
-
-[build.processing.css]
-  bundle = true
-  minify = true
-
-[build.processing.js]
-  bundle = true
-  minify = true
 
 # Configuración específica para Grav CMS
 # Proteger directorios del sistema
 [[redirects]]
-  from = "/user/config/*"
-  to = "/404"
-  status = 404
-
-[[redirects]]
-  from = "/user/accounts/*"
+  from = "/user/*"
   to = "/404"
   status = 404
 
@@ -54,22 +37,6 @@
   from = "/tmp/*"
   to = "/404"  
   status = 404
-
-# Permitir archivos estáticos del tema
-[[redirects]]
-  from = "/user/themes/portfolio-luis/css/*"
-  to = "/user/themes/portfolio-luis/css/:splat"
-  status = 200
-
-[[redirects]]
-  from = "/user/themes/portfolio-luis/js/*"
-  to = "/user/themes/portfolio-luis/js/:splat"
-  status = 200
-
-[[redirects]]
-  from = "/user/themes/portfolio-luis/images/*"
-  to = "/user/themes/portfolio-luis/images/:splat"
-  status = 200
 
 # Configuración de rutas para Grav (reemplaza .htaccess)
 [[redirects]]

@@ -1,0 +1,19 @@
+# Crear archivo _redirects
+cat > _redirects << 'EOF'
+# Proteger directorios del sistema
+/user/* /404 404
+/cache/* /404 404  
+/bin/* /404 404
+/system/* /404 404
+/vendor/* /404 404
+/tmp/* /404 404
+
+# Archivos estáticos - permitir acceso directo
+/user/themes/*/css/* 200
+/user/themes/*/js/* 200
+/user/themes/*/images/* 200
+/images/* 200
+
+# Todas las otras rutas van a Grav
+/* /index.php?_route=:splat 200
+EOF

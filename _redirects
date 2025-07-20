@@ -1,0 +1,11 @@
+/user/config/* /404 404
+/user/accounts/* /404 404  
+/cache/* /404 404
+/bin/* /404 404
+/system/* /404 404
+/vendor/* /404 404
+/tmp/* /404 404
+/user/themes/portfolio-luis/css/* /user/themes/portfolio-luis/css/:splat 200
+/user/themes/portfolio-luis/js/* /user/themes/portfolio-luis/js/:splat 200
+/user/themes/portfolio-luis/images/* /user/themes/portfolio-luis/images/:splat 200
+/* /index.php?_route=:splat 200
