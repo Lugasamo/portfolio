@@ -19,7 +19,7 @@ module.exports = {
       fontFamily: {
         'sans': ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
         'jakarta': ['Plus Jakarta Sans', 'sans-serif'],
-        'display': ['Barlow', 'system-ui', 'sans-serif'],
+        'display': ['SCHABO','Barlow', 'system-ui', 'sans-serif'],
       },
       colors: {
         primary: {

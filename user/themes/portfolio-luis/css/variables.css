@@ -30,7 +30,7 @@
 
   /* Tipografía */
   --font-sans: 'Plus Jakarta Sans', sans-serif;
-  --font-display: 'Barlow', sans-serif;
+  --font-display: 'SCHABO', 'Barlow', 'system-ui', 'sans-serif';
 
   /* Espaciado */
   --space-xs: 0.5rem;
@@ -63,22 +63,68 @@
   --text-base: 1rem;
   --text-lg: 1.125rem;
   --text-xl: 1.25rem;
-  --text-2xl: 1.75rem;
-  --text-3xl: 1.875rem;
+  --text-2xl: 1.45rem;
+  --text-3xl: 1.85rem;
   --text-4xl: 2.25rem;
+  --text-5xl: 26rem;
 }
-html body {
+html {
     height: 100%;
+    background: black;
+}
+body {
+ background: white;
+/* @apply bg-purple-200 sm:bg-yellow-900 md:bg-lime-900 lg:bg-blue-900 xl:bg-red-900 2xl:bg-emerald-900; */
 }
 
 .dots {
     background-image: url("../images/dots-pattern.svg");
 }
+h1,h2,h3,h4,h5,h6 {
+    @apply transition-all duration-300 font-semibold leading-relaxed;
+}
+
+p, label {
+    @apply transition-all duration-300;
+}
+
+p {
+    @apply text-black/60 text-base xl:text-base 2xl:text-xl leading-relaxed;
+
+}
+
+label { 
+    @apply font-medium;
+}
+
+/*headline*/
+div h1 {
+    @apply text-2xl lg:text-2xl xl:text-3xl 2xl:text-4xl;
+    margin-bottom: 0;
+}
+div h2 {
+    @apply text-xl lg:text-xl xl:text-2xl 2xl:text-3xl;
+}
+div h3 {
+    @apply text-lg lg:text-lg xl:text-xl 2xl:text-2xl;
+}
+
+footer p {
+  color: inherit;  
+}
 
 /*Layout*/
-.p-ls-padding-h {
+.p-site {
+    @apply h-full w-full py-4 sm:py-5 md:py-6 lg:py-8 xl:py-12 px-4 sm:px-5 md:px-6 lg:px-8 xl:px-12 h-auto;
+}
+.p-site-h {
     @apply w-full px-4 sm:px-2 lg:px-8;
 }
+
+.p-ls-padding-h {
+    @apply h-full py-6 sm:py-4 lg:py-12;
+}
+
 
 .p-ls-padding-v {
     @apply h-full py-6 sm:py-4 lg:py-12;
@@ -142,38 +188,15 @@ button.mobile-menu-button {
   font-display: swap;
 }
 .hero-height {
-    height: 22rem;
-}
-.hero-font {
-    font-family: 'SCHABO';
-    text-transform: uppercase;
+   
 }
 
-.hero-size {
-    font-size: 26rem;
-    line-height: normal;
+.hero-font {
+    @apply uppercase text-primary-100 leading-normal overflow-hidden font-display text-center leading-[90%] text-[6rem] sm:text-[8rem] md:text-[12rem] lg:text-[14rem] xl:text-[22rem] transition-all duration-200;
 }
 
 /* Footer Styles */
 footer {
     @apply bg-black text-white p-ls-padding-v p-ls-padding-h;
-}
-
-.social-links {
-    display: flex;
-    gap: 1rem;
-}
-
-.social-link {
-    color: #ccc;
-    text-decoration: none;
-    padding: 0.5rem;
-    border: 1px solid #555;
-    border-radius: 4px;
-    transition: all 0.3s ease;
-}
-
-.social-link:hover {
-    color: #fff;
-    border-color: #fff;
+    height: fit-content;
 }

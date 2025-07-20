@@ -2,22 +2,16 @@
 {% block content %}
 
 {# Header #} 
-{% if page.header.title %}
-    {% include 'partials/hero.html.twig' %}
-{% endif %}
+    {% if page.header.title %}
+      {% include 'partials/hero.html.twig' %}
+    {% endif %}
 
-<div class="px-6 py-4 xl:px-8 xl:py-12 bg-gray-100">
-    <div class="flex flex-row flex-wrap">
-      {# ✅ left #}
-      <main role="main" class="w-full mb-12 lg:w-2/3 xl:w-3/4 p-ls-padding-v p-ls-padding-h rounded-3xl shadow-lg bg-white bg-opacity-90">
-
+    <div class="flex flex-col lg:flex-row gap-x-4 md:gap-x-4 lg:gap-x-8 sm:gap-y-4 gap-y-6 p-site pt-0 bg-gradient-to-b to-white from-gray-100">
+      <main class="p-site w-full lg:w-2/3 shadow-lg rounded-3xl bg-white bg-opacity-90">
         {% if page.content %}
           <div class="flex-col space-y-8">
-
-            <div class="paragraph">
-              <h1 class="text-4xl font-semibold pb-4">{{ page.header.hero_title|raw }}</h1>
+              <h1>{{ page.header.hero_title|raw }}</h1>
               <p>{{ page.content|raw }}</p>
-            </div>
 
             {# ✅ project Images #}
             {% if header.project_media %}
@@ -52,87 +46,82 @@
                 </div>
               </section>
             {% endif %}
-
           </div>
         {% endif %}
-      </main>
+        </main>
 
-      {# ✅ right #}
-      <aside class="w-full lg:w-1/3 xl:w-3/12 delay-[300ms] duration-[600ms] taos:translate-y-[10%] taos:opacity-0" data-taos-offset="300">
+      <aside class="w-full lg:w-1/3 delay-[100ms] duration-[600ms] taos:translate-y-[2%] taos:opacity-0" data-taos-offset="300">
+        <div class="sticky top-0 p-site rounded-3xl shadow-lg space-y-4 bg-slate-50 bg-opacity-90">
+          {% if page.parent %}
+            <a href="{{ page.parent.url }}" class="inline-flex items-center text-primary-50 hover:underline">
+              ← Back to {{ page.parent.title }}
+            </a>
+          {% endif %}
+          
+          {% if page.header.client %}
+            <h1>
+              {{page.header.client}}
+            </h1>
+          {% endif %}
 
-        <div class="sticky top-0 py-6 sm:py-4 lg:py-12 px-4 sm:px-2 lg:px-8 ml-10 mb-12 rounded-3xl shadow-lg space-y-4 bg-slate-50 bg-opacity-90">
+          {% if page.header.role %}
+            <div class="pb-2">
+              <label>Role</label>
+              <p>{{page.header.role}}</p>
+            </div>
+          {% endif %}
 
-        {% if page.parent %}
-          <a href="{{ page.parent.url }}" class="inline-flex items-center text-primary-50 hover:underline">
-            ← Back to {{ page.parent.title }}
-          </a>
-        {% endif %}
-        
-        {% if page.header.client %}
-        <h1 class="text-3xl">
-          {{page.header.client}}
-        </h1>
-        {% endif %}
+          {% if page.header.duration %}
+            <div class="pb-2">
+              <label>Duration</label>
+              <p>{{page.header.duration}}</p>
+            </div>
+          {% endif %}
 
-        {% if page.header.role %}
-        <div class="pb-2">
-          <label class="text-sm font-medium text-gray-500">Role</label>
-          <p class="text-gray-900">{{page.header.role}}</p>
-        </div>
-        {% endif %}
+          {% if page.header.tags %}
+            <div class="pb-2">
+              <ul class="flex space-x-2">
+                {% for tag in page.header.tags %}
+                  <li class="inline-block bg-primary-100 text-black text-xs font-medium px-3 py-1 rounded-full">{{ tag }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+          {% endif %}
 
-        {% if page.header.duration %}
-        <div class="pb-2">
-          <label class="text-sm font-medium text-gray-500">Duration</label>
-          <p class="text-gray-900">{{page.header.duration}}</p>
-        </div>
-        {% endif %}
-
-        {% if page.header.tags %}
-        <div class="pb-2">
-          <ul class="flex space-x-2">
-            {% for tag in page.header.tags %}
-              <li class="inline-block bg-primary-100 text-black text-xs font-medium px-3 py-1 rounded-full">{{ tag }}</li>
-            {% endfor %}
-          </ul>
-        </div>
-        {% endif %}
-
-        {% if header.project_url %}
-        <div class="pb-2">
-          <a class="btn btn-primary bg-black font-medium text-white hover:bg-primary-100 hover:text-black" href="{{header.project_url}}" target="_blank">Visit site</a>
-        </div>
-        {% endif %}
-
+          {% if header.project_url %}
+            <div class="pb-2">
+              <a class="btn btn-primary bg-black font-medium text-white hover:bg-primary-100 hover:text-black" href="{{header.project_url}}" target="_blank">Visit site</a>
+            </div>
+          {% endif %}
         </div>
       </aside>
-      
-      {# ✅ under content #}
-      <div class=" bg-gray-200 w-full flex flex-row pb-2 xl:px-12 xl:py-16 rounded-3xl shadow-lg delay-[150ms] duration-[300ms] taos:translate-y-[10%] taos:opacity-0" data-taos-offset="300">
-        <div class="w-full pr-4">
-          <h2 class="text-3xl py-2">Challenge</h2>
-          <p class="text-gray-900">{{header.challenge}}</p>
-        </div>
-        <div class="w-full pl-4">
-          <h2 class="text-3xl py-2">Solution</h2>
-          <p class="text-gray-900">{{header.solution}}</p>
-        </div>
-      </div>
-
-      {# ✅ design Process #}
-      <div class=" bg-black text-white w-full mt-12 flex flex-row pb-2 xl:px-12 xl:py-16 rounded-3xl shadow-lg delay-[150ms] duration-[300ms] taos:translate-y-[10%] taos:opacity-0" data-taos-offset="300">
-        <div class="w-full pr-4">
-          <h2 class="text-3xl py-2">Design Process</h2>
-        </div>
-        <div class="w-full pl-4">
-          <h2 class="text-3xl py-2">wdwhkwjdhj dwjkdhwjkdwhkjw dhjkwdh dwkjh wdjkhdw jk dwkjdw hkjwdhwdjk. dwkjhwdkjhdwkj h</h2>
-          <p class="text-white">{{header.solution}}</p>
-        </div>
-      </div>
-
     </div>
 
-</div>
+    <div class="p-site flex flex-col gap-y-6 pt-0 bg-gradient-to-b from-white to-gray-100">
+        <div class=" bg-gray-200 flex flex-col lg:flex-row p-site gap-x-12 gap-y-4 rounded-3xl shadow-lg delay-[150ms] duration-[300ms] taos:translate-y-[10%] taos:opacity-0" data-taos-offset="300">
+          <div class="w-full lg:w-1/2">
+            <h3 class="py-2">Challenge</h3>
+            <p>{{header.challenge}}</p>
+          </div>
+          <div class="w-full lg:w-1/2">
+            <h3 class="py-2">Solution</h3>
+            <p>{{header.solution}}</p>
+          </div>
+        </div>
+
+      {# ✅ design Process #}
+        <div class="p-site bg-black text-white w-full flex flex-col lg:flex-row rounded-3xl shadow-lg delay-[150ms] duration-[300ms] taos:translate-y-[10%] taos:opacity-0" data-taos-offset="300">
+          <div class="w-full lg:w-1/2">
+            <h2>Design Process</h2>
+          </div>
+          <div class="w-full lg:w-1/2">
+            <h3 class="py-2">wdwhkwjdhj dwjkdhwjkdwhkjw dhjkwdh dwkjh wdjkhdw jk dwkjdw hkjwdhwdjk. dwkjhwdkjhdwkj h</h3>
+            <p class="text-white">{{header.solution}}</p>
+          </div>
+        </div>
+    </div>
+    
+
 
 {# profile #} 
 {% if page.header.profile %}

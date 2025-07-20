@@ -1,178 +1,185 @@
 {% extends 'partials/base.html.twig' %}
 {% block content %}
 
-{# Header #} 
-{% if page.header.title %}
-    {% include 'partials/hero.html.twig' %}
-{% endif %}
-
-{# Filter Section - Fixed to use project_type #}
-{% set project_types = [] %}
-{% for project in page.collection() %}
-    {% if project.header.project_type %}
-        {% set project_types = project_types|merge([project.header.project_type]) %}
+    {% if page.header.title %}
+        {% include 'partials/hero.html.twig' %}
     {% endif %}
-{% endfor %}
-{% set project_types = project_types|array_unique %}
 
-{% if project_types|length > 0 %}
-<section class="py-8 bg-white border-b border-gray-200 relative  bg-gradient-to-b to-gray-100 from-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex flex-wrap justify-center gap-3">
-            <button class="filter-btn active" data-filter="all">
-                All Projects
-            </button>
-            {% for project_type in project_types %}
-                <button class="filter-btn" data-filter="{{ project_type }}">
-                    {% if project_type == 'web-design' %}Web Design
-                    {% elseif project_type == 'mobile-app' %}Mobile App
-                    {% elseif project_type == 'branding' %}Branding
-                    {% elseif project_type == 'ui-ux' %}UI UX Design
-                    {% elseif project_type == 'frontend' %}Frontend Development
-                    {% elseif project_type == 'backend' %}Backend Development
-                    {% elseif project_type == 'fullstack' %}Full Stack Development
-                    {% else %}{{ project_type|title }}
-                    {% endif %}
-                </button>
-            {% endfor %}
+    {% if page.content %}
+        <div class="p-site">
+            {{ page.content|raw }}
         </div>
-    </div>
-</section>
-{% endif %}
+    {% endif %}
 
-{# Optimized Bento Grid Projects #}
-<section class="py-16 lg:py-24 text-black bg-gradient-to-b to-gray-100 from-white">
-    <div class="w-full px-4 sm:px-6 lg:px-8">
-        <div class="bento-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6 auto-rows-[200px] delay-[100ms] duration-[600ms] taos:translate-y-[10%] taos:opacity-0" data-taos-offset="200">
-            {% for project in page.collection() %}
-                {% set gridClass = '' %}
-                {% if loop.index == 1 %}
-                    {% set gridClass = 'md:col-span-2 md:row-span-2' %}
-                {% elseif loop.index == 3 %}
-                    {% set gridClass = 'lg:col-span-2' %}
-                {% elseif loop.index == 5 %}
-                    {% set gridClass = 'md:row-span-2' %}
-                {% elseif loop.index == 8 %}
-                    {% set gridClass = 'lg:col-span-2' %}
-                {% endif %}
-                
-                <article class="project-card group relative overflow-hidden rounded-2xl bg-white text-black shadow-sm hover:shadow-xl {{ gridClass }}"
-                         data-category="{{ project.header.project_type ? project.header.project_type : 'uncategorized' }}">
-
-                    {# Full tile clickable link #}
-                    <a href="{{ project.url }}" class="absolute inset-0 z-20 cursor-pointer" aria-label="View {{ project.title }} project"></a>
-
-                    {# Optimized Project Image - Only get first image for performance #}
-                    {% if project.header.project_media %}
-                        {% set first_file = project.header.project_media|first %}
-                        {% set image = project.media.images[first_file.name] %}
-
-                        {% if image %}
-                            <div class="absolute inset-0">
-                                <img src="{{ image.url }}"
-                                    alt="{{ project.title }}"
-                                    class="w-full h-full object-cover group-hover:scale-105"
-                                    loading="lazy"
-                                    decoding="async">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
-                            </div>
-                        {% endif %}
-                    {% else %}
-                        <div class="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-600"></div>
+    <div class=" bg-white/30 ">
+            {% if page.collection %}     
+            {# Filter Section - Fixed to use project_type #}
+            {% set project_types = [] %}
+                {% for project in page.collection() %}
+                    {% if project.header.project_type %}
+                        {% set project_types = project_types|merge([project.header.project_type]) %}
                     {% endif %}
-                    
-                    {# Project Content #}
-                    <div class="relative z-10 p-6 h-full flex flex-col justify-end">
-                        {# Project Type Badge #}
-                        {% if project.header.project_type %}
-                            <div class="mb-3">
-                                <span class="inline-block px-3 py-1 text-xs font-medium bg-white/20 text-white rounded-full backdrop-blur-sm">
-                                    {% if project.header.project_type == 'web-design' %}Web Design
-                                    {% elseif project.header.project_type == 'mobile-app' %}Mobile App
-                                    {% elseif project.header.project_type == 'branding' %}Branding
-                                    {% elseif project.header.project_type == 'ui-ux' %}UI UX Design
-                                    {% elseif project.header.project_type == 'frontend' %}Frontend
-                                    {% elseif project.header.project_type == 'backend' %}Backend
-                                    {% elseif project.header.project_type == 'fullstack' %}Full Stack
-                                    {% else %}{{ project.header.project_type|title }}
+                {% endfor %}
+            {% set project_types = project_types|array_unique %}
+
+            {% if project_types|length > 0 %}
+                <section class="py-6">
+                        <div class="flex flex-wrap justify-center gap-3">
+                            <button class="filter-btn active" data-filter="all">
+                                All Projects
+                            </button>
+                            {% for project_type in project_types %}
+                                <button class="filter-btn" data-filter="{{ project_type }}">
+                                    {% if project_type == 'web-design' %}Web Design
+                                    {% elseif project_type == 'mobile-app' %}Mobile App
+                                    {% elseif project_type == 'branding' %}Branding
+                                    {% elseif project_type == 'ui-ux' %}UI UX Design
+                                    {% elseif project_type == 'frontend' %}Frontend Development
+                                    {% elseif project_type == 'backend' %}Backend Development
+                                    {% elseif project_type == 'fullstack' %}Full Stack Development
+                                    {% else %}{{ project_type|title }}
                                     {% endif %}
-                                </span>
-                            </div>
-                        {% endif %}
-                        
-                        {# Project Title #}
-                        <h3 class="text-lg md:text-xl font-bold text-white mb-2 group-hover:text-blue-200 transition-colors">
-                            {{ project.title }}
-                        </h3>
-                        
-                        {# Project Description #}
-                        {% if project.header.description %}
-                            <p class="text-white/90 text-sm line-clamp-2 mb-3">
-                                {{ project.header.description }}
-                            </p>
-                        {% endif %}
-                        
-                        {# Project Meta #}
-                        <div class="flex items-center justify-between text-xs text-white/70">
-                            {% if project.header.client %}
-                                <span>{{ project.header.client }}</span>
-                            {% endif %}
-                            {% if project.date %}
-                                <time datetime="{{ project.date|date('c') }}">
-                                    {{ project.date|date('M Y') }}
-                                </time>
-                            {% endif %}
+                                </button>
+                            {% endfor %}
                         </div>
-                        
-                        {# Technologies Used - Limited to 3 for performance #}
-                        {% if project.header.technologies %}
-                            <div class="mt-3 flex flex-wrap gap-1">
-                                {% for tech in project.header.technologies|slice(0, 3) %}
-                                    <span class="px-2 py-1 text-xs bg-white/10 text-white rounded backdrop-blur-sm">
-                                        {{ tech }}
-                                    </span>
-                                {% endfor %}
-                                {% if project.header.technologies|length > 3 %}
-                                    <span class="px-2 py-1 text-xs bg-white/10 text-white rounded backdrop-blur-sm">
-                                        +{{ project.header.technologies|length - 3 }}
-                                    </span>
+                </section>
+            {% endif %}
+                {# Optimized Bento Grid Projects #}
+            <section class="p-site {#bg-gradient-to-b to-gray-100 from-white#}">
+                    <div class="bento-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6 auto-rows-[200px] delay-[100ms] duration-[600ms] taos:translate-y-[10%] taos:opacity-0" data-taos-offset="19    0">
+                        {% for project in page.collection() %}
+                            {% set gridClass = '' %}
+                            {% if loop.index == 1 %}
+                                {% set gridClass = 'md:col-span-2 md:row-span-2' %}
+                            {% elseif loop.index == 3 %}
+                                {% set gridClass = 'lg:col-span-2' %}
+                            {% elseif loop.index == 5 %}
+                                {% set gridClass = 'md:row-span-2' %}
+                            {% elseif loop.index == 8 %}
+                                {% set gridClass = 'lg:col-span-2' %}
+                            {% endif %}
+                            
+                            <article class="project-card group relative overflow-hidden rounded-2xl bg-white text-black shadow-sm hover:shadow-xl {{ gridClass }}"
+                                    data-category="{{ project.header.project_type ? project.header.project_type : 'uncategorized' }}">
+
+                                {# Full tile clickable link #}
+                                <a href="{{ project.url }}" class="absolute inset-0 z-20 cursor-pointer" aria-label="View {{ project.title }} project"></a>
+
+                                {# Optimized Project Image - Only get first image for performance #}
+                                {% if project.header.project_media %}
+                                    {% set first_file = project.header.project_media|first %}
+                                    {% set image = project.media.images[first_file.name] %}
+
+                                    {% if image %}
+                                        <div class="absolute inset-0">
+                                            <img src="{{ image.url }}"
+                                                alt="{{ project.title }}"
+                                                class="w-full h-full object-cover group-hover:scale-105"
+                                                loading="lazy"
+                                                decoding="async">
+                                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+                                        </div>
+                                    {% endif %}
+                                {% else %}
+                                    <div class="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-600"></div>
                                 {% endif %}
-                            </div>
-                        {% endif %}
+                                
+                                {# Project Content #}
+                                <div class="relative z-10 p-6 h-full flex flex-col justify-end">
+                                    {# Project Type Badge #}
+                                    {% if project.header.project_type %}
+                                        <div class="mb-3">
+                                            <span class="inline-block px-3 py-1 text-xs font-medium bg-white/20 text-white rounded-full backdrop-blur-sm">
+                                                {% if project.header.project_type == 'web-design' %}Web Design
+                                                {% elseif project.header.project_type == 'mobile-app' %}Mobile App
+                                                {% elseif project.header.project_type == 'branding' %}Branding
+                                                {% elseif project.header.project_type == 'ui-ux' %}UI UX Design
+                                                {% elseif project.header.project_type == 'frontend' %}Frontend
+                                                {% elseif project.header.project_type == 'backend' %}Backend
+                                                {% elseif project.header.project_type == 'fullstack' %}Full Stack
+                                                {% else %}{{ project.header.project_type|title }}
+                                                {% endif %}
+                                            </span>
+                                        </div>
+                                    {% endif %}
+                                    
+                                    {# Project Title #}
+                                    <h3 class="text-lg md:text-xl font-bold text-white mb-2 group-hover:text-blue-200 transition-colors">
+                                        {{ project.title }}
+                                    </h3>
+                                    
+                                    {# Project Description #}
+                                    {% if project.header.description %}
+                                        <p class="text-white/90 text-sm line-clamp-2 mb-3">
+                                            {{ project.header.description }}
+                                        </p>
+                                    {% endif %}
+                                    
+                                    {# Project Meta #}
+                                    <div class="flex items-center justify-between text-xs text-white/70">
+                                        {% if project.header.client %}
+                                            <span>{{ project.header.client }}</span>
+                                        {% endif %}
+                                        {% if project.date %}
+                                            <time datetime="{{ project.date|date('c') }}">
+                                                {{ project.date|date('M Y') }}
+                                            </time>
+                                        {% endif %}
+                                    </div>
+                                    
+                                    {# Technologies Used - Limited to 3 for performance #}
+                                    {% if project.header.technologies %}
+                                        <div class="mt-3 flex flex-wrap gap-1">
+                                            {% for tech in project.header.technologies|slice(0, 3) %}
+                                                <span class="px-2 py-1 text-xs bg-white/10 text-white rounded backdrop-blur-sm">
+                                                    {{ tech }}
+                                                </span>
+                                            {% endfor %}
+                                            {% if project.header.technologies|length > 3 %}
+                                                <span class="px-2 py-1 text-xs bg-white/10 text-white rounded backdrop-blur-sm">
+                                                    +{{ project.header.technologies|length - 3 }}
+                                                </span>
+                                            {% endif %}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                
+                                {# Hover Effect Overlay #}
+                                <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
+                                    <div class="text-center text-white">
+                                        <svg class="w-12 h-12 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                        </svg>
+                                        <span class="text-sm font-medium">View Project</span>
+                                    </div>
+                                </div>
+                            </article>
+                        {% endfor %}
                     </div>
                     
-                    {# Hover Effect Overlay #}
-                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
-                        <div class="text-center text-white">
-                            <svg class="w-12 h-12 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
-                            </svg>
-                            <span class="text-sm font-medium">View Project</span>
+                    {# Load More Button - Only show if more than 12 projects #}
+                    {% if page.collection().count() > 12 %}
+                        <div class="text-center mt-12">
+                            <button id="loadMoreBtn" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition-colors">
+                                Load More Projects
+                                <svg class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                                </svg>
+                            </button>
                         </div>
-                    </div>
-                </article>
-            {% endfor %}
-        </div>
-        
-        {# Load More Button - Only show if more than 12 projects #}
-        {% if page.collection().count() > 12 %}
-            <div class="text-center mt-12">
-                <button id="loadMoreBtn" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition-colors">
-                    Load More Projects
-                    <svg class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                    </svg>
-                </button>
-            </div>
+                    {% endif %}
+                </div>
+            </section>
         {% endif %}
-    </div>
-</section>
 
-{# profile #} 
-{% if page.header.profile %}
-    {% include 'partials/profile.html.twig' %}
-{% endif %}
+            {% if page.header.profile %}
+        {% include 'partials/profile.html.twig' %}
+    {% endif %}
+
+    </div>
+
+
 
 {# Optimized JavaScript for filtering with better performance #}
 <script>

@@ -1,53 +1,50 @@
 <!DOCTYPE html>
 <html "{{ grav.language.getActive ?: site.default_lang ?: 'en' }}">
-<head class="flex-grow">
-    {% block head %}
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-status-bar-style" content="default">
-        <link rel="apple-touch-icon" href="{{ url('theme://dist/icons/icon-192x192.png') }}">
-        <title>{% if page.title %}{{ page.title|e('html') }} | {% endif %}{{ site.title|e('html') }}</title>
-        <link rel="icon" type="image/png" href="{{ url('theme://images/favicon.png') }}" />
-        <link rel="canonical" href="{{ page.url(true, true) }}" />
-        <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Barlow:wght@600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-        <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Barlow:wght@600;700;800&display=swap"></noscript>
-        {# Stylesheets #}
-        {% block stylesheets %}
-        {# Tailwind CSS output - main stylesheet #}
-        <link href="{{ url('theme://css/output.css') }}" rel="stylesheet">
+    <head>
+        {% block head %}
+            <meta charset="utf-8" />
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <meta name="apple-mobile-web-app-capable" content="yes">
+            <meta name="mobile-web-app-capable" content="yes">
+            <meta name="apple-mobile-web-app-status-bar-style" content="default">
+            <link rel="apple-touch-icon" href="{{ url('theme://dist/icons/icon-192x192.png') }}">
+            <title>{% if page.title %}{{ page.title|e('html') }} | {% endif %}{{ site.title|e('html') }}</title>
+            <link rel="icon" type="image/png" href="{{ url('theme://images/favicon.png') }}" />
+            <link rel="canonical" href="{{ page.url(true, true) }}" />
+            <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Barlow:wght@600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+            <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Barlow:wght@600;700;800&display=swap"></noscript>
+            {# Stylesheets #}
+            {% block stylesheets %}
+            {# Tailwind CSS output - main stylesheet #}
+            <link href="{{ url('theme://css/output.css') }}" rel="stylesheet">
+            {% endblock %}
+            {% include 'partials/metadata.html.twig' %}
+        {% endblock head %}
+    </head>
+    <body>
+        {# Skip to content for accessibility #}
+        <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-primary-50 text-white px-4 py-2 rounded-md z-50">Skip to main content</a>
+
+        {# header #} 
+        {% block header %}
+            {% include 'partials/header.html.twig' %}
         {% endblock %}
-        {% include 'partials/metadata.html.twig' %}
-    {% endblock head %}
-</head>
 
-<body id="top" class="flex flex-col h-screen duration-[1000ms] taos:opacity-0">
-    {# Skip to content for accessibility #}
-    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-primary-50 text-white px-4 py-2 rounded-md z-50">Skip to main content</a>
-
-    {# header #} 
-    {% block header %}
-        {% include 'partials/header.html.twig' %}
-    {% endblock %}
-
-    {# Main Content - Full Width #}
-    <div class= "bg-black">
-        <div class="rounded-b-2xl bg-white">
+        {# Main Content - Full Width #}
+        <div class="bg-black">
         {# Main content area with background and dots #}
-            <main id="main-content">
+            <main id="main-content" class=" bg-white rounded-b-3xl">
                 {% block content %}
                 {% endblock %}
             </main>
         </div>
-    </div>
 
-    {# Footer #} 
-    {% block footer %}
-        {% include 'partials/footer.html.twig' %}
-    {% endblock %}
+        {# Footer #} 
+        {% block footer %}
+            {% include 'partials/footer.html.twig' %}
+        {% endblock %}
 
-    <script src="https://unpkg.com/taos@1.0.5/dist/taos.js"></script>
-</body>
+        <script src="https://unpkg.com/taos@1.0.5/dist/taos.js"></script>
+    </body>
 </html>
