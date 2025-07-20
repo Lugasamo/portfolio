@@ -1,0 +1,63 @@
+[build]
+  command = "composer install --no-dev --optimize-autoloader && npm ci && npm run build"
+  publish = "."
+
+[build.environment]
+  PHP_VERSION = "8.1"
+  NODE_VERSION = "18"
+
+# Configuración para Grav
+[[redirects]]
+  from = "/user/*"
+  to = "/404"
+  status = 404
+
+[[redirects]]
+  from = "/cache/*"
+  to = "/404"
+  status = 404
+
+[[redirects]]
+  from = "/bin/*"
+  to = "/404"
+  status = 404
+
+[[redirects]]
+  from = "/system/*"
+  to = "/404"
+  status = 404
+
+[[redirects]]
+  from = "/vendor/*"
+  to = "/404"
+  status = 404
+
+[[redirects]]
+  from = "/tmp/*"
+  to = "/404"  
+  status = 404
+
+# Headers de seguridad
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Headers para archivos estáticos
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"

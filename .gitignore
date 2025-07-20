@@ -4,7 +4,7 @@ logs/
 backup/
 tmp/
 user/data/
-user/pages
+# user/pages  # ¡COMENTADO! - Las páginas SÍ deben incluirse
 images/
 .DS_Store
 *.log
@@ -22,7 +22,7 @@ lerna-debug.log*
 dist/
 build/
 public/
-output/
+# output/  # ¡COMENTADO! - Puede que necesites el CSS compilado
 
 # Environment files
 .env
@@ -36,3 +36,17 @@ output/
 .vscode/
 *.sw?
 assets/admin-preset.css
+
+# Archivos específicos que SÍ queremos incluir
+!composer.json
+!composer.lock
+!package.json
+!package-lock.json
+!tailwind.config.js
+!netlify.toml
+
+# Contenido importante de Grav
+!user/pages/
+!user/themes/
+!user/config/
+!user/blueprints.yaml
