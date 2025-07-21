@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "dev": "concurrently \"php -S localhost:8000 system/router.php\" \"npx tailwindcss -i ./user/themes/portfolio-luis/css/input.css -o ./user/themes/portfolio-luis/css/output.css --watch\"",
-    "dev-simple": "npx tailwindcss -i ./user/themes/portfolio-luis/css/input.css -o ./user/themes/portfolio-luis/css/output.css --watch",
     "tailwind:watch": "npx tailwindcss -i ./user/themes/portfolio-luis/css/input.css -o ./user/themes/portfolio-luis/css/output.css --watch",
     "tailwind:build": "npx tailwindcss -i ./user/themes/portfolio-luis/css/input.css -o ./user/themes/portfolio-luis/css/output.css --minify",
     "server": "php -S localhost:8000 system/router.php",
