@@ -1,16 +1,22 @@
-# Grav CMS
+# ---------------------------------
+# Ignorar carpetas de sistema y caché
+# ---------------------------------
 cache/
 logs/
 backup/
 tmp/
 user/data/
-# user/pages  # ¡COMENTADO! - Las páginas SÍ deben incluirse
-images/
-.DS_Store
-*.log
 vendor/
 
+# ---------------------------------
+# Ignorar archivos temporales y de desarrollo
+# ---------------------------------
+.DS_Store
+*.log
+
+# ---------------------------------
 # Node.js / JS build tools
+# ---------------------------------
 node_modules/
 npm-debug.log*
 yarn-debug.log*
@@ -18,34 +24,53 @@ yarn-error.log*
 lerna-debug.log*
 .pnpm-debug.log*
 
-# Build artifacts
+# ---------------------------------
+# Artifacts de build
+# (Descomenta si no necesitas subir tu build)
+# ---------------------------------
 dist/
 build/
 public/
-# output/  # ¡COMENTADO! - Puede que necesites el CSS compilado
+# output/  # <- Descomenta si necesitas incluir tu build
 
-# Environment files
+# ---------------------------------
+# Archivos de entorno
+# ---------------------------------
 .env
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
 
+# ---------------------------------
 # IDE & Editor
+# ---------------------------------
 .idea/
 .vscode/
 *.sw?
+*.swn
+*.swp
+*.swo
+*.scc
+*.swm
+
+# ---------------------------------
+# Archivos CSS/Assets generados
+# ---------------------------------
 assets/admin-preset.css
 
-# Archivos específicos que SÍ queremos incluir
+# ---------------------------------
+# Archivos que SÍ queremos incluir (NO ignorar)
+# ---------------------------------
 !composer.json
 !composer.lock
 !package.json
 !package-lock.json
 !tailwind.config.js
-!netlify.toml
 
-# Contenido importante de Grav
+# ---------------------------------
+# Contenido importante de Grav CMS
+# ---------------------------------
 !user/pages/
 !user/themes/
 !user/config/

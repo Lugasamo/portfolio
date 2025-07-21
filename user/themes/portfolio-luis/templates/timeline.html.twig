@@ -24,9 +24,9 @@
             
             {# Sort items by date #}
             {% if sort_order == 'desc' %}
-                {% set items = items|sort((a, b) => b.date <=> a.date) %}
+                {% set items = items|sort('date')|reverse %}
             {% else %}
-                {% set items = items|sort((a, b) => a.date <=> b.date) %}
+                {% set items = items|sort('date') %}
             {% endif %}
             
             {% if timeline_style == 'vertical' %}

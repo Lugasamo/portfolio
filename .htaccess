@@ -1,3 +1,0 @@
-# Ocultar advertencias de PHP en desarrollo
-php_flag display_errors off
-php_flag log_errors on
