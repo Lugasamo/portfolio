@@ -68,14 +68,6 @@
   --text-4xl: 2.25rem;
   --text-5xl: 26rem;
 }
-html {
-    height: 100%;
-    background: black;
-}
-body {
- background: white;
-/* @apply bg-purple-200 sm:bg-yellow-900 md:bg-lime-900 lg:bg-blue-900 xl:bg-red-900 2xl:bg-emerald-900; */
-}
 
 .dots {
     background-image: url("../images/dots-pattern.svg");
@@ -108,6 +100,13 @@ div h2 {
 div h3 {
     @apply text-lg lg:text-lg xl:text-xl 2xl:text-2xl;
 }
+.header-upper {
+ font-family: var(--font-display);
+ color: var(--color-secondary);
+ font-size: var(--text-4xl);
+ text-transform: uppercase;
+ letter-spacing: 1px;
+}
 
 footer p {
   color: inherit;  
@@ -117,14 +116,6 @@ footer p {
 .p-site {
     @apply h-full w-full py-4 sm:py-5 md:py-6 lg:py-8 xl:py-12 px-4 sm:px-5 md:px-6 lg:px-8 xl:px-12 h-auto;
 }
-.p-site-h {
-    @apply w-full px-4 sm:px-2 lg:px-8;
-}
-
-.p-ls-padding-h {
-    @apply h-full py-6 sm:py-4 lg:py-12;
-}
-
 
 .p-ls-padding-v {
     @apply h-full py-6 sm:py-4 lg:py-12;
@@ -145,6 +136,14 @@ button.mobile-menu-button {
 .project-media img:last-child {
     display: block;
     margin-bottom: 0;
+}
+
+.button {
+  @apply text-sm lg:text-base xl:text-xl flex flex-wrap flex-row gap-2 rounded-full items-center;
+}
+
+.button-p {
+  @apply py-2 md:py-3 lg:py-4 xl:py-4 px-4 md:px-6 lg:px-4 xl:px-6;
 }
 
 /* link styles */
@@ -179,24 +178,218 @@ button.mobile-menu-button {
 
 /* ✅ SCHABO Font Integration */
 @font-face {
-  font-family: 'SCHABO';
-  src:  url("../fonts/SCHABO.otf") format('otf'),
-        url("../fonts/SCHABO.woff") format('otf'),
-        url("../fonts/SCHABO.woff2") format('otf');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
+    font-family: 'hero-font';
+      src: url("../fonts/SCHABO-Condensed.woff2") format('woff2'),
+          url("../fonts/SCHABO-Condensed.woff") format('woff'),
+          url("../fonts/SCHABO-Condensed.otf") format('opentype'),
+          url('../fonts/SCHABO-Condensed.ttf') format('truetype');
+    font-display: swap;
+    font-weight: normal;
+    font-style: normal;
 }
-.hero-height {
-   
+
+.hero-title {
+  font-family: 'hero-font' !important;
+    font-family: 'hero-font', 'Barlow' -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    /* Forzar renderizado en Safari */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Asegurar que Edge use la fuente correcta */
+    text-rendering: optimizeLegibility;
 }
 
 .hero-font {
     @apply uppercase text-primary-100 leading-normal overflow-hidden font-display text-center leading-[90%] text-[6rem] sm:text-[8rem] md:text-[12rem] lg:text-[14rem] xl:text-[22rem] transition-all duration-200;
 }
 
+h3, p {
+  @apply text-black/70;
+}
+
 /* Footer Styles */
 footer {
-    @apply bg-black text-white p-ls-padding-v p-ls-padding-h;
+    @apply bg-black text-white;
     height: fit-content;
+}
+
+/* forms */
+
+/* Contenedor del formulario */
+.contact-form {
+  @apply bg-white;
+  padding: 0 !important;
+}
+
+.contact-form input,
+.contact-form textarea {
+  @apply mt-2 px-3 text-sm;
+}
+
+/* Campos de entrada */
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea,
+.contact-form .form-control {
+  @apply w-full py-3 rounded-md border border-black/10 bg-white text-black/60 text-base leading-relaxed transition-all duration-300;
+  font-size: var(--text-sm);
+}
+
+/* Estados de focus para los campos */
+.contact-form input[type="text"]:focus,
+.contact-form input[type="email"]:focus,
+.contact-form textarea:focus,
+.contact-form .form-control:focus {
+  @apply outline-none border-black text-sm bg-white;
+  box-shadow: none;
+}
+
+/* Textarea específico */
+.contact-form textarea,
+.contact-form textarea.form-control {
+  @apply min-h-[120px];
+    font-size: var(--text-sm);
+}
+
+/* Indicadores de campos requeridos */
+.contact-form .form-label.required::after {
+  @apply text-black ml-1;
+  content: " *";
+}
+
+.contact-form button[type="submit"]:hover,
+.contact-form input[type="submit"]:hover,
+.contact-form .btn:hover,
+.contact-form .btn-primary:hover {
+  @apply bg-black/80;
+  transform: none;
+}
+
+/* Estados de validación */
+.contact-form .form-control.is-invalid {
+  @apply border-red-500/60;
+  box-shadow: none;
+}
+
+.contact-form .form-control.is-valid {
+  @apply border-black;
+  box-shadow: none;
+}
+
+/* Mensajes de validación inline */
+.contact-form .invalid-feedback {
+  @apply text-red-600/80 text-sm mt-1 block;
+}
+
+/* Mensajes de formulario */
+.form-messages {
+  @apply mb-6 px-4 sm:px-5 md:px-6 lg:px-8 xl:px-12;
+}
+
+.form-messages .alert {
+  @apply p-4 mb-4 border border-black/20 text-black;
+  border-radius: 24px;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.form-messages .alert-success {
+  @apply bg-green-50 border-green-200 text-green-800;
+}
+
+.form-messages .alert-danger {
+  @apply bg-red-50 border-red-200 text-red-800;
+}
+
+.form-messages .btn-close {
+  @apply float-right text-black/60 text-lg leading-none cursor-pointer bg-transparent border-0;
+}
+
+/* Gradiente de fondo */
+.bg-gradient-to-b.to-white.from-gray-100 {
+  background: linear-gradient(to bottom, #f3f4f6, #ffffff);
+}
+
+/* Página de contacto con nuevos estilos */
+.contact-page {
+  @apply py-6 sm:py-4 lg:py-12;
+}
+
+/* Página de agradecimiento */
+.thank-you-page {
+  @apply py-6 sm:py-4 lg:py-12;
+}
+
+.thank-you-page .card {
+  border-radius: 24px;
+}
+
+.thank-you-page .card-body {
+  background-color: #ffffff;
+  border-radius: 24px;
+}
+
+.message-summary {
+  @apply bg-black/5 border border-black/20 p-4;
+  border-radius: 24px;
+}
+
+.message-summary h5 {
+  @apply text-black/80 border-b border-black/20 pb-2 mb-4;
+}
+
+.message-summary p {
+  @apply text-black/60 text-base xl:text-base 2xl:text-xl leading-relaxed mb-2 transition-all duration-300;
+}
+
+/* Párrafos dentro del formulario y páginas */
+.contact-form p,
+.thank-you-page p {
+  @apply text-black/60 text-base xl:text-base 2xl:text-xl leading-relaxed mb-6 transition-all duration-300;
+}
+
+/* Responsivo usando el sistema actualizado */
+.contact-form {
+  @apply px-4 sm:px-5 md:px-6 lg:px-8 xl:px-12;
+}
+
+/* Estilo alternativo más moderno */
+.contact-form.modern {
+  @apply bg-white border border-black/20;
+}
+
+.contact-form.modern input[type="text"],
+.contact-form.modern input[type="email"],
+.contact-form.modern textarea {
+  @apply border-0 border-b-2 border-black/20 bg-transparent py-2 px-0;
+  border-radius: 0;
+}
+
+.contact-form.modern input[type="text"]:focus,
+.contact-form.modern input[type="email"]:focus,
+.contact-form.modern textarea:focus {
+  @apply border-black;
+}
+
+/* Variante con patrón de puntos */
+.contact-form.dots {
+  background-image: url("../images/dots-pattern.svg");
+}
+
+.contact-form, .thank-you-page .card {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Validación mejorada */
+.form-control:valid {
+    background-image: none;
+}
+
+/* Estado de carga del botón */
+.contact-form .btn-primary:disabled {
+    @apply opacity-60;
+    cursor: not-allowed;
+}
+
+/* Mensajes de validación inline */
+.contact-form .invalid-feedback {
+  @apply text-black/60 text-sm mt-1;
 }

@@ -4,19 +4,19 @@ breadcrumbs:
     may_descend: false
 hero_image: {  }
 project_images: {  }
-hero_title: 'Rooted in outcomes.Designed for real-world impact.'
-intro: 'Learnit has been in the game for 25+ years—helping people and teams grow with purpose. Not just learning for learning’s sake, but practical, proven training that actually sticks. Learnit came to us with a site that technically worked—but emotionally, it missed the mark. It didn’t reflect the energy in their classrooms. It didn’t capture that flash of clarity when someone learns something they can actually use.'
-project_type: branding
-client: Tangosquared
+hero_title: 'Australian Indigenous Governance Institute'
+project_type: ui-ux
+client: AIGI
 role: 'UX UI Designer'
-year: '2024'
-project_url: 'https://maxibestof.one/typefaces/plus-jakarta-sans/pairing/prompt'
+year: '2022'
+project_url: 'https://www.aigi.org.au'
 featured: false
 tags:
-    - 'Web Design'
     - 'UI Case'
-challenge: "Custom Stringing on Rackets\LMany of Wilson rackets come unstrung. \LIt was therefore important for us to allow customers to add strings to their racket."
-solution: 'A button was added to product pages that linked through to their global customiser tool. By utilising URL parameters we were able to get product data passed back to the Shopify cart, ensuring the conversion was able to take place via Shopify.'
+    - 'UX Case'
+    - Accesability
+challenge: "Designing for AIGI was more than building a website—it was about creating a culturally respectful digital platform that could speak to and support Indigenous communities across Australia. \n\nThe challenge was to reflect deep cultural identity while ensuring the platform was modern, accessible, easy to manage, and able to grow with the organization’s needs.\n\nWe needed to balance heritage and modernity, storytelling and functionality—all while staying aligned with Aboriginal and Torres Strait Islander design principles."
+solution: "Culturally-Informed Visual Language\nDynamic Banner Imagery with Textural Layers\nFlexible Content Types with Consistent UI Logic\nAccessible, Community-Centered Navigation\nComponent-Based Design System"
 schema_markup: true
 back_to_portfolio: 'Back to Portfolio'
 portfolio_url: /portfolio
@@ -27,36 +27,26 @@ gallery_columns: '2'
 enable_lightbox: true
 image_captions: false
 og_image: {  }
-duration: '3 months'
+duration: '4 Weeks'
 outcome: "Learnit has been in the game for 25+ years—helping people and teams grow with purpose. Not just learning for learning’s sake, but practical, proven training that actually sticks. Learnit came to us with a site that technically worked—but emotionally, it missed the mark. It didn’t reflect the energy in their classrooms. It didn’t capture that flash of clarity when someone learns something they can actually use.\L\r\nSo we asked: how do you design for a breakthrough?\r\nWe didn’t start with wireframes. We started with conversations—about people, growth, and the quiet confidence that comes from learning something real. From there, the strategy became clear: simplify the experience, elevate the story, and let humanity lead. Visuals that say:\_“We see you. We’ve got you.”"
 tools: Shopify
 project_media:
-    img_12.jpg:
-        name: img_12.jpg
-        type: image/jpeg
-        size: 120315
-        path: img_12.jpg
-    img_7.jpg:
-        name: img_7.jpg
-        type: image/jpeg
-        size: 177772
-        path: img_7.jpg
-    img_11.jpg:
-        name: img_11.jpg
-        type: image/jpeg
-        size: 175628
-        path: img_11.jpg
-    img_10.jpg:
-        name: img_10.jpg
-        type: image/jpeg
-        size: 220119
-        path: img_10.jpg
-    0-video-player-media-player-3840x2160_h0FfuAaz.mp4:
-        name: 0-video-player-media-player-3840x2160_h0FfuAaz.mp4
-        type: video/mp4
-        size: 317152
-        path: 0-video-player-media-player-3840x2160_h0FfuAaz.mp4
-media_order: 'img_7.jpg,img_10.jpg,img_11.jpg,img_12.jpg,0-video-player-media-player-3840x2160_h0FfuAaz.mp4,luis-saavedra-profile.png'
+    AIGI.png:
+        name: AIGI.png
+        type: image/png
+        size: 2088792
+        path: AIGI.png
+    'AIGI UI Mobile.png':
+        name: 'AIGI UI Mobile.png'
+        type: image/png
+        size: 1320773
+        path: 'AIGI UI Mobile.png'
+    'AIGI UI Components.png':
+        name: 'AIGI UI Components.png'
+        type: image/png
+        size: 1301541
+        path: 'AIGI UI Components.png'
+media_order: luis-saavedra-profile.png
 profile:
     name: 'UX/UI & UI Developer / Digital Product Design'
     bio: 'I specialize in driving the creation of intuitive, high-performing digital products across diverse platforms, leveraging expertise in UX, UI, and front-end development. Based in Melbourne, I focus on e-commerce CRO and robust design systems.'
@@ -67,10 +57,10 @@ columnr:
     skills: "Web Design</br>\nAccessibility</br>\nVisual Strategy</br>"
 ---
 
-Learnit has been in the game for 25+ years—helping people and teams grow with purpose. Not just learning for learning’s sake, but practical, proven training that actually sticks. Learnit came to us with a site that technically worked—but emotionally, it missed the mark. It didn’t reflect the energy in their classrooms. It didn’t capture that flash of clarity when someone learns something they can actually use.
+It was a true honor to design and advise the team at AIGI as they brought their new website to life. More than just a digital project, this was a collaboration rooted in respect—for culture, for community, and for the stories that shape Indigenous governance in Australia.
 
-So we asked: how do you design for a breakthrough?
-We didn’t start with wireframes. We started with conversations—about people, growth, and the quiet confidence that comes from learning something real. From there, the strategy became clear: simplify the experience, elevate the story, and let humanity lead. Visuals that say: “We see you. We’ve got you.”
+As a designer, I was deeply inspired by AIGI’s mission: to support and strengthen governance within Indigenous communities. Our goal was to create a digital presence that reflected not only AIGI’s values and expertise, but also the depth of Aboriginal and Torres Strait Islander design principles.
 
-So we asked: how do you design for a breakthrough?
-We didn’t start with wireframes. We started with conversations—about people, growth, and the quiet confidence that comes from learning something real. From there, the strategy became clear: simplify the experience, elevate the story, and let humanity lead. Visuals that say: “We see you. We’ve got you.”
+Throughout the process, I worked closely with the team to align the website’s structure and visual language with cultural design guidelines—an approach that informed everything from color and typography choices to layout and user flow. The final result is a site that feels grounded, open, and accessible—built to host events, share resources, and amplify knowledge within Indigenous communities and beyond.
+
+This project reminded me of the power of design to respect culture while still driving clarity, usability, and engagemen

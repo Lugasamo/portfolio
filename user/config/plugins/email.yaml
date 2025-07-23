@@ -1,14 +1,15 @@
 enabled: true
-from: nofxuis@gmail.com
-to: nofxuis@gmail.com
+from: 'noxuis@gmail.com'
+from_name: 'Saavedral'
+to: 'di.luisgabriel@gmail.com'
 mailer:
   engine: smtp
   smtp:
     server: smtp.gmail.com
     port: 587
     encryption: tls
-    user: nofxuis@gmail.com
-    password: '    password: fzmurrbphcraxuev'
+    user: 'di.luisgabriel@gmail.com'
+    password: 'xgzzqbviwnxgvaij'
   sendmail:
     bin: '/usr/sbin/sendmail -bs'
 content_type: text/html

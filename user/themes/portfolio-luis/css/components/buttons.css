@@ -36,11 +36,3 @@
 .btn-ghost:hover { 
   @apply bg-transparent text-black border-solid  border-black;
 }
-
-/* button styles
-.btn-primary {
-  @apply transform h-auto w-auto text-white text-lg bg-black hover:text-primary-100 rounded-full px-8 py-4 transition duration-500 hover:scale-105 flex justify-center items-center;
-}
-
-.btn-secondary {
-  @apply transform h-auto w-auto text-white text-lg bg-transparent border-white hover:text-primary-100 rounded-full px-8 py-4 transition duration-500 hover:scale-105 flex justify-center items-center; */

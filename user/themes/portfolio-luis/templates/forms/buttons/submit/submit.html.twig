@@ -1,0 +1,11 @@
+<div class="form-group submit-group">
+    <button 
+        type="submit" 
+        name="{{ button.name|default('submit') }}" 
+        id="{{ button.id|default('submit-btn') }}"
+        class="btn btn-primary submit-btn"
+        {% if button.disabled %}disabled{% endif %}
+    >
+        {{ button.value|default('Submit') }}
+    </button>
+</div>

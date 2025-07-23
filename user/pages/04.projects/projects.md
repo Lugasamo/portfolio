@@ -22,3 +22,6 @@ published: true
 project_media: {  }
 ---
 
+# Explore my experience timeline
+<br>
+### - a curated journey through the key moments that have shaped my professional path. From pivotal projects and leadership roles to personal growth and team achievements, each entry reflects a step forward in my career, values, and impact.

@@ -1,0 +1,28 @@
+{% extends 'partials/base.html.twig' %}
+
+{% block content %}
+
+{% if page.header.title %}
+    {% include 'partials/hero.html.twig' %}
+{% endif %}
+
+<div class="p-site bg-gradient-to-b to-white from-gray-100">
+
+       {% if page.content %}
+            <div class="p-site text-center w-full sm:w-full xl:w-3/5 m-auto">
+                {{ page.content|raw }}
+            </div>
+        {% endif %}
+
+      <main class="p-site bg-white w-full sm:w-full lg:w-2/3 m-auto shadow-lg rounded-3xl bg-opacity-90 delay-[300ms] duration-[600ms] taos:translate-y-[10%] taos:opacity-0" data-taos-offset="300">
+        {% if form %}
+            {% include "forms/form.html.twig" %}
+        {% endif %}
+      </main>
+
+</div>
+
+
+
+
+{% endblock %}

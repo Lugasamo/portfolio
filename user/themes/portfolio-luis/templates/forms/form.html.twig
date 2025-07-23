@@ -1,0 +1,82 @@
+{% set scope = scope ?: 'data.' %}
+{% set multipart = '' %}
+{% set blueprints = blueprints ?: base_form_blueprint %}
+{% set form = form ?: null %}
+
+{# Enable file uploads if needed #}
+{% for field in form.fields %}
+    {% if field.type == 'file' %}
+        {% set multipart = ' enctype="multipart/form-data"' %}
+    {% endif %}
+{% endfor %}
+
+{# Form Messages #}
+{% if form.message %}
+    <div class="form-messages">
+        <div class="success">{{ form.message }}</div>
+    </div>
+{% endif %}
+
+{% if form.messages %}
+    <div class="form-messages">
+        {% for message in form.messages %}
+            <div class="{{ message.type }}">{{ message.message }}</div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+{# Main Form #}
+<form name="{{ form.name }}" 
+      action="{{ form.action ?: page.route }}" 
+      method="{{ form.method|upper|default('POST') }}"
+      class="{{ form.classes }}"{{ multipart|raw }}
+      {% if form.id %}id="{{ form.id }}"{% endif %}
+      {% if form.novalidate %}novalidate{% endif %}>
+
+    {# Include CSRF token #}
+    {% if form.name and not (grav.twig.twig_vars.ajax ?: false) %}
+        <input type="hidden" name="__form-name__" value="{{ form.name }}" />
+        <input type="hidden" name="__unique_form_id__" value="{{ unique_form_id }}" />
+        {{ nonce_field('form', 'form-nonce')|raw }}
+    {% endif %}
+
+    {# Render Form Fields #}
+    {% for field_name, field in form.fields %}
+        {% set originalValue = form.data(field_name) %}
+        {% set field = prepare_form_field(field, field_name, form) %}
+        {% if field %}
+            <div class="form-field form-field-{{ field.type }} mb-4">
+                {% include ["forms/fields/#{field.type}/#{field.type}.html.twig", "forms/fields/#{field.type}.html.twig"] ignore missing %}
+            </div>
+        {% endif %}
+    {% endfor %}
+
+    <div class="cf-turnstile mb-4" data-sitekey="0x4AAAAAABmJMhvCE4CBIPfx"></div>
+
+    {# Render Form Buttons #}
+    {% if form.buttons %}
+        <div class="form-buttons">
+            {% for button_name, button in form.buttons %}
+                {% set button = prepare_form_field(button, button_name, form) %}
+                {% if button %}
+                    
+                    {# Fallback button rendering for submit buttons #}
+                    {% if button.type == 'submit' %}
+                        <div class="form-group submit-group">
+                            <button 
+                                type="submit" 
+                                name="{{ button.name|default('submit') }}" 
+                                id="{{ button.id|default('submit-btn') }}"
+                                class="btn button bg-black text-primary-100"
+                                {% if button.disabled %}disabled{% endif %}
+                            >
+                                {{ button.value|default('Submit') }}
+                            </button>
+                        </div>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% endif %}
+
+</form>

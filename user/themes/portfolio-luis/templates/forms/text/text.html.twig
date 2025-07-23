@@ -1,0 +1,42 @@
+{% set value = (form.value(field.name) is defined ? form.value(field.name) : field.default) %}
+{% set errors = form.errors(field.name) %}
+
+<div class="form-group {% if errors %}has-error{% endif %}">
+    {% if field.label %}
+        <label for="{{ field.id }}" class="form-label">
+            {{ field.label }}
+            {% if field.validate.required %}
+                <span class="required">*</span>
+            {% endif %}
+        </label>
+    {% endif %}
+    
+    <input 
+        type="text" 
+        name="{{ field.name }}" 
+        id="{{ field.id }}"
+        class="form-control text-field"
+        value="{{ value }}"
+        placeholder="{{ field.placeholder }}"
+        {% if field.validate.required %}required{% endif %}
+        {% if field.readonly %}readonly{% endif %}
+        {% if field.disabled %}disabled{% endif %}
+        {% if field.autocomplete %}autocomplete="{{ field.autocomplete }}"{% endif %}
+    />
+    
+    {% if errors %}
+        <div class="error-message">
+            <ul class="error-list">
+                {% for error in errors %}
+                  <li class="error-text">{{ error|replace({'<b>': '', '</b>': '', '<br/>': ' ', '<br>': ' '})|striptags }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+    
+    {% if field.help %}
+        <small class="help-text">{{ field.help }}</small>
+    {% endif %}
+</div>
+
+<style>

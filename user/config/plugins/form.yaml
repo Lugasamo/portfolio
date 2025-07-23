@@ -1,0 +1,7 @@
+enabled: true
+built_in_css: true
+inline_css: true
+refresh_prevention: true
+client_side_validation: true
+inline_errors: false
+debug: true  # Activa debug específico para formulario

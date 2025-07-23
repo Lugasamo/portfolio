@@ -5,14 +5,15 @@
         {% include 'partials/hero.html.twig' %}
     {% endif %}
 
-    {% if page.content %}
-        <div class="p-site">
-            {{ page.content|raw }}
-        </div>
-    {% endif %}
+    <div class="p-site bg-gradient-to-b to-white from-gray-100">
 
-    <div class=" bg-white/30 ">
-            {% if page.collection %}     
+       {% if page.content %}
+            <div class="p-site text-center w-full sm:w-full xl:w-3/5 m-auto">
+                {{ page.content|raw }}
+            </div>
+        {% endif %}
+
+        {% if page.collection %}     
             {# Filter Section - Fixed to use project_type #}
             {% set project_types = [] %}
                 {% for project in page.collection() %}
@@ -21,31 +22,32 @@
                     {% endif %}
                 {% endfor %}
             {% set project_types = project_types|array_unique %}
+        
 
-            {% if project_types|length > 0 %}
-                <section class="py-6">
-                        <div class="flex flex-wrap justify-center gap-3">
-                            <button class="filter-btn active" data-filter="all">
-                                All Projects
+        {% if project_types|length > 0 %}
+            <section class="py-6">
+                    <div class="flex flex-wrap justify-center gap-3">
+                        <button class="filter-btn active transition-transform duration-200 hover:scale-105" data-filter="all">
+                            All Projects
+                        </button>
+                        {% for project_type in project_types %}
+                            <button class="filter-btn transition-transform duration-200 hover:scale-105" data-filter="{{ project_type }}">
+                                {% if project_type == 'web-design' %}Web Design
+                                {% elseif project_type == 'mobile-app' %}Mobile App
+                                {% elseif project_type == 'branding' %}Branding
+                                {% elseif project_type == 'ui-ux' %}UI UX Design
+                                {% elseif project_type == 'frontend' %}Frontend Development
+                                {% elseif project_type == 'backend' %}Backend Development
+                                {% elseif project_type == 'fullstack' %}Full Stack Development
+                                {% else %}{{ project_type|title }}
+                                {% endif %}
                             </button>
-                            {% for project_type in project_types %}
-                                <button class="filter-btn" data-filter="{{ project_type }}">
-                                    {% if project_type == 'web-design' %}Web Design
-                                    {% elseif project_type == 'mobile-app' %}Mobile App
-                                    {% elseif project_type == 'branding' %}Branding
-                                    {% elseif project_type == 'ui-ux' %}UI UX Design
-                                    {% elseif project_type == 'frontend' %}Frontend Development
-                                    {% elseif project_type == 'backend' %}Backend Development
-                                    {% elseif project_type == 'fullstack' %}Full Stack Development
-                                    {% else %}{{ project_type|title }}
-                                    {% endif %}
-                                </button>
-                            {% endfor %}
-                        </div>
-                </section>
-            {% endif %}
-                {# Optimized Bento Grid Projects #}
-            <section class="p-site {#bg-gradient-to-b to-gray-100 from-white#}">
+                        {% endfor %}
+                    </div>
+            </section>
+        {% endif %}
+
+                <section class="p-site {#bg-gradient-to-b to-gray-100 from-white#}">
                     <div class="bento-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6 auto-rows-[200px] delay-[100ms] duration-[600ms] taos:translate-y-[10%] taos:opacity-0" data-taos-offset="19    0">
                         {% for project in page.collection() %}
                             {% set gridClass = '' %}
@@ -169,15 +171,12 @@
                             </button>
                         </div>
                     {% endif %}
-                </div>
-            </section>
-        {% endif %}
+                    </div>
+                </section>
 
-            {% if page.header.profile %}
-        {% include 'partials/profile.html.twig' %}
-    {% endif %}
-
+            {% endif %}
     </div>
+
 
 
 

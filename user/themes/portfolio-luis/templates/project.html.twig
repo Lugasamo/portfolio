@@ -7,7 +7,7 @@
     {% endif %}
 
     <div class="flex flex-col lg:flex-row gap-x-4 md:gap-x-4 lg:gap-x-8 sm:gap-y-4 gap-y-6 p-site pt-0 bg-gradient-to-b to-white from-gray-100">
-      <main class="p-site w-full lg:w-2/3 shadow-lg rounded-3xl bg-white bg-opacity-90">
+      <main class="p-site w-full lg:w-2/3 shadow-lg rounded-3xl bg-white bg-opacity-90 delay-[100ms] duration-[600ms] taos:translate-y-[2%] taos:opacity-0" data-taos-offset="300">
         {% if page.content %}
           <div class="flex-col space-y-8">
               <h1>{{ page.header.hero_title|raw }}</h1>
@@ -98,13 +98,13 @@
     </div>
 
     <div class="p-site flex flex-col gap-y-6 pt-0">
-        <div class=" bg-gray-400 flex flex-col lg:flex-row p-site gap-x-12 gap-y-4 rounded-3xl shadow-lg delay-[150ms] duration-[300ms] taos:translate-y-[10%] taos:opacity-0" data-taos-offset="300">
+        <div class="bg-slate-50 flex flex-col lg:flex-row p-site gap-x-12 gap-y-4 rounded-3xl shadow-lg delay-[150ms] duration-[300ms] taos:translate-y-[10%] taos:opacity-0" data-taos-offset="300">
           <div class="w-full lg:w-1/2">
-            <h3 class="py-2">Challenge</h3>
+            <h2 class="py-2">Challenge</h2>
             <p>{{header.challenge}}</p>
           </div>
           <div class="w-full lg:w-1/2">
-            <h3 class="py-2">Solution</h3>
+            <h2 class="py-2">Solution</h2>
             <p>{{header.solution}}</p>
           </div>
         </div>
@@ -112,21 +112,14 @@
       {# ✅ design Process #}
         <div class="p-site bg-black text-white w-full flex flex-col lg:flex-row rounded-3xl shadow-lg delay-[150ms] duration-[300ms] taos:translate-y-[10%] taos:opacity-0" data-taos-offset="300">
           <div class="w-full lg:w-1/2">
-            <h2>Design Process</h2>
+            <h2>Design Proccess</h2>
           </div>
           <div class="w-full lg:w-1/2">
-            <h3 class="py-2">wdwhkwjdhj dwjkdhwjkdwhkjw dhjkwdh dwkjh wdjkhdw jk dwkjdw hkjwdhwdjk. dwkjhwdkjhdwkj h</h3>
-            <p class="text-white">{{header.solution}}</p>
+            <h3 class="py-2 text-white">wdwhkwjdhj dwjkdhwjkdwhkjw dhjkwdh dwkjh wdjkhdw jk dwkjdw hkjwdhwdjk. dwkjhwdkjhdwkj h</h3>
+            <p class="text-white/70 font-light">{{header.solution}}</p>
           </div>
         </div>
     </div>
-    
-
-
-{# profile #} 
-{% if page.header.profile %}
-    {% include 'partials/profile.html.twig' %}
-{% endif %}
 
 {# modal #} 
 {% if header.project_media %}

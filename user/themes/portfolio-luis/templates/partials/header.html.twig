@@ -14,7 +14,7 @@
             </div>
 
             {# Desktop Navigation - Center #}
-            <div class="flex space-x-8 hidden lg:flex">
+            <div class="space-x-8 hidden lg:flex">
                 {% for page in pages.children.visible %}
                     {% set current_page = (page.active or page.activeChild) ? 'current' : '' %}
                     <a href="{{ page.url }}" 
@@ -60,21 +60,6 @@
         <div id="mobile-menu" 
                 style="display: none; position: absolute; top: 100%; left: 0; right: 0; background: white; border-top: 1px solid #e5e7eb; box-shadow: 0 10px 25px rgba(0,0,0,0.1); z-index: 1000; padding: 16px;">
             
-            <p style="color: #059669; font-weight: bold; margin-bottom: 12px; font-size: 14px;">
-                ✅ Mobile Menu Working!
-            </p>
-            
-            {# Mobile Contact Button #}
-            <a href="{{ base_url_absolute }}/contact" 
-                onclick="closeMobileMenu()"
-                class="mobile-contact-btn"
-                style="display: flex; align-items: center; justify-content: center; width: 100%; padding: 12px; margin-bottom: 16px; background: linear-gradient(to right, #2563eb, #1d4ed8); color: white; text-decoration: none; border-radius: 8px; font-weight: 600; transition: all 0.3s ease;">
-                <svg style="margin-right: 8px; width: 16px; height: 16px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 7.89a2 2 0 002.83 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                </svg>
-                📧 Contact
-            </a>
-            
             {# Mobile Menu Items #}
             {% for page in pages.children.visible %}
                 {% set current_page = (page.active or page.activeChild) ? 'current' : '' %}
@@ -86,6 +71,12 @@
                     {{ page.menu ?: page.title }}
                 </a>
             {% endfor %}
+
+            <a href="{{ base_url_absolute }}/contact" 
+                onclick="closeMobileMenu()"
+                class="mobile-contact-btn bg-black text-primary-100 text-center button btn w-full"
+                <span>Contact</span>
+            </a>
         </div>
     </nav>
 </header>

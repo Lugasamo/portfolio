@@ -1,0 +1,126 @@
+    {% extends 'partials/base.html.twig' %}
+
+    {% block content %}
+
+        {% if page.header.title %}
+            {% include 'partials/hero.html.twig' %}
+        {% endif %}
+
+        <div class="p-site bg-gradient-to-b to-white from-gray-100">
+
+            {% if page.content %}
+                <div class="p-site text-center w-full sm:w-full xl:w-3/5 m-auto">
+                    {{ page.content|raw }}
+                </div>
+            {% endif %}
+
+
+            {% if form.messages %}
+                <div class="p-site form-messages">
+                    {% for message in form.messages %}
+                        <div class="alert alert-{{ message.type == 'success' ? 'success' : 'danger' }} alert-dismissible fade show" role="alert">
+                            {{ message.message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+
+            <div class="p-site w-full m-auto lg:w-3/5 shadow-lg rounded-3xl bg-white delay-[100ms] duration-[600ms] taos:translate-y-[2%] taos:opacity-0" data-taos-offset="300" bg-opacity-90">
+                <form
+                    method="post"
+                    action="{{ page.url }}"
+                    enctype="multipart/form-data"
+                    class="contact-form">
+
+                    {{ forms.getNonce() }}
+
+                <div class="col-md-6 mb-3">
+                    <label for="name" class="form-label required">
+                        {{ form.fields.name.label }}
+                    </label>
+                    <input type="text" 
+                            class="form-control {{ form.getError('name') ? 'is-invalid' : '' }}" 
+                            id="name" 
+                            name="name" 
+                            placeholder="{{ form.fields.name.placeholder }}"
+                            value="{{ form.value('name') }}"
+                            required>
+                    {% if form.getError('name') %}
+                        <div class="invalid-feedback">
+                            {{ form.getError('name') }}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label for="email" class="form-label required">
+                        {{ form.fields.email.label }}
+                    </label>
+                    <input type="email" 
+                        class="form-control {{ form.getError('email') ? 'is-invalid' : '' }}" 
+                        id="email" 
+                        name="email" 
+                        placeholder="{{ form.fields.email.placeholder }}"
+                        value="{{ form.value('email') }}"
+                        required>
+                    {% if form.getError('email') %}
+                        <div class="invalid-feedback">
+                            {{ form.getError('email') }}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="mb-3">
+                    <label for="subject" class="form-label required">
+                        {{ form.fields.subject.label }}
+                    </label>
+                    <input type="text" 
+                            class="form-control {{ form.getError('subject') ? 'is-invalid' : '' }}" 
+                            id="subject" 
+                            name="subject" 
+                            placeholder="{{ form.fields.subject.placeholder }}"
+                            value="{{ form.value('subject') }}"
+                            required>
+                    {% if form.getError('subject') %}
+                        <div class="invalid-feedback">
+                            {{ form.getError('subject') }}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="mb-4">
+                    <label for="message" class="form-label required">
+                        {{ form.fields.message.label }}
+                    </label>
+                    <textarea class="form-control {{ form.getError('message') ? 'is-invalid' : '' }}" 
+                                id="message" 
+                                name="message" 
+                                rows="6" 
+                                placeholder="{{ form.fields.message.placeholder }}"
+                                required>{{ form.value('message') }}</textarea>
+                    {% if form.getError('message') %}
+                        <div class="invalid-feedback">
+                            {{ form.getError('message') }}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="">
+                    <button type="submit" class="button button-p bg-black text-white hover:text-primary-100 hover:bg-black">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="{{ class|default('w-5 h-5') }}">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                        </svg>
+                            <span>{{ form.buttons.submit.value }}</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="{{ class|default('w-5 h-5') }}">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
+                        </svg>
+                    </button>
+                </div>
+                </form>    
+            </div>
+        
+        </div>
+
+    {% endblock %}
