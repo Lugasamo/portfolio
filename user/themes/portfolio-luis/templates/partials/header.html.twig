@@ -4,13 +4,13 @@
         <div class="flex justify-between items-center py-2">
             {# Logo/Brand #}
             <div class="flex-shrink-0">
+                
                 <a href="{{ base_url_absolute }}" class="group">
-                    {% if config.site.logo %}
-                        <img src="{{ url(config.site.logo) }}" 
-                                alt="{{ site.title }}" 
-                                class="size-10 sm:size-12 md:size-16 lg:size-20 w-auto transition-transform duration-200 group-hover:scale-105">
-                    {% endif %}
+                <img src="{{ url('theme://images/ls-logo.svg') }}"
+                    alt="Luis Saavedra personal brand"
+                    class="size-10 sm:size-12 md:size-16 lg:size-20 w-auto transition-transform duration-200 group-hover:scale-105">
                 </a>
+
             </div>
 
             {# Desktop Navigation - Center #}
