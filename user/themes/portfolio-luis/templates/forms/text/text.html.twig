@@ -28,7 +28,7 @@
         <div class="error-message">
             <ul class="error-list">
                 {% for error in errors %}
-                  <li class="error-text">{{ error|replace({'<b>': '', '</b>': '', '<br/>': ' ', '<br>': ' '})|striptags }}</li>
+                    <li class="error-text">{{ error|striptags|replace({'  ': ' '})|trim|raw }}</li>
                 {% endfor %}
             </ul>
         </div>

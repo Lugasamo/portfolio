@@ -13,14 +13,19 @@
 {# Form Messages #}
 {% if form.message %}
     <div class="form-messages">
-        <div class="success">{{ form.message }}</div>
+        <div class="message">{{ form.message }}</div>
     </div>
 {% endif %}
 
 {% if form.messages %}
     <div class="form-messages">
         {% for message in form.messages %}
-            <div class="{{ message.type }}">{{ message.message }}</div>
+            {% set clean_message = message.message|striptags|replace({'<br>': '\n', '<br/>': '\n'}) %}
+            {% for line in clean_message|split('\n') %}
+                {% if line is not empty %}
+                    <div class="{{ message.type }}">{{ line|trim }}</div>
+                {% endif %}
+            {% endfor %}
         {% endfor %}
     </div>
 {% endif %}

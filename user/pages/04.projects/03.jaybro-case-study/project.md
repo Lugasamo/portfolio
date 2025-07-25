@@ -6,16 +6,16 @@ hero_image: {  }
 project_images: {  }
 hero_title: 'Rooted in outcomes.Designed for real-world impact.'
 intro: 'Learnit has been in the game for 25+ years—helping people and teams grow with purpose. Not just learning for learning’s sake, but practical, proven training that actually sticks. Learnit came to us with a site that technically worked—but emotionally, it missed the mark. It didn’t reflect the energy in their classrooms. It didn’t capture that flash of clarity when someone learns something they can actually use.'
-project_type: ui-ux
-client: Tangosquared
-role: 'Web design'
+project_type: web-design
+client: 'Jaybro Group'
+role: 'UX UI Designer'
 year: '2024'
-project_url: 'https://maxibestof.one/typefaces/plus-jakarta-sans/pairing/prompt'
+project_url: 'https://www.jaybrogroup.com.au/'
 featured: false
 tags:
     - 'UI Case'
     - 'UX Case'
-    - web-design
+    - 'Corporate Site'
 challenge: "Custom Stringing on Rackets\LMany of Wilson rackets come unstrung. \LIt was therefore important for us to allow customers to add strings to their racket."
 solution: 'A button was added to product pages that linked through to their global customiser tool. By utilising URL parameters we were able to get product data passed back to the Shopify cart, ensuring the conversion was able to take place via Shopify.'
 schema_markup: true
@@ -28,35 +28,15 @@ gallery_columns: '2'
 enable_lightbox: true
 image_captions: false
 og_image: {  }
-duration: '3 months'
+duration: '4 weeks'
 outcome: "Learnit has been in the game for 25+ years—helping people and teams grow with purpose. Not just learning for learning’s sake, but practical, proven training that actually sticks. Learnit came to us with a site that technically worked—but emotionally, it missed the mark. It didn’t reflect the energy in their classrooms. It didn’t capture that flash of clarity when someone learns something they can actually use.\L\r\nSo we asked: how do you design for a breakthrough?\r\nWe didn’t start with wireframes. We started with conversations—about people, growth, and the quiet confidence that comes from learning something real. From there, the strategy became clear: simplify the experience, elevate the story, and let humanity lead. Visuals that say:\_“We see you. We’ve got you.”"
 tools: Shopify
 project_media:
-    img_12.jpg:
-        name: img_12.jpg
+    jaybro.jpg:
+        name: jaybro.jpg
         type: image/jpeg
-        size: 120315
-        path: img_12.jpg
-    img_7.jpg:
-        name: img_7.jpg
-        type: image/jpeg
-        size: 177772
-        path: img_7.jpg
-    img_11.jpg:
-        name: img_11.jpg
-        type: image/jpeg
-        size: 175628
-        path: img_11.jpg
-    img_10.jpg:
-        name: img_10.jpg
-        type: image/jpeg
-        size: 220119
-        path: img_10.jpg
-    0-video-player-media-player-3840x2160_h0FfuAaz.mp4:
-        name: 0-video-player-media-player-3840x2160_h0FfuAaz.mp4
-        type: video/mp4
-        size: 317152
-        path: 0-video-player-media-player-3840x2160_h0FfuAaz.mp4
+        size: 131881
+        path: jaybro.jpg
 media_order: 'img_7.jpg,img_10.jpg,img_11.jpg,img_12.jpg,0-video-player-media-player-3840x2160_h0FfuAaz.mp4,luis-saavedra-profile.png'
 profile:
     name: 'UX/UI & UI Developer / Digital Product Design'
@@ -66,6 +46,10 @@ columnl:
     skills: "Experience Design</br>\nUser Interface Design</br>\nProduct Design</br>"
 columnr:
     skills: "Web Design</br>\nAccessibility</br>\nVisual Strategy</br>"
+pp_protect: '1'
+feed:
+    skip: true
+pp_password_hash: cb355c94df8de8bb14fc104856fb704710157899a3642059ad7bee23c274de5542b960edb32f9a0f26936cfaed693330eb09d8c49bc034b46443626b5f4b3f7f
 ---
 
 Learnit has been in the game for 25+ years—helping people and teams grow with purpose. Not just learning for learning’s sake, but practical, proven training that actually sticks. Learnit came to us with a site that technically worked—but emotionally, it missed the mark. It didn’t reflect the energy in their classrooms. It didn’t capture that flash of clarity when someone learns something they can actually use.

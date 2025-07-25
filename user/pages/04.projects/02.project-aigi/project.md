@@ -5,15 +5,14 @@ breadcrumbs:
 hero_image: {  }
 project_images: {  }
 hero_title: 'Australian Indigenous Governance Institute'
-project_type: ui-ux
-client: AIGI
+project_type: web-design
+client: 'Australian Indigenous Governance Institute'
 role: 'UX UI Designer'
-year: '2022'
+year: '2021'
 project_url: 'https://www.aigi.org.au'
 featured: false
 tags:
-    - 'UI Case'
-    - 'UX Case'
+    - 'UX UI Case'
     - Accesability
 challenge: "Designing for AIGI was more than building a website—it was about creating a culturally respectful digital platform that could speak to and support Indigenous communities across Australia. \n\nThe challenge was to reflect deep cultural identity while ensuring the platform was modern, accessible, easy to manage, and able to grow with the organization’s needs.\n\nWe needed to balance heritage and modernity, storytelling and functionality—all while staying aligned with Aboriginal and Torres Strait Islander design principles."
 solution: "Culturally-Informed Visual Language\nDynamic Banner Imagery with Textural Layers\nFlexible Content Types with Consistent UI Logic\nAccessible, Community-Centered Navigation\nComponent-Based Design System"
@@ -36,16 +35,51 @@ project_media:
         type: image/png
         size: 2088792
         path: AIGI.png
-    'AIGI UI Mobile.png':
-        name: 'AIGI UI Mobile.png'
+    'AIGI - Desktop - Mobile.png':
+        name: 'AIGI - Desktop - Mobile.png'
         type: image/png
-        size: 1320773
-        path: 'AIGI UI Mobile.png'
-    'AIGI UI Components.png':
-        name: 'AIGI UI Components.png'
+        size: 1547318
+        path: 'AIGI - Desktop - Mobile.png'
+    'AIGI - Mobile.png':
+        name: 'AIGI - Mobile.png'
         type: image/png
-        size: 1301541
-        path: 'AIGI UI Components.png'
+        size: 1294226
+        path: 'AIGI - Mobile.png'
+    'AIGI - Components.png':
+        name: 'AIGI - Components.png'
+        type: image/png
+        size: 1354665
+        path: 'AIGI - Components.png'
+    'AIGI - Homepage.png':
+        name: 'AIGI - Homepage.png'
+        type: image/png
+        size: 1195044
+        path: 'AIGI - Homepage.png'
+    'AIGI - Search.png':
+        name: 'AIGI - Search.png'
+        type: image/png
+        size: 624107
+        path: 'AIGI - Search.png'
+    'AIGI - Resources.png':
+        name: 'AIGI - Resources.png'
+        type: image/png
+        size: 741881
+        path: 'AIGI - Resources.png'
+    'AIGI - Internal Page.png':
+        name: 'AIGI - Internal Page.png'
+        type: image/png
+        size: 895028
+        path: 'AIGI - Internal Page.png'
+    'AIGI - Resources - Components.png':
+        name: 'AIGI - Resources - Components.png'
+        type: image/png
+        size: 878375
+        path: 'AIGI - Resources - Components.png'
+    'AIGI - Navigation.png':
+        name: 'AIGI - Navigation.png'
+        type: image/png
+        size: 1142307
+        path: 'AIGI - Navigation.png'
 media_order: luis-saavedra-profile.png
 profile:
     name: 'UX/UI & UI Developer / Digital Product Design'
@@ -55,6 +89,7 @@ columnl:
     skills: "Experience Design</br>\nUser Interface Design</br>\nProduct Design</br>"
 columnr:
     skills: "Web Design</br>\nAccessibility</br>\nVisual Strategy</br>"
+pp_protect: '0'
 ---
 
 It was a true honor to design and advise the team at AIGI as they brought their new website to life. More than just a digital project, this was a collaboration rooted in respect—for culture, for community, and for the stories that shape Indigenous governance in Australia.

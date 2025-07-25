@@ -1,6 +1,5 @@
 title: Project
 process:
-  breadcrumbs: true
 '@extends':
   type: default
 
@@ -27,11 +26,8 @@ form:
               options:
                 'web-design': 'Web Design'
                 'mobile-app': 'Mobile App'
-                'branding': 'Branding'
-                'ui-ux': 'UI/UX Design'
-                'frontend': 'Frontend Development'
-                'backend': 'Backend Development'
-                'fullstack': 'Full Stack Development'
+                'ecommerce': 'Ecommerce'
+                'UX UI design': 'UX UI Design'
               validate:
                 required: true
             
@@ -85,17 +81,10 @@ form:
               validate:
                 type: commalist
               options:
-                'ui-case': 'UI Case'
-                'ux-case': 'UX Case'
                 'web-design': 'Web Design'
-                'mobile-design': 'Mobile Design'
-                'branding': 'Branding'
-                'frontend': 'Frontend'
-                'backend': 'Backend'
-                'fullstack': 'Full Stack'
-                'wordpress': 'WordPress'
-                'shopify': 'Shopify'
-                'ecommerce': 'E-commerce'
+                'mobile-app': 'Mobile App'
+                'ecommerce': 'Ecommerce'
+                'UX UI design': 'UX UI Design'
             
             header.hero_image:
               type: file

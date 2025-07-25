@@ -34,11 +34,8 @@
                             <button class="filter-btn transition-transform duration-200 hover:scale-105" data-filter="{{ project_type }}">
                                 {% if project_type == 'web-design' %}Web Design
                                 {% elseif project_type == 'mobile-app' %}Mobile App
-                                {% elseif project_type == 'branding' %}Branding
-                                {% elseif project_type == 'ui-ux' %}UI UX Design
-                                {% elseif project_type == 'frontend' %}Frontend Development
-                                {% elseif project_type == 'backend' %}Backend Development
-                                {% elseif project_type == 'fullstack' %}Full Stack Development
+                                {% elseif project_type == 'ecommerce' %}Ecommerce
+                                {% elseif project_type == 'UX-Case' %}UX Case
                                 {% else %}{{ project_type|title }}
                                 {% endif %}
                             </button>
@@ -48,18 +45,20 @@
         {% endif %}
 
                 <section class="p-site {#bg-gradient-to-b to-gray-100 from-white#}">
-                    <div class="bento-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6 auto-rows-[200px] delay-[100ms] duration-[600ms] taos:translate-y-[10%] taos:opacity-0" data-taos-offset="19    0">
+                    <div class="bento-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6 auto-rows-[200px]">
                         {% for project in page.collection() %}
+
                             {% set gridClass = '' %}
                             {% if loop.index == 1 %}
-                                {% set gridClass = 'md:col-span-2 md:row-span-2' %}
-                            {% elseif loop.index == 3 %}
-                                {% set gridClass = 'lg:col-span-2' %}
-                            {% elseif loop.index == 5 %}
-                                {% set gridClass = 'md:row-span-2' %}
+                                {% set gridClass = 'col-span-2 row-span-2' %}
+                            {% elseif loop.index == 4 %}
+                                {% set gridClass = 'col-span-2' %}
+                            {% elseif loop.index == 6 %}
+                                {% set gridClass = 'row-span-2' %}
                             {% elseif loop.index == 8 %}
-                                {% set gridClass = 'lg:col-span-2' %}
+                                {% set gridClass = 'col-span-2' %}
                             {% endif %}
+
                             
                             <article class="project-card group relative overflow-hidden rounded-2xl bg-white text-black shadow-sm hover:shadow-xl {{ gridClass }}"
                                     data-category="{{ project.header.project_type ? project.header.project_type : 'uncategorized' }}">
@@ -76,14 +75,14 @@
                                         <div class="absolute inset-0">
                                             <img src="{{ image.url }}"
                                                 alt="{{ project.title }}"
-                                                class="w-full h-full object-cover group-hover:scale-105"
+                                                class="w-full h-full  object-cover transition-transform duration-200 group-hover:scale-105"
                                                 loading="lazy"
                                                 decoding="async">
                                             <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
                                         </div>
                                     {% endif %}
                                 {% else %}
-                                    <div class="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-600"></div>
+                                    <div class="absolute inset-0 bg-gradient-to-br from-primary-100 to-primary-50"></div>
                                 {% endif %}
                                 
                                 {# Project Content #}
@@ -94,11 +93,8 @@
                                             <span class="inline-block px-3 py-1 text-xs font-medium bg-white/20 text-white rounded-full backdrop-blur-sm">
                                                 {% if project.header.project_type == 'web-design' %}Web Design
                                                 {% elseif project.header.project_type == 'mobile-app' %}Mobile App
-                                                {% elseif project.header.project_type == 'branding' %}Branding
-                                                {% elseif project.header.project_type == 'ui-ux' %}UI UX Design
-                                                {% elseif project.header.project_type == 'frontend' %}Frontend
-                                                {% elseif project.header.project_type == 'backend' %}Backend
-                                                {% elseif project.header.project_type == 'fullstack' %}Full Stack
+                                                {% elseif project.header.project_type == 'ecommerce' %}Ecommerce
+                                                {% elseif project.header.project_type == 'ux-case' %}UX Case
                                                 {% else %}{{ project.header.project_type|title }}
                                                 {% endif %}
                                             </span>
@@ -122,10 +118,8 @@
                                         {% if project.header.client %}
                                             <span>{{ project.header.client }}</span>
                                         {% endif %}
-                                        {% if project.date %}
-                                            <time datetime="{{ project.date|date('c') }}">
-                                                {{ project.date|date('M Y') }}
-                                            </time>
+                                        {% if project.header.year %}
+                                            <time>{{ project.header.year }}</time>
                                         {% endif %}
                                     </div>
                                     

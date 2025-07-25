@@ -1,7 +1,7 @@
 /* user/themes/portfolio-luis/css/variables.css */
 
 :root {
-  /* Colores principales */
+  /* Colors */
   --color-primary: #008844;
   --color-primary-dark: #076a38;
   --color-secondary: #32F191;
@@ -11,12 +11,12 @@
   --color-warning: #f59e0b;
   --color-error: #ef4444;
 
-  /* Colores principales */
+  /* Text Colors */
   --text-primary: #333333;
   --text-secondary: #7F7F7F;
   --text-accent: #ffffff;
 
-  /* Escala de grises */
+  /* Grey Scale */
   --gray-50: #f9fafb;
   --gray-100: #f3f4f6;
   --gray-200: #e5e7eb;
@@ -28,36 +28,36 @@
   --gray-800: #1f2937;
   --gray-900: #111827;
 
-  /* Tipografía */
+  /* Typography */
   --font-sans: 'Plus Jakarta Sans', sans-serif;
   --font-display: 'SCHABO', 'Barlow', 'system-ui', 'sans-serif';
 
-  /* Espaciado */
+  /* Spaces */
   --space-xs: 0.5rem;
   --space-sm: 1rem;
   --space-md: 1.5rem;
   --space-lg: 2rem;
   --space-xl: 3rem;
 
-  /* Radios */
+  /* Radius Border */
   --radius-sm: 0.5rem;
   --radius: 1rem;
   --radius-lg: 1.5rem;
   --radius-xl: 2rem;
 
-  /* Transiciones */
+  /* Transitions */
   --transition-fast: all 0.15s ease;
   --transition: all 0.3s ease;
   --transition-slow: all 0.5s ease;
 
-  /* Sombras */
+  /* Shadows */
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
   --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 
-  /* Tipografía */
+  /* Text Sizes */
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;
   --text-base: 1rem;
@@ -69,22 +69,28 @@
   --text-5xl: 26rem;
 }
 
-.dots {
-    background-image: url("../images/dots-pattern.svg");
+/* Fonts */
+@font-face {
+    font-family: 'hero-font';
+      src: url("../fonts/SCHABO-Condensed.woff2") format('woff2'),
+          url("../fonts/SCHABO-Condensed.woff") format('woff'),
+          url("../fonts/SCHABO-Condensed.otf") format('opentype'),
+          url('../fonts/SCHABO-Condensed.ttf') format('truetype');
+    font-display: swap;
+    font-weight: normal;
+    font-style: normal;
 }
+
 h1,h2,h3,h4,h5,h6 {
     @apply transition-all duration-300 font-semibold leading-relaxed;
 }
-
 p, label {
     @apply transition-all duration-300;
 }
-
 p {
     @apply text-black/60 text-base xl:text-base 2xl:text-xl leading-relaxed;
 
 }
-
 label { 
     @apply font-medium;
 }
@@ -107,6 +113,9 @@ div h3 {
  text-transform: uppercase;
  letter-spacing: 1px;
 }
+h3, p {
+  @apply text-black/70;
+}
 
 footer p {
   color: inherit;  
@@ -116,32 +125,24 @@ footer p {
 .p-site {
     @apply h-full w-full py-4 sm:py-5 md:py-6 lg:py-8 xl:py-12 px-4 sm:px-5 md:px-6 lg:px-8 xl:px-12 h-auto;
 }
-
 .p-ls-padding-v {
     @apply h-full py-6 sm:py-4 lg:py-12;
 }
-
-button.mobile-menu-button {
-  @apply rounded-full space-x-2 bg-black px-4 py-2 text-white inline-flex items-center justify-center hover:text-primary-100;
-}
-
 .paragraph p{
     @apply mb-6;
 }
-
-.project-media {
-    margin-bottom: var(--space-md);
+footer {
+    @apply bg-black text-white;
+    height: fit-content;
 }
 
-.project-media img:last-child {
-    display: block;
-    margin-bottom: 0;
+/* Buttons */
+button.mobile-menu-button {
+  @apply rounded-full space-x-2 bg-black px-4 py-2 text-white inline-flex items-center justify-center hover:text-primary-100;
 }
-
 .button {
   @apply text-sm lg:text-base xl:text-xl flex flex-wrap flex-row gap-2 rounded-full items-center;
 }
-
 .button-p {
   @apply py-2 md:py-3 lg:py-4 xl:py-4 px-4 md:px-6 lg:px-4 xl:px-6;
 }
@@ -150,7 +151,6 @@ button.mobile-menu-button {
 .hover-underline {
   @apply text-lg text-neutral-600 relative font-medium after:absolute after:bottom-0 after:left-0 after:h-1 after:w-0 after:bg-primary-100 after:transition-all after:duration-300 cursor-pointer;
 }
-
 .hover-underline::after {
   content: '';
   bottom: 0;  
@@ -158,11 +158,12 @@ button.mobile-menu-button {
   height: 2px;
   width: 0%;
 }
-
 .hover-underline:hover::after,
 .hover-underline:focus::after {
   width: 100%;
 }
+
+/* Navigation */
 .selected-underline {
   @apply font-semibold after:bottom-0 after:h-[1px] after:w-full after:bg-primary-100;
 }
@@ -171,23 +172,11 @@ button.mobile-menu-button {
 .filter-btn {
     @apply rounded-full text-black/60 bg-black/10 hover:bg-black hover:text-primary-100 px-6 py-2 transition-all duration-200 font-medium ;
 }
-
 .active {    
     @apply  bg-primary-100 text-black;
 }
 
-/* ✅ SCHABO Font Integration */
-@font-face {
-    font-family: 'hero-font';
-      src: url("../fonts/SCHABO-Condensed.woff2") format('woff2'),
-          url("../fonts/SCHABO-Condensed.woff") format('woff'),
-          url("../fonts/SCHABO-Condensed.otf") format('opentype'),
-          url('../fonts/SCHABO-Condensed.ttf') format('truetype');
-    font-display: swap;
-    font-weight: normal;
-    font-style: normal;
-}
-
+/* Hero */
 .hero-title {
   font-family: 'hero-font' !important;
     font-family: 'hero-font', 'Barlow' -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -197,35 +186,20 @@ button.mobile-menu-button {
     /* Asegurar que Edge use la fuente correcta */
     text-rendering: optimizeLegibility;
 }
-
 .hero-font {
     @apply uppercase text-primary-100 leading-normal overflow-hidden font-display text-center leading-[90%] text-[6rem] sm:text-[8rem] md:text-[12rem] lg:text-[14rem] xl:text-[22rem] transition-all duration-200;
 }
 
-h3, p {
-  @apply text-black/70;
-}
-
-/* Footer Styles */
-footer {
-    @apply bg-black text-white;
-    height: fit-content;
-}
-
 /* forms */
-
-/* Contenedor del formulario */
 .contact-form {
   @apply bg-white;
   padding: 0 !important;
 }
-
 .contact-form input,
 .contact-form textarea {
   @apply mt-2 px-3 text-sm;
 }
-
-/* Campos de entrada */
+/* Fields */
 .contact-form input[type="text"],
 .contact-form input[type="email"],
 .contact-form textarea,
@@ -233,8 +207,7 @@ footer {
   @apply w-full py-3 rounded-md border border-black/10 bg-white text-black/60 text-base leading-relaxed transition-all duration-300;
   font-size: var(--text-sm);
 }
-
-/* Estados de focus para los campos */
+/* Focus */
 .contact-form input[type="text"]:focus,
 .contact-form input[type="email"]:focus,
 .contact-form textarea:focus,
@@ -242,20 +215,17 @@ footer {
   @apply outline-none border-black text-sm bg-white;
   box-shadow: none;
 }
-
-/* Textarea específico */
+/* Text Field */
 .contact-form textarea,
 .contact-form textarea.form-control {
   @apply min-h-[120px];
     font-size: var(--text-sm);
 }
-
-/* Indicadores de campos requeridos */
+/* Required */
 .contact-form .form-label.required::after {
   @apply text-black ml-1;
   content: " *";
 }
-
 .contact-form button[type="submit"]:hover,
 .contact-form input[type="submit"]:hover,
 .contact-form .btn:hover,
@@ -263,70 +233,35 @@ footer {
   @apply bg-black/80;
   transform: none;
 }
-
-/* Estados de validación */
+/* Validation */
 .contact-form .form-control.is-invalid {
   @apply border-red-500/60;
   box-shadow: none;
 }
-
 .contact-form .form-control.is-valid {
   @apply border-black;
   box-shadow: none;
 }
-
-/* Mensajes de validación inline */
+/* Inline Messages*/
 .contact-form .invalid-feedback {
   @apply text-red-600/80 text-sm mt-1 block;
 }
 
-/* Mensajes de formulario */
+/* Messages */
 .form-messages {
   @apply mb-6 px-4 sm:px-5 md:px-6 lg:px-8 xl:px-12;
 }
-
 .form-messages .alert {
   @apply p-4 mb-4 border border-black/20 text-black;
   border-radius: 24px;
   background-color: rgba(0, 0, 0, 0.05);
 }
-
-.form-messages .alert-success {
+.form-messages .alert-message {
   @apply bg-green-50 border-green-200 text-green-800;
-}
-
-.form-messages .alert-danger {
-  @apply bg-red-50 border-red-200 text-red-800;
-}
-
+} 
 .form-messages .btn-close {
   @apply float-right text-black/60 text-lg leading-none cursor-pointer bg-transparent border-0;
 }
-
-/* Gradiente de fondo */
-.bg-gradient-to-b.to-white.from-gray-100 {
-  background: linear-gradient(to bottom, #f3f4f6, #ffffff);
-}
-
-/* Página de contacto con nuevos estilos */
-.contact-page {
-  @apply py-6 sm:py-4 lg:py-12;
-}
-
-/* Página de agradecimiento */
-.thank-you-page {
-  @apply py-6 sm:py-4 lg:py-12;
-}
-
-.thank-you-page .card {
-  border-radius: 24px;
-}
-
-.thank-you-page .card-body {
-  background-color: #ffffff;
-  border-radius: 24px;
-}
-
 .message-summary {
   @apply bg-black/5 border border-black/20 p-4;
   border-radius: 24px;
@@ -335,17 +270,14 @@ footer {
 .message-summary h5 {
   @apply text-black/80 border-b border-black/20 pb-2 mb-4;
 }
-
 .message-summary p {
   @apply text-black/60 text-base xl:text-base 2xl:text-xl leading-relaxed mb-2 transition-all duration-300;
 }
-
 /* Párrafos dentro del formulario y páginas */
 .contact-form p,
 .thank-you-page p {
   @apply text-black/60 text-base xl:text-base 2xl:text-xl leading-relaxed mb-6 transition-all duration-300;
 }
-
 /* Responsivo usando el sistema actualizado */
 .contact-form {
   @apply px-4 sm:px-5 md:px-6 lg:px-8 xl:px-12;

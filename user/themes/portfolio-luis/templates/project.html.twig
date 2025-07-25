@@ -18,29 +18,32 @@
               <section>
                 <div class="w-full mb-0 project-media">
                   {% for file in header.project_media %}
-                    {% set image = page.media.images[file.name] %}
-                    {% set video = page.media.files[file.name] %}
-                    
-                    {% if image %}
-                    <div class="delay-[300ms] duration-[600ms] taos:translate-y-[10%] taos:opacity-0" data-taos-offset="300">
-                      <img
-                          src="{{ image.url }}"
-                          alt="{{ file.name }}"
-                          class="w-full my-8 rounded-xl shadow cursor-pointer hover:shadow-lg"
-                          loading="lazy"
-                          onclick="openModal({{ loop.index0 }})"
-                        />
-                    </div>
-                    {% elseif video and video.type starts with 'video' %}
-                      <video
-                        controls
-                        class="w-full my-4"
-                        preload="metadata"
-                        onclick="openModal({{ loop.index0 }})"
-                      >
-                        <source src="{{ video.url }}" type="{{ video.type }}">
-                        Your browser does not support the video tag.
-                      </video>
+                    {# Skip the first image since it's used as cover #}
+                    {% if not loop.first %}
+                      {% set image = page.media.images[file.name] %}
+                      {% set video = page.media.files[file.name] %}
+                      
+                      {% if image %}
+                      <div class="delay-[300ms] duration-[600ms] taos:translate-y-[10%] taos:opacity-0" data-taos-offset="300">
+                        <img
+                            src="{{ image.url }}"
+                            alt="{{ file.name }}"
+                            class="w-full my-8 rounded-xl shadow cursor-pointer hover:shadow-lg"
+                            loading="lazy"
+                            onclick="openModal({{ loop.index0 - 1 }})"
+                          />
+                      </div>
+                      {% elseif video and video.type starts with 'video' %}
+                        <video
+                          controls
+                          class="w-full my-4"
+                          preload="metadata"
+                          onclick="openModal({{ loop.index0 - 1 }})"
+                        >
+                          <source src="{{ video.url }}" type="{{ video.type }}">
+                          Your browser does not support the video tag.
+                        </video>
+                      {% endif %}
                     {% endif %}
                   {% endfor %}
                 </div>
@@ -125,5 +128,5 @@
 {% if header.project_media %}
     {% include 'partials/modal.html.twig' %}
 {% endif %}
-  
+
 {% endblock %}
