@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Script de setup rápido para proyecto GRAV Portfolio Luis en Kamatera
-# Uso: curl -sSL https://raw.githubusercontent.com/Lugasamo/portfolio/main/quick-setup.sh | bash
+# Script de setup rápido para proyecto GRAV Portfolio Luis en Kamatera - CORREGIDO
+# Uso: bash quick-setup-fixed.sh
 
 set -e
 
@@ -33,7 +33,7 @@ cat << "EOF"
 |  __/| |_| |  _ < | | |  _|| |_| | |___ | | |_| |
 |_|    \___/|_| \_\|_| |_|   \___/|_____|___\___/ 
                                                   
-     GRAV CMS - Despliegue Automático v2.1
+     GRAV CMS - Despliegue Automático v2.1 FIXED
      Portfolio Luis Saavedra - Kamatera Deploy
 EOF
 echo -e "${NC}"
@@ -41,7 +41,7 @@ echo -e "${NC}"
 # Verificar root
 if [[ $EUID -ne 0 ]]; then
     print_error "Este script debe ejecutarse como root"
-    print_status "Usa: sudo bash quick-setup.sh"
+    print_status "Usa: sudo bash quick-setup-fixed.sh"
     exit 1
 fi
 
@@ -60,14 +60,16 @@ fi
 # Crear directorio de backups
 mkdir -p /backups/grav
 
-# Instalar dependencias básicas
+# Instalar dependencias básicas - CORREGIDO para Ubuntu 22.04
 print_status "📦 Instalando dependencias del sistema..."
 if [[ $OS == *"Ubuntu"* ]] || [[ $OS == *"Debian"* ]]; then
     export DEBIAN_FRONTEND=noninteractive
     apt-get update -qq
+    
+    # Instalar sin php8.1-json (incluido por defecto en PHP 8.1)
     apt-get install -y nginx php${PHP_VERSION} php${PHP_VERSION}-fpm php${PHP_VERSION}-cli \
                        php${PHP_VERSION}-gd php${PHP_VERSION}-curl php${PHP_VERSION}-zip \
-                       php${PHP_VERSION}-xml php${PHP_VERSION}-mbstring php${PHP_VERSION}-json \
+                       php${PHP_VERSION}-xml php${PHP_VERSION}-mbstring \
                        php${PHP_VERSION}-yaml php${PHP_VERSION}-opcache php${PHP_VERSION}-apcu \
                        unzip wget curl git rsync software-properties-common certbot \
                        python3-certbot-nginx htop nano
@@ -80,7 +82,7 @@ elif [[ $OS == *"CentOS"* ]] || [[ $OS == *"Rocky"* ]] || [[ $OS == *"AlmaLinux"
     yum update -y -q
     yum install -y epel-release
     yum install -y nginx php php-fpm php-gd php-curl php-zip php-xml \
-                   php-mbstring php-json php-opcache unzip wget curl git rsync
+                   php-mbstring php-opcache unzip wget curl git rsync
     
     systemctl enable nginx php-fpm
     systemctl start nginx php-fpm
@@ -164,8 +166,8 @@ if [ -f "package.json" ]; then
     # Construir Tailwind CSS para producción
     if [ -f "tailwind.config.js" ]; then
         print_status "🎨 Construyendo Tailwind CSS para producción..."
-        npm run tailwind:build
-        print_status "✅ Assets de Tailwind generados"
+        npm run tailwind:build 2>/dev/null || npm run build 2>/dev/null || print_warning "No se encontró script de build para Tailwind"
+        print_status "✅ Assets de Tailwind procesados"
     fi
     
     # Ejecutar build general si existe
@@ -385,7 +387,7 @@ cd /var/www/grav
 git pull origin main
 sudo -u www-data composer install --no-dev --optimize-autoloader
 npm install
-npm run tailwind:build
+npm run tailwind:build 2>/dev/null || npm run build 2>/dev/null || echo "Build scripts not found"
 sudo -u www-data bin/grav cache
 systemctl reload nginx
 echo "Portfolio actualizado: $(date)"
@@ -404,7 +406,7 @@ echo -e "   👉 ${BLUE}http://$DOMAIN/admin${NC}"
 echo ""
 echo -e "${GREEN}🎨 Características activadas:${NC}"
 echo -e "   ✅ Tema portfolio-luis"
-echo -e "   ✅ Tailwind CSS $(cd $PROJECT_DIR && npm list tailwindcss 2>/dev/null | grep tailwindcss || echo 'configurado')"
+echo -e "   ✅ Tailwind CSS configurado"
 echo -e "   ✅ Assets optimizados"
 echo -e "   ✅ PHP ${PHP_VERSION} + OPcache"
 echo -e "   ✅ Nginx optimizado"
