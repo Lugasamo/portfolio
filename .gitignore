@@ -75,3 +75,103 @@ assets/admin-preset.css
 !user/themes/
 !user/config/
 !user/blueprints.yaml
+
+# ---------------------------------
+# AJUSTES PARA DESPLIEGUE AUTOMÁTICO
+# ---------------------------------
+
+# Archivos sensibles de cuentas de usuario (se crean en servidor)
+user/accounts/*
+!user/accounts/.gitkeep
+
+# Archivos de configuración sensibles (se configuran en servidor)
+user/config/security.yaml
+user/config/site.yaml.bak
+
+# Mantener estructura de directorios críticos
+!cache/.gitkeep
+!logs/.gitkeep
+!tmp/.gitkeep
+!backup/.gitkeep
+!user/data/.gitkeep
+!user/accounts/.gitkeep
+
+# Archivos de despliegue automático (mantener en repo)
+!quick# Sistema GRAV - Archivos que NO deben estar en GitHub
+
+# Cache y archivos temporales
+cache/*
+!cache/.gitkeep
+tmp/*
+!tmp/.gitkeep
+logs/*
+!logs/.gitkeep
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+*.tmp
+*.bak
+*.swp
+*~.nib
+
+# Dependencias y vendor
+vendor/*
+!vendor/.gitkeep
+node_modules/
+
+# Archivos de configuración sensibles
+user/config/security.yaml
+user/accounts/*
+!user/accounts/.gitkeep
+
+# Backup automáticos
+backup/*
+*.backup
+
+# Archivos de desarrollo
+.vscode/
+.idea/
+*.sublime-*
+
+# Archivos específicos de servidor
+robots.txt
+.htaccess
+web.config
+
+# SSL y certificados
+*.pem
+*.key
+*.crt
+
+# Variables de entorno
+.env
+.env.local
+.env.production
+
+# Logs específicos
+error.log
+access.log
+
+# Archivos subidos por usuarios (opcional)
+# user/pages/*/screenshot.jpg
+# images/uploads/*
+
+# Mantener estructura de directorios importantes
+!assets/.gitkeep
+!backup/.gitkeep
+!bin/.gitkeep
+!cache/.gitkeep
+!images/.gitkeep
+!logs/.gitkeep
+!system/.gitkeep
+!tmp/.gitkeep
+!user/.gitkeep
+!user/accounts/.gitkeep
+!user/config/.gitkeep
+!user/data/.gitkeep
+!user/pages/.gitkeep
+!user/plugins/.gitkeep
+!user/themes/.gitkeep
+!vendor/.gitkeep
+!webserver-configs/.gitkeep
