@@ -1,218 +1,124 @@
-{# ✅ Modal #}
-<div
-  id="mediaModal"
-  class="fixed inset-0 bg-black/90 backdrop-blur-sm flex items-center justify-center z-50 hidden"
-  onclick="closeModal()"
->
-  <div
-    class="relative w-full h-full max-w-[98vw] max-h-[98vh] flex items-center justify-center"
-    onclick="event.stopPropagation()"
-  >
+{# ✅ Clean Modal #}
+<div id="mediaModal" class="fixed inset-0 bg-black/95 flex items-center justify-center z-50 hidden" onclick="closeModal()">
+  <div class="relative w-full h-full max-w-screen max-h-screen flex items-center justify-center p-4" onclick="event.stopPropagation()">
+    
     {# Close Button #}
-    <button
-      class="absolute top-4 right-4 text-white text-3xl hover:text-gray-300 z-10 bg-black/50 rounded-full w-12 h-12 flex items-center justify-center transition-colors duration-200"
-      onclick="closeModal()"
-    >&times;</button>
+    <button class="absolute top-4 right-4 text-white/80 hover:text-white text-2xl w-10 h-10 flex items-center justify-center rounded-full bg-black/30 hover:bg-black/50 transition-all z-10" onclick="closeModal()">
+      ✕
+    </button>
 
-    {# Left arrow #}
-    <button
-      id="prevBtn"
-      class="absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-4xl hover:text-gray-300 z-10 bg-black/50 rounded-full w-12 h-12 flex items-center justify-center transition-all duration-200 hover:bg-black/70"
-      onclick="navigateModal(-1)"
-    >&#8249;</button>
+    {# Navigation Arrows #}
+    <button id="prevBtn" class="absolute left-4 top-1/2 -translate-y-1/2 text-white/80 hover:text-white text-3xl w-12 h-12 flex items-center justify-center rounded-full bg-black/30 hover:bg-black/50 transition-all z-10" onclick="navigateModal(-1)">
+      ‹
+    </button>
+    
+    <button id="nextBtn" class="absolute right-4 top-1/2 -translate-y-1/2 text-white/80 hover:text-white text-3xl w-12 h-12 flex items-center justify-center rounded-full bg-black/30 hover:bg-black/50 transition-all z-10" onclick="navigateModal(1)">
+      ›
+    </button>
 
-    {# Right arrow #}
-    <button
-      id="nextBtn"
-      class="absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-4xl hover:text-gray-300 z-10 bg-black/50 rounded-full w-12 h-12 flex items-center justify-center transition-all duration-200 hover:bg-black/70"
-      onclick="navigateModal(1)"
-    >&#8250;</button>
+    {# Modal Content #}
+    <div id="modalContent" class="w-full h-full flex items-center justify-center"></div>
 
-    {# Modal content #}
-    <div id="modalContent" class="w-full h-full flex items-center justify-center p-4">
-      {# Dinamic content embeded by JS #}
-    </div>
-
-    {# Position Counter #}
-    <div
-      id="mediaCounter"
-      class="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white bg-black/50 px-3 py-1 rounded-full text-sm"
-    >
+    {# Counter #}
+    <div id="mediaCounter" class="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/90 bg-black/40 px-3 py-1 rounded-full text-sm backdrop-blur-sm">
       <span id="currentMedia">1</span> / <span id="totalMedia">1</span>
     </div>
   </div>
 </div>
 
 <script>
-  // Variables globales para el modal
-  let currentMediaIndex = 0;
-  let mediaItems = [];
+let currentMediaIndex = 0;
+let mediaItems = [];
 
-  // Inicializar array de medios al cargar la página
-  document.addEventListener('DOMContentLoaded', function() {
-    // Construir array de medios desde el backend
-    mediaItems = [
-      {% for file in header.project_media %}
+document.addEventListener('DOMContentLoaded', function() {
+  // Build media array - SKIP FIRST ELEMENT (cover image)
+  mediaItems = [
+    {% for file in page.header.project_media %}
+      {% if not loop.first %} {# Skip first element #}
         {% set image = page.media.images[file.name] %}
-        {% set video = page.media.videos[file.name] %}
-        {% set media_file = page.media.files[file.name] %}
+        {% set video = page.media.files[file.name] %}
         {% set extension = file.name|split('.')|last|lower %}
         {% set video_extensions = ['mp4', 'webm', 'mov', 'avi', 'mkv'] %}
         {
           name: '{{ file.name|e('js') }}',
-          type: '{{ extension }}',
-          url: '{{ page.url }}/{{ file.name|e('js') }}',
-          {% if image %}
-          mediaType: 'image'
-          {% elseif video %}
-          mediaType: 'video'
-          {% elseif extension in video_extensions %}
-          mediaType: 'video'
-          {% else %}
-          mediaType: 'unknown'
-          {% endif %}
+          url: '{{ image ? image.url : (page.url ~ '/' ~ file.name) }}',
+          type: '{% if image %}image{% elseif video and video.type starts with 'video' %}video{% elseif extension in video_extensions %}video{% else %}unknown{% endif %}'
         }{% if not loop.last %},{% endif %}
-      {% endfor %}
-    ];
-    
-    // Actualizar contador total
-    document.getElementById('totalMedia').textContent = mediaItems.length;
-  });
+      {% endif %}
+    {% endfor %}
+  ];
+  
+  document.getElementById('totalMedia').textContent = mediaItems.length;
+});
 
-  function openModal(index) {
-    currentMediaIndex = index;
-    const modal = document.getElementById('mediaModal');
-    updateModalContent();
-    updateNavigationButtons();
-    updateCounter();
-    modal.classList.remove('hidden');
-    
-    // Prevenir scroll del body
-    document.body.style.overflow = 'hidden';
+function openModal(index) {
+  currentMediaIndex = index;
+  updateModalContent();
+  updateNavigation();
+  updateCounter();
+  
+  document.getElementById('mediaModal').classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('mediaModal').classList.add('hidden');
+  document.getElementById('modalContent').innerHTML = '';
+  document.body.style.overflow = 'auto';
+}
+
+function navigateModal(direction) {
+  currentMediaIndex = (currentMediaIndex + direction + mediaItems.length) % mediaItems.length;
+  updateModalContent();
+  updateCounter();
+}
+
+function updateModalContent() {
+  const content = document.getElementById('modalContent');
+  const media = mediaItems[currentMediaIndex];
+  
+  if (!media) return;
+  
+  if (media.type === 'image') {
+    content.innerHTML = `<img src="${media.url}" alt="${media.name}" class="max-w-full max-h-full object-contain">`;
+  } else if (media.type === 'video') {
+    content.innerHTML = `<video controls autoplay class="max-w-full max-h-full object-contain"><source src="${media.url}">Video not supported</video>`;
+  } else {
+    content.innerHTML = `<div class="text-white text-center">Unsupported file type</div>`;
   }
+}
 
-  function closeModal() {
-    const modal = document.getElementById('mediaModal');
-    const content = document.getElementById('modalContent');
-    modal.classList.add('hidden');
-    content.innerHTML = '';
-    
-    // Restaurar scroll del body
-    document.body.style.overflow = 'auto';
+function updateNavigation() {
+  const showNav = mediaItems.length > 1;
+  document.getElementById('prevBtn').style.display = showNav ? 'flex' : 'none';
+  document.getElementById('nextBtn').style.display = showNav ? 'flex' : 'none';
+}
+
+function updateCounter() {
+  document.getElementById('currentMedia').textContent = currentMediaIndex + 1;
+}
+
+// Keyboard navigation
+document.addEventListener('keydown', function(e) {
+  if (!document.getElementById('mediaModal').classList.contains('hidden')) {
+    if (e.key === 'Escape') closeModal();
+    if (e.key === 'ArrowLeft') navigateModal(-1);
+    if (e.key === 'ArrowRight') navigateModal(1);
   }
+});
 
-  function navigateModal(direction) {
-    currentMediaIndex += direction;
-    
-    // Wrap around navigation
-    if (currentMediaIndex >= mediaItems.length) {
-      currentMediaIndex = 0;
-    } else if (currentMediaIndex < 0) {
-      currentMediaIndex = mediaItems.length - 1;
-    }
-    
-    updateModalContent();
-    updateNavigationButtons();
-    updateCounter();
+// Touch gestures
+let touchStartX = 0;
+document.getElementById('mediaModal').addEventListener('touchstart', e => {
+  touchStartX = e.changedTouches[0].screenX;
+});
+
+document.getElementById('mediaModal').addEventListener('touchend', e => {
+  const touchEndX = e.changedTouches[0].screenX;
+  const diff = touchStartX - touchEndX;
+  
+  if (Math.abs(diff) > 50) {
+    navigateModal(diff > 0 ? 1 : -1);
   }
-
-  function updateModalContent() {
-    const content = document.getElementById('modalContent');
-    const media = mediaItems[currentMediaIndex];
-    
-    if (!media) return;
-    
-    const isVideo = media.mediaType === 'video' || ['mp4', 'webm', 'mov'].includes(media.type);
-    const isImage = media.mediaType === 'image' || ['jpg', 'jpeg', 'png', 'gif', 'webp'].includes(media.type);
-
-    if (isImage) {
-      content.innerHTML = `
-        <img 
-          src="${media.url}" 
-          alt="${media.name}" 
-          class="max-w-full max-h-full object-contain rounded shadow-2xl"
-          style="max-height: calc(100vh - 8rem);"
-        />`;
-    } else if (isVideo) {
-      content.innerHTML = `
-        <video 
-          controls 
-          autoplay 
-          class="max-w-full max-h-full object-contain rounded shadow-2xl"
-          style="max-height: calc(100vh - 8rem);"
-        >
-          <source src="${media.url}" type="video/${media.type}">
-          Tu navegador no soporta el tag de video.
-        </video>`;
-    } else {
-      content.innerHTML = `<p class="text-white text-center">Tipo de archivo no soportado</p>`;
-    }
-  }
-
-  function updateNavigationButtons() {
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    
-    // Mostrar/ocultar botones si solo hay un elemento
-    if (mediaItems.length <= 1) {
-      prevBtn.style.display = 'none';
-      nextBtn.style.display = 'none';
-    } else {
-      prevBtn.style.display = 'flex';
-      nextBtn.style.display = 'flex';
-    }
-  }
-
-  function updateCounter() {
-    document.getElementById('currentMedia').textContent = currentMediaIndex + 1;
-  }
-
-  // Navegación con teclado
-  document.addEventListener('keydown', function(e) {
-    const modal = document.getElementById('mediaModal');
-    if (!modal.classList.contains('hidden')) {
-      switch(e.key) {
-        case 'Escape':
-          closeModal();
-          break;
-        case 'ArrowLeft':
-          navigateModal(-1);
-          break;
-        case 'ArrowRight':
-          navigateModal(1);
-          break;
-      }
-    }
-  });
-
-  // Soporte para gestos táctiles (móvil)
-  let touchStartX = 0;
-  let touchEndX = 0;
-
-  document.getElementById('mediaModal').addEventListener('touchstart', function(e) {
-    touchStartX = e.changedTouches[0].screenX;
-  });
-
-  document.getElementById('mediaModal').addEventListener('touchend', function(e) {
-    touchEndX = e.changedTouches[0].screenX;
-    handleGesture();
-  });
-
-  function handleGesture() {
-    const modal = document.getElementById('mediaModal');
-    if (modal.classList.contains('hidden')) return;
-    
-    const swipeThreshold = 50;
-    const diff = touchStartX - touchEndX;
-    
-    if (Math.abs(diff) > swipeThreshold) {
-      if (diff > 0) {
-        // Swipe left - next image
-        navigateModal(1);
-      } else {
-        // Swipe right - previous image
-        navigateModal(-1);
-      }
-    }
-  }
+});
 </script>

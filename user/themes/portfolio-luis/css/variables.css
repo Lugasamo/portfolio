@@ -82,13 +82,13 @@
 }
 
 h1,h2,h3,h4,h5,h6 {
-    @apply transition-all duration-300 font-semibold leading-relaxed;
+    @apply transition-all duration-300 font-bold leading-relaxed text-black;
 }
 p, label {
     @apply transition-all duration-300;
 }
 p {
-    @apply text-black/60 text-base xl:text-base 2xl:text-xl leading-relaxed;
+    @apply text-black/60 text-base xl:text-base 2xl:text-lg leading-relaxed;
 
 }
 label { 
@@ -96,15 +96,15 @@ label {
 }
 
 /*headline*/
-div h1 {
-    @apply text-2xl lg:text-2xl xl:text-3xl 2xl:text-4xl;
+div h1, h1 {
+    @apply text-2xl lg:text-2xl xl:text-3xl 2xl:text-4xl font-normal;
     margin-bottom: 0;
 }
-div h2 {
-    @apply text-xl lg:text-xl xl:text-2xl 2xl:text-3xl;
+div h2, h2 {
+    @apply text-xl lg:text-xl xl:text-2xl 2xl:text-3xl font-normal;
 }
-div h3 {
-    @apply text-lg lg:text-lg xl:text-xl 2xl:text-2xl;
+div h3, h3 {
+    @apply text-lg lg:text-lg xl:text-xl 2xl:text-2xl font-normal;
 }
 .header-upper {
  font-family: var(--font-display);
@@ -113,12 +113,19 @@ div h3 {
  text-transform: uppercase;
  letter-spacing: 1px;
 }
-h3, p {
+
+p {
   @apply text-black/70;
 }
 
 footer p {
   color: inherit;  
+}
+
+.prose h1,
+.prose h2,
+.prose h3 {
+  font-weight: inherit;
 }
 
 /*Layout*/
@@ -189,6 +196,8 @@ button.mobile-menu-button {
 .hero-font {
     @apply uppercase text-primary-100 leading-normal overflow-hidden font-display text-center leading-[90%] text-[6rem] sm:text-[8rem] md:text-[12rem] lg:text-[14rem] xl:text-[22rem] transition-all duration-200;
 }
+
+
 
 /* forms */
 .contact-form {

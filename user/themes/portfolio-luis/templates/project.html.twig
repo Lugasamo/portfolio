@@ -1,132 +1,273 @@
 {% extends 'partials/base.html.twig' %}
 {% block content %}
 
-{# Header #} 
-    {% if page.header.title %}
-      {% include 'partials/hero.html.twig' %}
-    {% endif %}
+{# Hero Section #} 
+{% if page.header.title %}
+  {% include 'partials/hero.html.twig' %}
+{% endif %}
 
-    <div class="flex flex-col lg:flex-row gap-x-4 md:gap-x-4 lg:gap-x-8 sm:gap-y-4 gap-y-6 p-site pt-0 bg-gradient-to-b to-white from-gray-100">
-      <main class="p-site w-full lg:w-2/3 shadow-lg rounded-3xl bg-white bg-opacity-90 delay-[100ms] duration-[600ms] taos:translate-y-[2%] taos:opacity-0" data-taos-offset="300">
-        {% if page.content %}
-          <div class="flex-col space-y-8">
-              <h1>{{ page.header.hero_title|raw }}</h1>
-              <p>{{ page.content|raw }}</p>
-
-            {# ✅ project Images #}
-            {% if header.project_media %}
-              <section>
-                <div class="w-full mb-0 project-media">
-                  {% for file in header.project_media %}
-                    {# Skip the first image since it's used as cover #}
-                    {% if not loop.first %}
-                      {% set image = page.media.images[file.name] %}
-                      {% set video = page.media.files[file.name] %}
-                      
-                      {% if image %}
-                      <div class="delay-[300ms] duration-[600ms] taos:translate-y-[10%] taos:opacity-0" data-taos-offset="300">
-                        <img
-                            src="{{ image.url }}"
-                            alt="{{ file.name }}"
-                            class="w-full my-8 rounded-xl shadow cursor-pointer hover:shadow-lg"
-                            loading="lazy"
-                            onclick="openModal({{ loop.index0 - 1 }})"
-                          />
-                      </div>
-                      {% elseif video and video.type starts with 'video' %}
-                        <video
-                          controls
-                          class="w-full my-4"
-                          preload="metadata"
-                          onclick="openModal({{ loop.index0 - 1 }})"
-                        >
-                          <source src="{{ video.url }}" type="{{ video.type }}">
-                          Your browser does not support the video tag.
-                        </video>
-                      {% endif %}
-                    {% endif %}
-                  {% endfor %}
-                </div>
-              </section>
-            {% endif %}
-          </div>
-        {% endif %}
-        </main>
-
-      <aside class="w-full lg:w-1/3 delay-[100ms] duration-[600ms] taos:translate-y-[2%] taos:opacity-0" data-taos-offset="300">
-        <div class="sticky top-0 p-site rounded-3xl shadow-lg space-y-4 bg-slate-50 bg-opacity-90">
-          {% if page.parent %}
-            <a href="{{ page.parent.url }}" class="inline-flex items-center text-primary-50 hover:underline">
-              ← Back to {{ page.parent.title }}
-            </a>
+<div class="flex flex-col lg:flex-row gap-x-4 md:gap-x-4 lg:gap-x-8 sm:gap-y-4 gap-y-6 p-site pt-0 bg-gradient-to-b to-white from-gray-100">
+  
+  {# Main Content #}
+  <main class="p-site w-full lg:w-2/3 shadow-lg rounded-3xl bg-white bg-opacity-90 delay-[100ms] duration-[600ms] taos:translate-y-[2%] taos:opacity-0" data-taos-offset="300">
+    {% if page.content %}
+      <div class="flex-col space-y-12">
+        
+        {# Project Introduction #}
+        <section class="project-intro">
+          {% if page.header.hero_title %}
+            <h2 class="mb-4">{{ page.header.hero_title|raw }}</h2>
           {% endif %}
           
-          {% if page.header.client %}
-            <h1>
-              {{page.header.client}}
-            </h1>
-          {% endif %}
-
-          {% if page.header.role %}
-            <div class="pb-2">
-              <label>Role</label>
-              <p>{{page.header.role}}</p>
+          {% if page.content %}
+            <div class="prose prose-lg max-w-none">
+              {{ page.content|raw }}
             </div>
           {% endif %}
+        </section>
 
-          {% if page.header.duration %}
-            <div class="pb-2">
-              <label>Duration</label>
-              <p>{{page.header.duration}}</p>
-            </div>
-          {% endif %}
+        {# Content Blocks Section #}
+        {% if page.header.content_blocks %}
+          <section class="content-blocks">
+            {% for block in page.header.content_blocks %}
+              {% set loop_index = loop.index0 %}
+              {% set is_even = (loop_index % 2) == 0 %}
+              
+              {# Determine text position #}
+              {% set text_position = block.text_position|default('auto') %}
+              {% set text_left = text_position == 'auto' ? is_even : (text_position == 'left') %}
 
-          {% if page.header.tags %}
-            <div class="pb-2">
-              <ul class="flex space-x-2">
-                {% for tag in page.header.tags %}
-                  <li class="inline-block bg-primary-100 text-black text-xs font-medium px-3 py-1 rounded-full">{{ tag }}</li>
-                {% endfor %}
-              </ul>
-            </div>
-          {% endif %}
+              <hr class="h-px bg-gray-300 my-8">
+              
+              <div class="content-block grid grid-cols-1 lg:grid-cols-2 gap-8 items-center {{ text_left ? 'lg:grid-flow-col' : 'lg:grid-flow-col-dense' }} delay-[100ms] duration-[600ms] taos:translate-y-[2%] taos:opacity-0" data-taos-offset="300">
+                
+                {# Text Content #}
+                <div class="text-content {{ text_left ? 'lg:order-1' : 'lg:order-2' }}">
+                  {% if block.title %}
+                    <h3 class="mb-4">{{ block.title }}</h3>
+                  {% endif %}
+                  {% if block.content %}
+                    <div class="prose max-w-none">
+                      {{ block.content|markdown }}
+                    </div>
+                  {% endif %}
+                </div>
 
-          {% if header.project_url %}
-            <div class="pb-2">
-              <a class="btn btn-primary bg-black font-medium text-white hover:bg-primary-100 hover:text-black" href="{{header.project_url}}" target="_blank">Visit site</a>
+                {# Image Content #}
+                {% if block.image %}
+                  <div class="image-content {{ text_left ? 'lg:order-2' : 'lg:order-1' }}">
+                    {% for filename, file in block.image %}
+                      {% if loop.first and page.media[filename] %}
+                        <img 
+                          src="{{ page.media[filename].url }}" 
+                          alt="{{ block.title|default('Content Image') }}"
+                          class="w-full rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
+                          loading="lazy"
+                        >
+                      {% endif %}
+                    {% endfor %}
+                  </div>
+                {% endif %}
+              </div>
+            {% endfor %}
+          </section>
+        {% endif %}
+
+        <hr class="h-px bg-gray-300 my-8">
+
+        {# Project Media Gallery #}
+        {% if page.header.project_media %}
+          <section class="project-gallery">
+            <h3 class="mb-6">UI Showcase</h3>
+            <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+              {% for file in page.header.project_media %}
+                {# Skip the first image since it's used as cover #}
+                {% if not loop.first %}
+                  {% set image = page.media.images[file.name] %}
+                  {% set video = page.media.files[file.name] %}
+                  
+                  {% if image %}
+                    <div class="gallery-item delay-[300ms] duration-[600ms] taos:translate-y-[10%] taos:opacity-0" data-taos-offset="300">
+                      <img
+                        src="{{ image.url }}"
+                        alt="{{ file.name }}"
+                        class="w-full aspect-video object-cover rounded-xl shadow cursor-pointer hover:shadow-lg transition-shadow duration-300"
+                        loading="lazy"
+                        onclick="openModal({{ loop.index0 - 1 }})"
+                      />
+                    </div>
+                  {% elseif video and video.type starts with 'video' %}
+                    <div class="gallery-item delay-[300ms] duration-[600ms] taos:translate-y-[10%] taos:opacity-0" data-taos-offset="300">
+                      <video
+                        controls
+                        class="w-full aspect-video object-cover rounded-xl shadow cursor-pointer hover:shadow-lg transition-shadow duration-300"
+                        preload="metadata"
+                        onclick="openModal({{ loop.index0 - 1 }})"
+                      >
+                        <source src="{{ video.url }}" type="{{ video.type }}">
+                        Your browser does not support the video tag.
+                      </video>
+                    </div>
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
             </div>
-          {% endif %}
+          </section>
+        {% endif %}
+
+      </div>
+    {% endif %}
+  </main>
+
+  {# Sidebar #}
+  <aside class="w-full lg:w-1/3 delay-[100ms] duration-[600ms] taos:translate-y-[2%] taos:opacity-0" data-taos-offset="300">
+    <div class="sticky top-4 p-6 rounded-3xl shadow-lg space-y-6 bg-slate-50 bg-opacity-90">
+      
+      {# Back Navigation #}
+      {% if page.parent %}
+        <nav>
+          <a href="{{ page.parent.url }}" class="inline-flex items-center text-blue-600 hover:text-blue-800 hover:underline transition-colors duration-200">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+            Back to {{ page.parent.title }}
+          </a>
+        </nav>
+      {% endif %}
+      
+      {# Client Info #}
+      {% if page.header.client %}
+        <div class="client-info">
+          <h2>{{ page.header.client }}</h2>
         </div>
-      </aside>
+      {% endif %}
+
+      {# Project Details #}
+      <div class="project-details space-y-4">
+        {% if page.header.role %}
+          <div class="detail-item">
+            <label class="block text-sm font-medium text-gray-600 mb-1">Role</label>
+            <p class="text-gray-900">{{ page.header.role }}</p>
+          </div>
+        {% endif %}
+
+        {% if page.header.duration %}
+          <div class="detail-item">
+            <label class="block text-sm font-medium text-gray-600 mb-1">Duration</label>
+            <p class="text-gray-900">{{ page.header.duration }}</p>
+          </div>
+        {% endif %}
+
+        {% if page.header.year %}
+          <div class="detail-item">
+            <label class="block text-sm font-medium text-gray-600 mb-1">Year</label>
+            <p class="text-gray-900">{{ page.header.year }}</p>
+          </div>
+        {% endif %}
+
+        {% if page.header.project_type %}
+          <div class="detail-item">
+            <label class="block text-sm font-medium text-gray-600 mb-1">Deliverable</label>
+            <p class="text-gray-900">{{ page.header.project_type|replace({'-': ' '})|title }}</p>
+          </div>
+        {% endif %}
+      </div>
+
+      {# Tags #}
+      {% if page.header.tags %}
+        <div class="project-tags">
+          <label class="block text-sm font-medium text-gray-600 mb-2">Tags</label>
+          <div class="flex flex-wrap gap-2">
+            {% for tag in page.header.tags %}
+              <span class="inline-block bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">
+                {{ tag|replace({'-': ' '})|title }}
+              </span>
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+
+      {# Project URL #}
+      {% if page.header.project_url %}
+        <div class="project-action">
+          <a 
+            class="btn btn-lg btn-primary font- bg-black text-white"
+            href="{{ page.header.project_url }}" 
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+            </svg>
+            Visit Site
+          </a>
+        </div>
+      {% endif %}
     </div>
+  </aside>
+</div>
 
-    <div class="p-site flex flex-col gap-y-6 pt-0">
-        <div class="bg-slate-50 flex flex-col lg:flex-row p-site gap-x-12 gap-y-4 rounded-3xl shadow-lg delay-[150ms] duration-[300ms] taos:translate-y-[10%] taos:opacity-0" data-taos-offset="300">
-          <div class="w-full lg:w-1/2">
-            <h2 class="py-2">Challenge</h2>
-            <p>{{header.challenge}}</p>
-          </div>
-          <div class="w-full lg:w-1/2">
-            <h2 class="py-2">Solution</h2>
-            <p>{{header.solution}}</p>
+{# Challenge & Solution Section #}
+{% if page.header.challenge or page.header.solution %}
+  <section class="p-site pt-0">
+    <div class="bg-slate-50 flex flex-col lg:flex-row p-8 gap-x-12 gap-y-8 rounded-3xl shadow-lg delay-[150ms] duration-[300ms] taos:translate-y-[10%] taos:opacity-0" data-taos-offset="300">
+      
+      {% if page.header.challenge %}
+        <div class="w-full lg:w-1/2">
+          <h2 class="mb-4">Challenge</h2>
+          <div class="prose max-w-none text-gray-700">
+            <ul class="list-disc list-outside ml-0 space-y-3">
+              {% for line in page.header.challenge|split('\n') %}
+                {% if line|trim %}
+                  <li class="pl-0">{{ line|trim }}</li>
+                {% endif %}
+              {% endfor %}
+            </ul>
           </div>
         </div>
+      {% endif %}
 
-      {# ✅ design Process #}
-        <div class="p-site bg-black text-white w-full flex flex-col lg:flex-row rounded-3xl shadow-lg delay-[150ms] duration-[300ms] taos:translate-y-[10%] taos:opacity-0" data-taos-offset="300">
-          <div class="w-full lg:w-1/2">
-            <h2>Design Proccess</h2>
-          </div>
-          <div class="w-full lg:w-1/2">
-            <h3 class="py-2 text-white">wdwhkwjdhj dwjkdhwjkdwhkjw dhjkwdh dwkjh wdjkhdw jk dwkjdw hkjwdhwdjk. dwkjhwdkjhdwkj h</h3>
-            <p class="text-white/70 font-light">{{header.solution}}</p>
+      {% if page.header.solution %}
+        <div class="w-full lg:w-1/2">
+          <h2 class="mb-4">Solution</h2>
+          <div class="prose max-w-none text-gray-700">
+            <ul class="list-disc list-outside ml-0 space-y-3">
+              {% for line in page.header.solution|split('\n') %}
+                {% if line|trim %}
+                  <li>{{ line|trim|raw }}</li>
+                {% endif %}
+              {% endfor %}
+            </ul>
           </div>
         </div>
+      {% endif %}
     </div>
+  </section>
+{% endif %}
 
-{# modal #} 
-{% if header.project_media %}
-    {% include 'partials/modal.html.twig' %}
+{# Design Process Section #}
+<section class="p-site pt-0">
+  <div class="bg-black flex flex-col lg:flex-row p-8 gap-x-12 gap-y-8 rounded-3xl shadow-lg delay-[150ms] duration-[300ms] taos:translate-y-[10%] taos:opacity-0" data-taos-offset="300">
+    <div class="w-full lg:w-1/2">
+      <h2 class="mb-4 text-white">Design Process</h2>
+    </div>
+    <div class="w-full lg:w-1/2">
+      <div class="prose max-w-none">
+        <ul class="text-white list-disc list-outside ml-0 space-y-3">
+        {% for line in page.header.design_process|split('\n') %}
+          {% if line|trim %}
+            <li class="text-white/90 text-inherit">{{ line|trim|raw }}</li>
+          {% endif %}
+        {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# Modal for Gallery #} 
+{% if page.header.project_media %}
+  {% include 'partials/modal.html.twig' %}
 {% endif %}
 
 {% endblock %}

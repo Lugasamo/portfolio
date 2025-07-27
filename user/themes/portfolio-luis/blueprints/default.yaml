@@ -28,6 +28,7 @@ form:
               label: Project Media Gallery
               destination: 'self@'
               multiple: true
+              limit: 0 
               accept:
                 - image/jpeg
                 - image/png

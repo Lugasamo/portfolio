@@ -45,7 +45,7 @@
         {% endif %}
 
                 <section class="p-site {#bg-gradient-to-b to-gray-100 from-white#}">
-                    <div class="bento-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6 auto-rows-[200px]">
+                    <div class="bento-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6 auto-rows-[200px] delay-[100ms] duration-[600ms] taos:translate-y-[2%] taos:opacity-0" data-taos-offset="300">
                         {% for project in page.collection() %}
 
                             {% set gridClass = '' %}
@@ -75,7 +75,7 @@
                                         <div class="absolute inset-0">
                                             <img src="{{ image.url }}"
                                                 alt="{{ project.title }}"
-                                                class="w-full h-full  object-cover transition-transform duration-200 group-hover:scale-105"
+                                                class="w-full h-full object-cover transition-transform duration-200 group-hover:scale-105"
                                                 loading="lazy"
                                                 decoding="async">
                                             <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
