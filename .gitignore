@@ -7,6 +7,8 @@ backup/
 tmp/
 user/data/
 vendor/
+pages/
+images/
 
 # ---------------------------------
 # Ignorar archivos temporales y de desarrollo
