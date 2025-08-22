@@ -11,6 +11,8 @@ pages/
 images/
 user/plugins/
 user/themes/quark/
+user/pages/
+user/config/
 # ---------------------------------
 # Ignorar archivos temporales y de desarrollo
 # ---------------------------------
