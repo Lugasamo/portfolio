@@ -9,7 +9,8 @@ user/data/
 vendor/
 pages/
 images/
-
+user/plugins/
+user/themes/quark/
 # ---------------------------------
 # Ignorar archivos temporales y de desarrollo
 # ---------------------------------
